@@ -25,12 +25,12 @@ const inter = Inter({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" className={`font-mono ${inter.variable} ${nunito.variable}`}>
-            <ThemeProviderWrap>
-                <body className="px-5 2xl:px-10">
+            <body className="px-5 2xl:px-10 pb-2">
+                <ThemeProviderWrap>
                     <Navbar />
-                    <main>{children}</main>
-                </body>
-            </ThemeProviderWrap>
+                    <main className="p-8">{children}</main>
+                </ThemeProviderWrap>
+            </body>
         </html>
     )
 }

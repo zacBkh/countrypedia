@@ -15,7 +15,7 @@ export interface ReturnFxProps {
 export const getAllCountries = async (): Promise<ReturnFxProps[]> => {
     try {
         const res = await fetch(ALL_COUNTRIES)
-        await new Promise(resolve => setTimeout(resolve, 1500))
+        await new Promise(resolve => setTimeout(resolve, 3000))
         return res.json()
     } catch (error) {
         console.log('error [1]', error)

@@ -24,13 +24,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                     alt={flags.alt}
                 />
             </div>
-            <a href="#">
-                <img
-                    className="rounded-t-lg"
-                    src="/docs/images/blog/image-1.jpg"
-                    alt=""
-                />
-            </a>
+
             <div className="py-2 px-5 flex flex-col gap-y-4">
                 <div className="flex justify-between gap-x-2 items-center">
                     <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
