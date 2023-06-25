@@ -1,5 +1,5 @@
 export enum FetchLinks {
-    ALL_COUNTRIES = 'https://restcountries.com/v3.1/all?fields=name,flags,region,languages,capital,maps,cca3',
+    ALL_COUNTRIES = 'https://restcountries.com/v3.1/all?fields=name,flags,region,languages,capital,maps,cca3,coatOfArms',
 }
 
 export enum WebsiteLinks {

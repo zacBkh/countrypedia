@@ -1,39 +1,36 @@
 import './globals.css'
-import { Roboto_Mono, Inter } from 'next/font/google'
+import { Nunito, Inter } from 'next/font/google'
 
 import Navbar from '../components/navbar'
 
+import ThemeProviderWrap from './theme-provider'
+
 export const metadata = {
-  title: 'CountryPedia',
-  description: 'Find informations about all countries with CountryPedia',
-  keywords: 'Countries, world',
+    title: 'CountryPedia',
+    description: 'Find informations about all countries with CountryPedia',
+    keywords: 'Countries, world',
 }
 
-const roboto_mono = Roboto_Mono({
-  subsets: ['latin'],
-  variable: '--font-roboto-mono',
+const nunito = Nunito({
+    subsets: ['latin'],
+    variable: '--font-nunito',
 })
 
 const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-inter',
 })
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html
-      lang="en"
-      className={`font-mono ${inter.variable} ${roboto_mono.variable}`}
-    >
-      <body>
-        <Navbar />
-        <main>{children}</main>
-      </body>
-    </html>
-  )
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+    return (
+        <html lang="en" className={`font-mono ${inter.variable} ${nunito.variable}`}>
+            <ThemeProviderWrap>
+                <body className="px-5 2xl:px-10">
+                    <Navbar />
+                    <main>{children}</main>
+                </body>
+            </ThemeProviderWrap>
+        </html>
+    )
 }

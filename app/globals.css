@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+button:hover {
+    background-color: rgba(35, 39, 47, 0.05);
+    @apply bg-react-blue-hover-light;
+    @apply dark:bg-react-blue-hover-dark;
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
+body {
+    @apply bg-react-bg-light text-react-txt-light;
+
+    @apply dark:bg-react-bg-dark dark:text-react-txt-dark;
+}
