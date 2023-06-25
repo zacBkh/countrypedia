@@ -3,6 +3,7 @@
 import { useState, FC } from 'react'
 import CountryCard from './country-card'
 import { ReturnFxProps } from '@/services/fetchers'
+import { FiArrowRight } from 'react-icons/fi'
 
 import Button from './ui/buttons'
 
@@ -27,7 +28,13 @@ const Countries: FC<CountriesProps> = ({ allCountries }) => {
                         <CountryCard key={cty.cca3} details={cty} />
                     ))}
                 </div>
-                <Button onLoadMore={loadMoreHandler} text="See More" />
+                <Button
+                    iconClass="text-xl"
+                    icon={<FiArrowRight />}
+                    moreStyle={'mt-8'}
+                    onAction={loadMoreHandler}
+                    text="See More"
+                />
             </div>
         </>
     )

@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { FC } from 'react'
 import { ReturnFxProps } from '@/services/fetchers'
 
-import { FiArrowRight } from 'react-icons/fi'
 import { BiSolidCity, BiWorld, BiUserVoice } from 'react-icons/bi'
 import { SiGooglemaps } from 'react-icons/si'
+import { FiArrowRight } from 'react-icons/fi'
+
+import Button from './ui/buttons'
 
 interface CountryCardProps {
     details: ReturnFxProps
@@ -70,31 +72,22 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                     )}
                 </div>
                 <div className="flex justify-between gap-x-8">
-                    <Link
-                        className="flex justify-between gap-x-3 items-center px-4 py-[10px] text-sm font-medium text-center  text-white
-                        rounded-full
-                        bg-react-button-blue-light
-                        hover:bg-react-blue-txt-light&dark-hover
-                        dark:bg-react-button-blue-dark
-                        dark:hover:bg-react-blue-txt-light&dark-hover
-                        "
-                        href="/#"
-                    >
-                        Read more
-                        <FiArrowRight className="text-xl" />
-                    </Link>
+                    <Button
+                        iconClass="text-xl"
+                        icon={<FiArrowRight />}
+                        text="Read more"
+                        isNextLink
+                        link={'/'}
+                    />
 
-                    <a
-                        target="_blank"
-                        className="
-                        border dark:border-[#404756] dark:hover:bg-[#252932]
-                        border-[#d9dbe3]
-                        hover:bg-[#4e57690d] flex justify-between gap-x-3 items-center px-3 py-2 text-sm font-medium text-center rounded-full "
-                        href={maps.googleMaps}
-                    >
-                        See on Maps
-                        <SiGooglemaps className="text-base" />
-                    </a>
+                    <Button
+                        iconClass="text-base"
+                        icon={<SiGooglemaps />}
+                        secondary
+                        isExternalLink
+                        link={maps.googleMaps}
+                        text="See on Maps"
+                    />
                 </div>
             </div>
         </div>
