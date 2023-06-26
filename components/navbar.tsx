@@ -5,6 +5,8 @@ import { WebsiteLinks } from '@/constants/urls'
 
 import ThemeSwitcher from './ui/theme-switcher'
 
+import SearchBar from './search-bar'
+
 const { HOME, ABOUT, TEAM } = WebsiteLinks
 const Navbar = () => {
     return (
@@ -17,6 +19,7 @@ const Navbar = () => {
                     </div>
                 </Link>
             </div>
+            <SearchBar />
             <div className="flex gap-x-6">
                 <button className="py-[6px] px-[18px] rounded-full">
                     <Link href={HOME}>Home</Link>
