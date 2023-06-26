@@ -26,12 +26,12 @@ const Button: FC<ButtonProps> = ({
     icon,
     iconClass,
 }) => {
-    const style = `flex justify-between gap-x-3 items-center px-4 py-[10px] text-sm font-medium text-center text-white rounded-full
+    const style = `flex justify-between gap-x-3 items-center px-4 py-[10px] text-sm text-center rounded-full font-bold
     ${moreStyle}
     ${
         secondary
             ? 'border dark:border-[#404756] dark:hover:bg-[#252932] border-[#d9dbe3] hover:bg-[#4e57690d]'
-            : 'bg-react-button-blue-light hover:bg-react-blue-txt-light&dark-hover  dark:bg-react-button-blue-dark dark:hover:bg-react-blue-txt-light&dark-hover'
+            : 'text-white bg-react-button-blue-light hover:bg-react-blue-txt-light&dark-hover  dark:bg-react-button-blue-dark dark:hover:bg-react-blue-txt-light&dark-hover'
     }`
 
     if (isNextLink) {

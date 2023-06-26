@@ -8,7 +8,7 @@ import ThemeSwitcher from './ui/theme-switcher'
 const { HOME, ABOUT, TEAM } = WebsiteLinks
 const Navbar = () => {
     return (
-        <header className="flex gap-x-6 justify-between items-center w-full text-lg">
+        <header className="shadow-lg dark:shadow-slate-50/5 shadow-slate-950/10 sticky z-50 top-0 flex gap-x-6 justify-between items-center w-full text-lg bg-white dark:bg-[#232730] py-2 px-4 !text-[#404756] dark:!text-[#EBECF0]">
             <div>
                 <Link href={HOME}>
                     <div className="flex items-center gap-x-2 font-bold">
