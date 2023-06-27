@@ -4,6 +4,6 @@ export enum FetchLinks {
 
 export enum WebsiteLinks {
     HOME = '/',
-    ABOUT = 'about',
+    ABOUT = '/about',
     TEAM = '/about/team',
 }

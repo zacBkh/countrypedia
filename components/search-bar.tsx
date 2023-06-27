@@ -21,7 +21,10 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         setSearchQuery(search) // send to global context
     }
 
-    const navigator = (window.navigator as any).userAgentData.platform
+    const navigator =
+        typeof window !== 'undefined'
+            ? (window.navigator as any).userAgentData.platform
+            : ''
 
     useEffect(() => {
         const keyDownHandler = (event: KeyboardEvent) => {
@@ -30,6 +33,8 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                 searchBarRef.current?.focus()
             }
         }
+
+        console.log('window from use fc', window)
 
         window.addEventListener('keydown', keyDownHandler)
         return () => {

@@ -15,11 +15,14 @@ const Navbar = () => {
                 <Link href={HOME}>
                     <div className="flex items-center gap-x-2 font-bold">
                         <Image
-                            className="!w-10 outline outline-offset-2 outline-1 outline-react-button-blue-light rounded-full"
+                            className="!w-10 outline outline-offset-2 outline-[1.5px] outline-react-button-blue-light rounded-full"
                             src={Logo}
                             alt="CountryPedia logo"
                         />
-                        <span>CountryPedia</span>
+                        <span>
+                            Country
+                            <span className="text-react-blue-txt-light&dark">Pedia</span>
+                        </span>
                     </div>
                 </Link>
             </div>
