@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-button:hover {
+button:hover,
+.btnLike:hover {
     background-color: rgba(35, 39, 47, 0.05);
     @apply bg-react-blue-hover-light;
     @apply dark:bg-react-blue-hover-dark;
@@ -16,4 +17,10 @@ body {
     @apply bg-react-bg-light text-react-txt-light;
 
     @apply dark:bg-react-bg-dark dark:text-react-txt-dark;
+}
+
+.activeLink {
+    @apply dark:bg-[#58afdf1a] bg-[#E6F7FF];
+    @apply dark:text-[#149ECA] text-[#087EA4];
+    color: #149eca;
 }

@@ -13,7 +13,7 @@ const ThemeSwitcher = () => {
     const { theme, setTheme } = useTheme()
 
     const handleToggleTheme = () => {
-        const newTheme = theme === 'light' ? 'dark' : 'light'
+        const newTheme = theme !== 'dark' ? 'dark' : 'light'
         setTheme(newTheme)
     }
 
