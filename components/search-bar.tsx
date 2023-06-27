@@ -1,5 +1,5 @@
 'use client'
-import { FC, useEffect, useRef } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 
 import KeyBoardStroke from './ui/icons/os-icons'
 import MagnifyingGlass from './ui/icons/magnifying-glass'
@@ -21,20 +21,18 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         setSearchQuery(search) // send to global context
     }
 
-    const navigator =
-        typeof window !== 'undefined'
-            ? (window.navigator as any).userAgentData.platform
-            : ''
+    const [currentOS, setCurrentOS] = useState('')
 
     useEffect(() => {
+        const navigator = (window.navigator as any).userAgentData.platform
+        setCurrentOS(navigator)
+
         const keyDownHandler = (event: KeyboardEvent) => {
             if (event.ctrlKey && event.key === 'k') {
                 event.preventDefault()
                 searchBarRef.current?.focus()
             }
         }
-
-        console.log('window from use fc', window)
 
         window.addEventListener('keydown', keyDownHandler)
         return () => {
@@ -61,22 +59,26 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                     className="p-2 pl-10 flex 2xl:mx-0 relative pr-1 py-1 h-10 outline-none focus:outline-react-blue-txt-light&dark  items-center text-left text-gray-30 rounded-full align-middle text-base bg-[#EBECF0] dark:bg-[#333944] !w-full"
                 />
 
-                <div className="z-50 absolute flex items-center right-[2%] top-auto">
-                    {navigator === 'Windows' ? (
-                        <KeyBoardStroke
-                            moreCSS="w-10 h-5"
-                            data_platform="win"
-                            text="Ctrl"
-                        />
-                    ) : (
-                        <KeyBoardStroke
-                            moreCSS="w-5 h-5 p-2"
-                            data_platform="mac"
-                            text="⌘"
-                        />
-                    )}
-                    <KeyBoardStroke moreCSS="w-5 h-5" text="K" />
-                </div>
+                {currentOS ? (
+                    <div className="z-50 absolute flex items-center right-[2%] top-auto">
+                        {currentOS === 'Windows' ? (
+                            <KeyBoardStroke
+                                moreCSS="w-10 h-5"
+                                data_platform="win"
+                                text="Ctrl"
+                            />
+                        ) : (
+                            <KeyBoardStroke
+                                moreCSS="w-5 h-5 p-2"
+                                data_platform="mac"
+                                text="⌘"
+                            />
+                        )}
+                        <KeyBoardStroke moreCSS="w-5 h-5" text="K" />
+                    </div>
+                ) : (
+                    ''
+                )}
             </div>
         </>
     )

@@ -20,6 +20,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
         <div className="w-[350px] bg-[#F7F7F9] border border-[#d9dbe3] dark:border-gray-600 rounded-lg shadow dark:bg-[#16181D] overflow-hidden">
             <div className="w-full h-48 relative">
                 <Image
+                    // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     fill={true}
                     className="object-cover "
                     src={flags.svg}

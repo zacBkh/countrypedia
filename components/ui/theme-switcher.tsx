@@ -6,10 +6,8 @@ import { useTheme } from 'next-themes'
 
 import { MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md'
 
-enum Theme {
-    Light = 'light',
-    Dark = 'dark',
-}
+import Spinner from './spinner'
+
 const ThemeSwitcher = () => {
     const [isMounted, setIsMounted] = useState(false)
     const { theme, setTheme } = useTheme()
@@ -24,7 +22,11 @@ const ThemeSwitcher = () => {
     }, [])
 
     if (!isMounted) {
-        return <div className="w-12 h-12"></div>
+        return (
+            <div className="w-12 h-12 flex justify-center items-center">
+                <Spinner moreCSS="opacity-50 border-t-react-blue-txt-light&dark " />
+            </div>
+        )
     }
 
     return (
@@ -32,7 +34,7 @@ const ThemeSwitcher = () => {
             <button
                 onClick={handleToggleTheme}
                 aria-label="Dark mode switcher"
-                className="  p-3 rounded-full"
+                className="p-3 rounded-full w-12 h-12"
             >
                 <div>
                     {theme === 'light' ? (
