@@ -24,3 +24,7 @@ body {
     @apply dark:text-[#149ECA] text-[#087EA4];
     color: #149eca;
 }
+
+.skeletonBG {
+    @apply dark:bg-[#23272F] bg-[#FFFFFF];
+}
