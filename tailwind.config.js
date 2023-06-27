@@ -19,6 +19,7 @@ module.exports = {
             fontFamily: {
                 sans: ['var(--font-inter)'],
                 mono: ['var(--font-nunito)'],
+                code: ['var(--source-code)'],
             },
             colors: {
                 // Page bg color

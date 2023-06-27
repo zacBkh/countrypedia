@@ -1,53 +1,77 @@
 'use client'
-import { FC } from 'react'
+import { FC, useEffect, useRef } from 'react'
+
+import KeyBoardStroke from './ui/icons/os-icons'
+import MagnifyingGlass from './ui/icons/magnifying-glass'
+import CloseButton from './ui/icons/close-button'
+
+import { useGlobalContext } from '@/app/context/store'
 
 interface SearchBarProps {
     hello?: any
 }
 
 const SearchBar: FC<SearchBarProps> = ({}) => {
+    const searchBarRef = useRef<HTMLInputElement>(null)
+
+    const { searchQuery, setSearchQuery } = useGlobalContext()
+
+    const searchHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
+        const search = evt.target.value
+        setSearchQuery(search) // send to global context
+    }
+
+    const navigator = (window.navigator as any).userAgentData.platform
+
+    useEffect(() => {
+        const keyDownHandler = (event: KeyboardEvent) => {
+            if (event.ctrlKey && event.key === 'k') {
+                event.preventDefault()
+                searchBarRef.current?.focus()
+            }
+        }
+
+        window.addEventListener('keydown', keyDownHandler)
+        return () => {
+            window.removeEventListener('keydown', keyDownHandler)
+        }
+    }, [])
+
     return (
         <>
-            <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
-                <button
-                    type="button"
-                    className="active:transform-none flex 3xl:w-[56rem] 3xl:mx-0 relative pl-4 pr-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left w-full text-gray-30 rounded-full align-middle text-base bg-[#EBECF0] dark:bg-[#333944]"
-                >
-                    <svg
-                        width="1em"
-                        height="1em"
-                        viewBox="0 0 20 20"
-                        className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70"
-                    >
-                        <path
-                            d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z"
-                            stroke="currentColor"
-                            fill="none"
-                            stroke-width="2"
-                            fill-rule="evenodd"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        ></path>
-                    </svg>
-                    Search
-                    <span className="ml-auto hidden sm:flex item-center mr-1">
-                        <kbd
-                            className="w-5 h-5 border border-transparent mr-1 bg-wash dark:bg-[#333944] text-gray-30 align-middle p-0 inline-flex justify-center items-center text-xs text-center rounded-md"
-                            data-platform="mac"
-                        >
-                            ⌘
-                        </kbd>
-                        <kbd
-                            className="w-10 h-5 border border-transparent mr-1 bg-wash dark:bg-[#333944] text-gray-30 align-middle p-0 inline-flex justify-center items-center text-xs text-center rounded-md"
-                            data-platform="win"
-                        >
-                            Ctrl
-                        </kbd>
-                        <kbd className="w-5 h-5 border border-transparent mr-1 bg-wash dark:bg-[#333944] text-gray-30 align-middle p-0 inline-flex justify-center items-center text-xs text-center rounded-md">
-                            K
-                        </kbd>
-                    </span>
-                </button>
+            <div className="relative hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
+                <div className="z-50 absolute left-[3%] 2xl:left-[14px] top-auto flex justify-center items-center">
+                    {searchQuery ? (
+                        <CloseButton onDeleteSearch={() => setSearchQuery('')} />
+                    ) : (
+                        <MagnifyingGlass />
+                    )}
+                </div>
+
+                <input
+                    ref={searchBarRef}
+                    onChange={searchHandler}
+                    value={searchQuery}
+                    placeholder="Search"
+                    className="p-2 pl-10 flex 2xl:mx-0 relative pr-1 py-1 h-10 outline-none focus:outline-react-blue-txt-light&dark  items-center text-left text-gray-30 rounded-full align-middle text-base bg-[#EBECF0] dark:bg-[#333944] !w-full"
+                />
+
+                <div className="z-50 absolute flex items-center right-[2%] top-auto">
+                    {navigator === 'Windows' ? (
+                        <KeyBoardStroke
+                            moreCSS="w-10 h-5"
+                            data_platform="win"
+                            text="Ctrl"
+                        />
+                    ) : (
+                        <KeyBoardStroke
+                            moreCSS="w-5 h-5 p-2"
+                            data_platform="mac"
+                            text="⌘"
+                        />
+                    )}
+                    <KeyBoardStroke moreCSS="w-5 h-5" text="K" />
+                </div>
             </div>
         </>
     )

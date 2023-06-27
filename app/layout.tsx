@@ -1,9 +1,11 @@
 import './globals.css'
-import { Nunito, Inter } from 'next/font/google'
+import { Nunito, Inter, Source_Code_Pro } from 'next/font/google'
 
 import Navbar from '../components/navbar'
 
 import ThemeProviderWrap from './theme-provider'
+
+import { GlobalContextProvider } from './context/store'
 
 export const metadata = {
     title: 'CountryPedia',
@@ -16,6 +18,11 @@ const nunito = Nunito({
     variable: '--font-nunito',
 })
 
+const sourceCode = Source_Code_Pro({
+    subsets: ['latin'],
+    variable: '--source-code',
+})
+
 const inter = Inter({
     subsets: ['latin'],
     display: 'swap',
@@ -24,11 +31,16 @@ const inter = Inter({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" className={`font-mono ${inter.variable} ${nunito.variable}`}>
+        <html
+            lang="en"
+            className={`font-mono ${inter.variable} ${nunito.variable} ${sourceCode.variable}`}
+        >
             <body>
                 <ThemeProviderWrap>
-                    <Navbar />
-                    <main className="p-8 2xl:p-10">{children}</main>
+                    <GlobalContextProvider>
+                        <Navbar />
+                        <main className="p-8 2xl:p-10">{children}</main>
+                    </GlobalContextProvider>
                 </ThemeProviderWrap>
             </body>
         </html>

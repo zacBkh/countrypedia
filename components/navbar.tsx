@@ -14,7 +14,11 @@ const Navbar = () => {
             <div>
                 <Link href={HOME}>
                     <div className="flex items-center gap-x-2 font-bold">
-                        <Image className="!w-10" src={Logo} alt="CountryPedia logo" />
+                        <Image
+                            className="!w-10 outline outline-offset-2 outline-1 outline-react-button-blue-light rounded-full"
+                            src={Logo}
+                            alt="CountryPedia logo"
+                        />
                         <span>CountryPedia</span>
                     </div>
                 </Link>
