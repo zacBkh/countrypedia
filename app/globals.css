@@ -48,7 +48,7 @@ body {
     left: 0;
     width: 24px;
     height: 2px;
-    background: white;
+    @apply dark:bg-react-blue-txt-light&dark bg-[#404756];
     transform: rotate(0);
     transition: all 0.5s;
 }
@@ -94,4 +94,15 @@ body {
     to {
         opacity: 100%;
     }
+}
+
+.overlayDarkener {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay color and opacity */
+    z-index: 30; /* Ensure the overlay is on top */
 }

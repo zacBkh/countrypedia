@@ -10,7 +10,7 @@ export enum APP_LINKS {
 
 export const NAV_LINKS = [
     {
-        item: 'Accueil',
+        item: 'Home',
         link: APP_LINKS.HOME,
         id: 'Links-1',
     },

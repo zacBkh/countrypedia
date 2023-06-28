@@ -8,7 +8,7 @@ const CountryCardSkeleton = ({}) => {
         <div
             className="
             mx-auto
-            w-[300px] md:w-[350px] h-[370.67px] 
+            w-[300px] md:w-[350px] h-[307.33px]  md:h-[370.67px]
             bg-[#F7F7F9] dark:bg-[#16181D]
             border border-[#d9dbe3] dark:border-gray-600 
             rounded-lg shadow overflow-hidden"
@@ -40,8 +40,8 @@ const CountryCardSkeleton = ({}) => {
                 </div>
 
                 <div className="flex justify-between gap-x-8">
-                    <div className="mt-[2.2px] animate-pulse rounded-full w-[134px] h-[41px] skeletonBG"></div>
-                    <div className="mt-[2.2px] animate-pulse rounded-full w-[144px] h-[41px] skeletonBG"></div>
+                    <div className="mt-[2.2px] animate-pulse rounded-full w-[92.45px] h-[30px] md:w-[134px] md:h-[41px] skeletonBG"></div>
+                    <div className="mt-[2.2px] animate-pulse rounded-full w-[92.45px] h-[30px] md:w-[134px] md:h-[41px] skeletonBG"></div>
                 </div>
             </div>
         </div>

@@ -1,17 +1,17 @@
-import { FC } from 'react'
+'use client'
 
-interface HamburgerIconProps {
-    isOpen: boolean
-}
+import { useGlobalContext } from '@/app/context/store'
 
-const HamburgerIcon: FC<HamburgerIconProps> = ({ isOpen }) => {
+const HamburgerIcon = () => {
+    const { isHamburgerMenuOpen, setIsHamburgerMenuOpen } = useGlobalContext()
+
     return (
         <button
+            onClick={() => setIsHamburgerMenuOpen(prev => !prev)}
             aria-label="Show hamburger menu"
-            // onClick={onHamburgerIconClick}
             className={`${
-                isOpen ? 'open' : ''
-            } hamburger block md:hidden focus:outline-none h-fit`}
+                isHamburgerMenuOpen ? 'open' : ''
+            } hamburger block md:hidden focus:outline-none h-fit hover:!bg-transparent `}
         >
             <span className="hamburger-top"></span>
             <span className="hamburger-middle"></span>
