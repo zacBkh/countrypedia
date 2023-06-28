@@ -36,9 +36,8 @@ const NavLinks: FC<NavLinksProps> = ({ isHamburgerMenu, isHamburgerMenuOpen }) =
                 } gap-x-6`}
             >
                 {NAV_LINKS.map(link => (
-                    <li>
+                    <li key={link.id}>
                         <Link
-                            key={link.id}
                             className={`${pathname === link.link ? 'activeLink' : ''}
                             btnLike py-[6px] px-[18px] rounded-full`}
                             href={link.link}
