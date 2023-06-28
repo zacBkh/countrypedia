@@ -25,7 +25,10 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
     const [currentOS, setCurrentOS] = useState('')
 
     useEffect(() => {
-        const navigator = (window.navigator as any).userAgentData.platform
+        const navigator =
+            typeof window !== 'undefined' &&
+            (window as any).window.navigator.userAgentData.platform
+
         setCurrentOS(navigator)
 
         const keyDownHandler = (event: KeyboardEvent) => {
