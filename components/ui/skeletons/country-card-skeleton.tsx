@@ -8,7 +8,7 @@ const CountryCardSkeleton = ({}) => {
         <div
             className="
             mx-auto
-            w-[280px] md:w-[350px] h-[370.67px] 
+            w-[300px] md:w-[350px] h-[370.67px] 
             bg-[#F7F7F9] dark:bg-[#16181D]
             border border-[#d9dbe3] dark:border-gray-600 
             rounded-lg shadow overflow-hidden"

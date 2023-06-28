@@ -38,7 +38,7 @@ const Countries: FC<CountriesProps> = ({ allCountries }) => {
     return (
         <>
             <div className="flex flex-col items-center">
-                <div className="flex flex-wrap justify-between items-center gap-4">
+                <div className="flex flex-wrap justify-between items-center gap-y-6 gap-x-4">
                     {whichView.map(cty => (
                         <CountryCard key={cty.cca3} details={cty} />
                     ))}

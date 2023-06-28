@@ -20,13 +20,13 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
     const { name, flags, capital, region, languages, maps, coatOfArms } = details
     return (
         <div
-            className={`w-[280px] md:w-[350px] bg-[#F7F7F9] border border-[#d9dbe3] dark:border-gray-600 rounded-lg shadow dark:bg-[#16181D] overflow-hidden mx-auto`}
+            className={`w-[300px] md:w-[350px] bg-[#F7F7F9] border border-[#d9dbe3] dark:border-gray-600 rounded-lg shadow dark:bg-[#16181D] overflow-hidden mx-auto`}
         >
             <div className="w-full h-36 md:h-48 relative">
                 <Image fill className="object-cover" src={flags.svg} alt={flags.alt} />
             </div>
 
-            <div className="py-2 px-4 flex flex-col gap-y-4">
+            <div className="py-2 px-3 sm:px-4 flex flex-col gap-y-4">
                 <div className="flex justify-between gap-x-2 items-center">
                     <h5
                         className={`${TITLE_FONT_SIZE} font-bold tracking-tight text-gray-900 dark:text-white`}
@@ -50,27 +50,27 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                 </div>
 
                 <div
-                    className={`${DETAILS_FONT_SIZE} flex justify-between text-gray-700 dark:text-gray-400`}
+                    className={`${DETAILS_FONT_SIZE} flex justify-between gap-x-2 text-gray-700 dark:text-gray-400`}
                 >
                     {capital[0] ? (
-                        <span className="flex items-center gap-x-2">
+                        <div className="flex items-center gap-x-1 sm:gap-x-2">
                             <BiSolidCity /> {capital[0]}
-                        </span>
+                        </div>
                     ) : (
                         ''
                     )}
                     {region ? (
-                        <span className="flex items-center gap-x-2">
+                        <div className="flex items-center gap-x-1 sm:gap-x-2">
                             <BiWorld /> {region}
-                        </span>
+                        </div>
                     ) : (
                         ''
                     )}
 
                     {Object.values(languages)[0] ? (
-                        <span className="flex items-center gap-x-2">
+                        <div className="flex items-center gap-x-1 sm:gap-x-2">
                             <BiUserVoice /> {Object.values(languages)[0]}
-                        </span>
+                        </div>
                     ) : (
                         ''
                     )}
