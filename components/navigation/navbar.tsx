@@ -1,13 +1,16 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Logo from '../public/countrypedia-logo.png'
+
+import Logo from '../../public/countrypedia-logo.png'
 import { APP_LINKS } from '@/constants/urls'
 
-import ThemeSwitcher from './ui/theme-switcher'
+import ThemeSwitcher from '../ui/theme-switcher'
 
-import SearchBar from './search-bar'
+import SearchBar from '../search-bar'
 
 import NavLinks from './nav-links'
+import HamburgerIcon from './hamburger-icon'
+import HamburgerMenu from './hamburger-menu'
 
 const Navbar = () => {
     return (
@@ -29,7 +32,13 @@ const Navbar = () => {
             </div>
             <SearchBar />
             <NavLinks />
-            <ThemeSwitcher />
+
+            <div className="flex justify-between items-center gap-x-2">
+                <ThemeSwitcher />
+                <HamburgerIcon isOpen={false} />
+            </div>
+
+            {/* <HamburgerMenu isOpen={true} /> */}
         </header>
     )
 }

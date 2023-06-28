@@ -22,12 +22,12 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         setSearchQuery(search) // send to global context
     }
 
-    const [currentOS, setCurrentOS] = useState('')
+    const [currentOS, setCurrentOS] = useState('Windows')
 
     useEffect(() => {
         const navigator =
             typeof window !== 'undefined' &&
-            (window as any).window.navigator.userAgentData.platform
+            (window as any)?.navigator?.userAgentData?.platform
 
         setCurrentOS(navigator)
 
@@ -63,26 +63,24 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                     className="p-2 pl-10 flex 2xl:mx-0 relative pr-1 py-1 h-10 outline-none focus:outline-react-blue-txt-light&dark  items-center text-left text-gray-30 rounded-full align-middle text-base bg-[#EBECF0] dark:bg-[#333944] !w-full"
                 />
 
-                {currentOS ? (
+                {
                     <div className="z-50 absolute flex items-center right-[2%] top-auto">
-                        {currentOS === 'Windows' ? (
-                            <KeyBoardStroke
-                                moreCSS="w-10 h-5"
-                                data_platform="win"
-                                text="Ctrl"
-                            />
-                        ) : (
+                        {currentOS === 'Mac' ? (
                             <KeyBoardStroke
                                 moreCSS="w-5 h-5 p-2"
                                 data_platform="mac"
                                 text="⌘"
                             />
+                        ) : (
+                            <KeyBoardStroke
+                                moreCSS="w-10 h-5"
+                                data_platform="win"
+                                text="Ctrl"
+                            />
                         )}
                         <KeyBoardStroke moreCSS="w-5 h-5" text="K" />
                     </div>
-                ) : (
-                    ''
-                )}
+                }
             </div>
         </>
     )

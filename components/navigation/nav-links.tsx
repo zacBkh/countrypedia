@@ -10,7 +10,7 @@ const NavLinks = ({}) => {
     const pathname = usePathname()
 
     return (
-        <div className="flex gap-x-6">
+        <div className="hidden md:flex gap-x-6">
             {NAV_LINKS.map(link => (
                 <Link
                     key={link.id}

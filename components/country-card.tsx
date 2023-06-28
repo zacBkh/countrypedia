@@ -10,6 +10,8 @@ import { FiArrowRight } from 'react-icons/fi'
 
 import Button from './ui/buttons'
 
+import { TITLE_FONT_SIZE, DETAILS_FONT_SIZE } from '@/constants/responsive-fonts'
+
 interface CountryCardProps {
     details: ReturnFxProps
 }
@@ -17,27 +19,26 @@ interface CountryCardProps {
 const CountryCard: FC<CountryCardProps> = ({ details }) => {
     const { name, flags, capital, region, languages, maps, coatOfArms } = details
     return (
-        <div className="w-[350px] bg-[#F7F7F9] border border-[#d9dbe3] dark:border-gray-600 rounded-lg shadow dark:bg-[#16181D] overflow-hidden">
-            <div className="w-full h-48 relative">
-                <Image
-                    // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    fill={true}
-                    className="object-cover "
-                    src={flags.svg}
-                    alt={flags.alt}
-                />
+        <div
+            className={`w-[280px] md:w-[350px] bg-[#F7F7F9] border border-[#d9dbe3] dark:border-gray-600 rounded-lg shadow dark:bg-[#16181D] overflow-hidden mx-auto`}
+        >
+            <div className="w-full h-36 md:h-48 relative">
+                <Image fill className="object-cover" src={flags.svg} alt={flags.alt} />
             </div>
 
             <div className="py-2 px-4 flex flex-col gap-y-4">
                 <div className="flex justify-between gap-x-2 items-center">
-                    <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <h5
+                        className={`${TITLE_FONT_SIZE} font-bold tracking-tight text-gray-900 dark:text-white`}
+                    >
                         {name.common}
                     </h5>
-                    <div className="w-16 h-16 relative">
-                        {coatOfArms.svg ? (
+                    <div className="w-16 h-16 flex justify-center">
+                        {coatOfArms.png ? (
                             <Image
+                                width={40}
+                                height={40}
                                 quality={50}
-                                fill={true}
                                 className="object-contain"
                                 src={coatOfArms.png}
                                 alt={`Coat of arms of ${name.common}`}
@@ -48,7 +49,9 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                     </div>
                 </div>
 
-                <div className="flex justify-between text-gray-700 dark:text-gray-400">
+                <div
+                    className={`${DETAILS_FONT_SIZE} flex justify-between text-gray-700 dark:text-gray-400`}
+                >
                     {capital[0] ? (
                         <span className="flex items-center gap-x-2">
                             <BiSolidCity /> {capital[0]}
@@ -77,6 +80,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                         iconClass="text-xl"
                         icon={<FiArrowRight />}
                         text="Read more"
+                        textSm="More"
                         isNextLink
                         link={'/'}
                     />
@@ -87,6 +91,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                         secondary
                         isExternalLink
                         link={maps.googleMaps}
+                        textSm="Maps"
                         text="See on Maps"
                     />
                 </div>

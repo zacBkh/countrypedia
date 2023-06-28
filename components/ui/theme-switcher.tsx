@@ -30,21 +30,19 @@ const ThemeSwitcher = () => {
     }
 
     return (
-        <>
-            <button
-                onClick={handleToggleTheme}
-                aria-label="Dark mode switcher"
-                className="p-3 rounded-full w-12 h-12"
-            >
-                <div>
-                    {theme === 'light' ? (
-                        <MdOutlineDarkMode className="text-2xl" />
-                    ) : (
-                        <MdOutlineLightMode className="text-2xl" />
-                    )}
-                </div>
-            </button>
-        </>
+        <button
+            onClick={handleToggleTheme}
+            aria-label="Dark mode switcher"
+            className="p-2 sm:p-3 rounded-full sm:w-12 sm:h-12"
+        >
+            <div>
+                {theme === 'light' ? (
+                    <MdOutlineDarkMode className="text-xl sm:text-2xl" />
+                ) : (
+                    <MdOutlineLightMode className="text-xl sm:text-2xl" />
+                )}
+            </div>
+        </button>
     )
 }
 

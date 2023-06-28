@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import Link from 'next/link'
+import { BUTTON_FONT_SIZE } from '@/constants/responsive-fonts'
 
 interface ButtonProps {
     link?: any
@@ -7,6 +8,7 @@ interface ButtonProps {
     isExternalLink?: boolean
 
     onAction?: any
+    textSm?: string
     text: string
     secondary?: boolean
     moreStyle?: string
@@ -17,6 +19,7 @@ interface ButtonProps {
 
 const Button: FC<ButtonProps> = ({
     text,
+    textSm,
     onAction,
     secondary,
     isNextLink,
@@ -26,7 +29,7 @@ const Button: FC<ButtonProps> = ({
     icon,
     iconClass,
 }) => {
-    const style = `flex justify-between gap-x-3 items-center px-4 py-[10px] text-sm text-center rounded-full font-bold
+    const style = `flex justify-between gap-x-3 items-center px-4 py-[5px] md:py-[10px] ${BUTTON_FONT_SIZE} text-center rounded-full font-bold
     ${moreStyle}
     ${
         secondary
@@ -37,7 +40,8 @@ const Button: FC<ButtonProps> = ({
     if (isNextLink) {
         return (
             <Link href={link} className={style}>
-                {text}
+                <span className="md:hidden">{textSm ?? text}</span>
+                <span className="hidden md:inline">{text}</span>
                 <span className={iconClass}>{icon}</span>
             </Link>
         )
@@ -46,7 +50,8 @@ const Button: FC<ButtonProps> = ({
     if (isExternalLink) {
         return (
             <a target="_blank" className={style} href={link}>
-                See on Maps
+                <span className="md:hidden">{textSm ?? text}</span>
+                <span className="hidden md:inline">{text}</span>
                 <span className={iconClass}>{icon}</span>
             </a>
         )
@@ -54,7 +59,8 @@ const Button: FC<ButtonProps> = ({
 
     return (
         <button onClick={onAction} className={style}>
-            {text}
+            <span className="md:hidden">{textSm ?? text}</span>
+            <span className="hidden md:inline">{text}</span>
             <span className={iconClass}>{icon}</span>
         </button>
     )
