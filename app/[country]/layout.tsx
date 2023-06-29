@@ -1,12 +1,16 @@
+// import { Inter } from 'next/font/google'
+
+// const inter = Inter({ subsets: ['latin'] })
+
 export const metadata = {
-    title: 'About CountryPedia',
+    title: 'Country CountryPedia',
     description: 'CountryPedia',
 }
 
 export default function AboutLayout({ children }: { children: React.ReactNode }) {
     return (
         <div>
-            <h1>-- About & Team Layout --</h1>
+            <h1>-- Country Layout --</h1>
 
             {children}
         </div>

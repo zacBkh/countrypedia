@@ -1,4 +1,5 @@
 import './globals.css'
+
 import { Nunito, Inter, Source_Code_Pro } from 'next/font/google'
 
 import Navbar from '@/components/navigation/navbar'
@@ -33,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html
             lang="en"
-            className={`font-mono ${inter.variable} ${nunito.variable} ${sourceCode.variable}`}
+            className={`!font-mono ${inter.variable} ${nunito.variable} ${sourceCode.variable}`}
         >
             <body>
                 <ThemeProviderWrap>

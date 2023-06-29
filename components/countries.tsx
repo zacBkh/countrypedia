@@ -2,7 +2,8 @@
 
 import { useState, FC } from 'react'
 import CountryCard from './country-card'
-import { ReturnFxProps } from '@/services/fetchers'
+
+import { getAllCountriesProps } from '@/services/fetchers'
 import { FiArrowRight } from 'react-icons/fi'
 
 import Button from './ui/buttons'
@@ -10,7 +11,7 @@ import Button from './ui/buttons'
 import { useGlobalContext } from '@/app/context/store'
 
 interface CountriesProps {
-    allCountries: ReturnFxProps[]
+    allCountries: getAllCountriesProps[]
 }
 
 const Countries: FC<CountriesProps> = ({ allCountries }) => {

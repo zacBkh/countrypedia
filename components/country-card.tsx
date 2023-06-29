@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { FC } from 'react'
-import { ReturnFxProps } from '@/services/fetchers'
+import { getAllCountriesProps } from '@/services/fetchers'
 
 import { BiSolidCity, BiWorld, BiUserVoice } from 'react-icons/bi'
 import { SiGooglemaps } from 'react-icons/si'
@@ -13,7 +13,7 @@ import Button from './ui/buttons'
 import { TITLE_FONT_SIZE, DETAILS_FONT_SIZE } from '@/constants/responsive-fonts'
 
 interface CountryCardProps {
-    details: ReturnFxProps
+    details: getAllCountriesProps
 }
 
 const CountryCard: FC<CountryCardProps> = ({ details }) => {
@@ -82,7 +82,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                         text="Read more"
                         textSm="More"
                         isNextLink
-                        link={'/'}
+                        link={`/${name.common}`}
                     />
 
                     <Button

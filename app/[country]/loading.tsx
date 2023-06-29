@@ -6,7 +6,7 @@ const Loading = () => {
     }
     return (
         <div className="flex flex-wrap justify-between items-center gap-4">
-            <p>LOADING FOR MAIN WTF</p>
+            <p>LOADING FROM [COUNTRY]</p>
             {qtySkeletons.map((i, index) => (
                 <CountryCardSkeleton key={index} />
             ))}
