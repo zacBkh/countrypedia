@@ -14,7 +14,7 @@ import HamburgerMenu from './hamburger-menu'
 
 const Navbar = () => {
     return (
-        <div className="sticky top-0 z-[9999999] transparent-navbar">
+        <div className="sticky top-0 z-[9999999] bg-white dark:bg-[#232730] sm:transparent-navbar">
             <header className="shadow-lg dark:shadow-slate-50/5 shadow-slate-950/10 sticky top-0 z-[999] w-full text-lg !text-[#404756] dark:!text-[#EBECF0]">
                 <div className="flex gap-x-6 justify-between items-center py-2 px-4">
                     <div>
