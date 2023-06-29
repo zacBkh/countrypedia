@@ -15,7 +15,7 @@ export interface getAllCountriesProps {
 export const getAllCountries = async (): Promise<getAllCountriesProps[]> => {
     try {
         const res = await fetch(ALL_COUNTRIES)
-        await new Promise(resolve => setTimeout(resolve, 3000))
+        // await new Promise(resolve => setTimeout(resolve, 3000))
         return res.json()
     } catch (error) {
         console.log('error [1]', error)
@@ -37,7 +37,7 @@ export const getOneCountry = async (
 ): Promise<GetOneCountryProps[]> => {
     try {
         const res = await fetch(`${ONE_COUNTRY_BASE}/${countryName}`)
-        await new Promise(resolve => setTimeout(resolve, 3000))
+        // await new Promise(resolve => setTimeout(resolve, 3000))
         return res.json()
     } catch (error) {
         console.log('error [2]', error)
