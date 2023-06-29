@@ -37,7 +37,7 @@ const Navbar = () => {
                             </div>
                         </Link>
                     </div>
-                    <div className=" hidden md:flex items-center gap-x-6 w-[80%]">
+                    <div className="hidden md:flex items-center gap-x-6 w-[80%]">
                         <SearchBar />
                         <NavLinks />
                     </div>
