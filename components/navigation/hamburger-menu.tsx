@@ -15,10 +15,6 @@ const HamburgerMenu = () => {
             >
                 <NavLinks isHamburgerMenu isHamburgerMenuOpen={isHamburgerMenuOpen} />
             </nav>
-            <div
-                onClick={() => setIsHamburgerMenuOpen(false)}
-                className={`${isHamburgerMenuOpen ? 'overlayDarkener' : 'hidden'}`}
-            ></div>
         </>
     )
 }

@@ -3,6 +3,7 @@ import './globals.css'
 import { Nunito, Inter, Source_Code_Pro } from 'next/font/google'
 
 import Navbar from '@/components/navigation/navbar'
+import Overlay from '@/components/ui/overlay'
 
 import ThemeProviderWrap from './theme-provider'
 
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ThemeProviderWrap>
                     <GlobalContextProvider>
                         <Navbar />
+                        <Overlay />
                         <main className="p-4 md:p-8 2xl:p-10">{children}</main>
                     </GlobalContextProvider>
                 </ThemeProviderWrap>
