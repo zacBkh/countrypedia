@@ -45,44 +45,42 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
     }, [])
 
     return (
-        <>
-            <div className="relative hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
-                <div className="z-50 absolute left-[3%] 2xl:left-[14px] top-auto flex justify-center items-center">
-                    {searchQuery ? (
-                        <CloseButton onDeleteSearch={() => setSearchQuery('')} />
-                    ) : (
-                        <MagnifyingGlass />
-                    )}
-                </div>
-
-                <input
-                    ref={searchBarRef}
-                    onChange={searchHandler}
-                    value={searchQuery}
-                    placeholder="Search any country"
-                    className="p-2 pl-10 flex 2xl:mx-0 relative pr-1 py-1 h-10 outline-none focus:outline-react-blue-txt-light&dark  items-center text-left text-gray-30 rounded-full align-middle text-base bg-[#EBECF0] dark:bg-[#333944] !w-full"
-                />
-
-                {
-                    <div className="z-50 absolute flex items-center right-[2%] top-auto">
-                        {currentOS === 'Mac' ? (
-                            <KeyBoardStroke
-                                moreCSS="w-5 h-5 p-2"
-                                data_platform="mac"
-                                text="⌘"
-                            />
-                        ) : (
-                            <KeyBoardStroke
-                                moreCSS="w-10 h-5"
-                                data_platform="win"
-                                text="Ctrl"
-                            />
-                        )}
-                        <KeyBoardStroke moreCSS="w-5 h-5" text="K" />
-                    </div>
-                }
+        <div className="relative flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
+            <div className="z-50 absolute left-[3%] 2xl:left-[14px] top-auto flex justify-center items-center">
+                {searchQuery ? (
+                    <CloseButton onDeleteSearch={() => setSearchQuery('')} />
+                ) : (
+                    <MagnifyingGlass />
+                )}
             </div>
-        </>
+
+            <input
+                ref={searchBarRef}
+                onChange={searchHandler}
+                value={searchQuery}
+                placeholder="Search any country"
+                className="p-2 pl-10 flex 2xl:mx-0 relative pr-1 py-1 h-10 outline-none focus:outline-react-blue-txt-light&dark  items-center text-left text-gray-30 rounded-full align-middle text-base bg-[#EBECF0] dark:bg-[#333944] !w-full"
+            />
+
+            {
+                <div className="z-50 absolute flex items-center right-[2%] top-auto">
+                    {currentOS === 'Mac' ? (
+                        <KeyBoardStroke
+                            moreCSS="w-5 h-5 p-2"
+                            data_platform="mac"
+                            text="⌘"
+                        />
+                    ) : (
+                        <KeyBoardStroke
+                            moreCSS="w-10 h-5"
+                            data_platform="win"
+                            text="Ctrl"
+                        />
+                    )}
+                    <KeyBoardStroke moreCSS="w-5 h-5" text="K" />
+                </div>
+            }
+        </div>
     )
 }
 

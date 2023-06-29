@@ -10,14 +10,14 @@ const HamburgerMenu = () => {
     if (!isHamburgerMenuOpen) return
     return (
         <>
-            <div
-                className={`z-40 h-fit py-4 bg-white dark:bg-[#232730] dark:bg-[rgb(39,47,63)] w-screen absolute drop-shadow-2xl border-t-[#EBECF0] dark:border-t-[#343A46] border-t-[2px]}`}
+            <nav
+                className={`z-[99999] md:hidden h-fit py-4 bg-white dark:bg-[#232730] dark:bg-[rgb(39,47,63)] w-screen absolute drop-shadow-2xl border-t-[#EBECF0] dark:border-t-[#343A46] border-t-[2px]}`}
             >
                 <NavLinks isHamburgerMenu isHamburgerMenuOpen={isHamburgerMenuOpen} />
-            </div>
+            </nav>
             <div
                 onClick={() => setIsHamburgerMenuOpen(false)}
-                className={`${isHamburgerMenuOpen ? 'overlayDarkener' : ''}`}
+                className={`${isHamburgerMenuOpen ? 'overlayDarkener' : 'hidden'}`}
             ></div>
         </>
     )

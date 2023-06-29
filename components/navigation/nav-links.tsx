@@ -27,7 +27,7 @@ const NavLinks: FC<NavLinksProps> = ({ isHamburgerMenu, isHamburgerMenuOpen }) =
     }, [isHamburgerMenuOpen])
 
     return (
-        <nav className="h-full">
+        <div className="h-full">
             <ul
                 className={`${
                     isHamburgerMenu
@@ -47,7 +47,7 @@ const NavLinks: FC<NavLinksProps> = ({ isHamburgerMenu, isHamburgerMenuOpen }) =
                     </li>
                 ))}
             </ul>
-        </nav>
+        </div>
     )
 }
 
