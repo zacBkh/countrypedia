@@ -7,6 +7,9 @@ import Image from 'next/image'
 
 import { TITLE_SEC_FONT_SIZE } from '@/constants/responsive-fonts'
 
+import { RESPONSIVE_MAP_SIZE } from '@/constants/map-styles'
+const { mapHeight, mapWidth } = RESPONSIVE_MAP_SIZE
+
 interface CarouselProps {
     countryName: string
     flag: string
@@ -51,12 +54,9 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
         return 'next'
     }
 
-    const responsiveHeight = 'h-[128px] sm:h-64'
-    const responsiveWidth = 'w-[190px] sm:w-96'
-
     return (
         <>
-            <div className={`${responsiveWidth} overflow-hidden mt-6 `}>
+            <div className={`${mapWidth} overflow-hidden mt-6 `}>
                 <div className="flex items-center relative h-8 w-full">
                     {mediaObject.map((media, index) => (
                         <p
@@ -71,7 +71,7 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
                     ))}
                 </div>
                 <div
-                    className={`bg-[#EEEFF2] dark:bg-[#16181D] rounded-lg flex ${responsiveHeight} relative overflow-hidden`}
+                    className={`bg-[#EEEFF2] dark:bg-[#16181D] rounded-lg flex ${mapHeight} relative overflow-hidden`}
                 >
                     <button
                         aria-label="Previous picture"
@@ -84,7 +84,7 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
                     {mediaObject.map((media, index) => (
                         <div
                             key={media.name}
-                            className={`${responsiveHeight} ${responsiveWidth} transition-transform duration-700 shrink-0 grow absolute ${getImgQueue(
+                            className={`${mapHeight} ${mapWidth} transition-transform duration-700 shrink-0 grow absolute ${getImgQueue(
                                 index,
                             )}`}
                         >

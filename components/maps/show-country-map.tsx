@@ -11,6 +11,9 @@ import { useTheme } from 'next-themes'
 
 import { GetOneCountryProps } from '@/services/fetchers'
 
+import { RESPONSIVE_MAP_SIZE } from '@/constants/map-styles'
+const { mapHeight, mapWidth } = RESPONSIVE_MAP_SIZE
+
 interface MapShowCountryProps {
     latLng: GetOneCountryProps['latlng']
     ISOCtyName: string
@@ -18,8 +21,6 @@ interface MapShowCountryProps {
 
 const MapShowCountry: FC<MapShowCountryProps> = ({ ISOCtyName, latLng }) => {
     const { theme } = useTheme()
-    const responsiveHeight = 'h-[128px] sm:h-64'
-    const responsiveWidth = 'w-[190px] sm:w-96'
 
     const boundsSource = {
         type: 'vector',
@@ -43,7 +44,7 @@ const MapShowCountry: FC<MapShowCountryProps> = ({ ISOCtyName, latLng }) => {
 
     return (
         <>
-            <div className={`${responsiveHeight} ${responsiveWidth}`}>
+            <div className={`${mapHeight} ${mapWidth}`}>
                 <Map
                     // onIdle={() => setIsStyleLoaded(true)}
                     cooperativeGestures={true}
@@ -66,9 +67,6 @@ const MapShowCountry: FC<MapShowCountryProps> = ({ ISOCtyName, latLng }) => {
                     </Source>
 
                     <FullscreenControl />
-                    {/* <GeolocateControl /> */}
-                    {/* <NavigationControl /> */}
-                    {/* <ScaleControl /> */}
                 </Map>
             </div>
         </>

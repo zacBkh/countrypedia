@@ -3,8 +3,8 @@ import { FC } from 'react'
 import { getOneCountry, getAllCountries } from '@/services/fetchers'
 
 import Carousel from '@/components/show-country/carousel'
-
 import DynamicMapShowCountry from '@/components/dynamic-imports/dynamic-country-map'
+import CountryDetailsDisplayer from '@/components/show-country/country-details-displayer'
 
 export async function generateStaticParams() {
     const allCountries = await getAllCountries()
@@ -50,15 +50,17 @@ const ShowCountry: FC<ShowCountryProps> = async ({ params: countryName }) => {
     } = showCountry[0]
     return (
         <>
-            <div className="flex flex-col gap-y-4 ">
-                <Carousel
-                    countryName={name.common}
-                    coa={coatOfArms.png}
-                    flag={flags.svg}
-                />
-                <DynamicMapShowCountry ISOCtyName={cca3} latLng={latlng} />
+            <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-y-4 ">
+                    <Carousel
+                        countryName={name.common}
+                        coa={coatOfArms.png}
+                        flag={flags.svg}
+                    />
+                    <DynamicMapShowCountry ISOCtyName={cca3} latLng={latlng} />
+                </div>
+                <CountryDetailsDisplayer countryDetails={showCountry[0]} />
             </div>
-
             {/* <h1>Hello</h1>
             <p>{name.common}</p>
             <p>{capital}</p> */}
