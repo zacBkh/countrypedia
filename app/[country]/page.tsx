@@ -1,7 +1,10 @@
 import { FC } from 'react'
+
 import { getOneCountry, getAllCountries } from '@/services/fetchers'
 
 import Carousel from '@/components/show-country/carousel'
+
+import DynamicMapShowCountry from '@/components/dynamic-imports/dynamic-country-map'
 
 export async function generateStaticParams() {
     const allCountries = await getAllCountries()
@@ -46,6 +49,7 @@ const ShowCountry: FC<ShowCountryProps> = async ({ params: countryName }) => {
     return (
         <>
             <Carousel countryName={name.common} coa={coatOfArms.png} flag={flags.svg} />
+            <DynamicMapShowCountry />
 
             {/* <h1>Hello</h1>
             <p>{name.common}</p>
