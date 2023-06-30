@@ -31,7 +31,7 @@ body {
 }
 
 .skeletonBG {
-    @apply dark:bg-[#23272F] bg-[#FFFFFF];
+    @apply dark:bg-[#23272F] bg-[#c4c4c5];
 }
 
 /* Hamburger Menu */

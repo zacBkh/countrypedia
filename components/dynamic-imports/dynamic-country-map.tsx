@@ -1,6 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
+import MapShowCountrySkeleton from '../ui/skeletons/map-show-country-skeleton'
 
 const DynamicMapShowCountry = dynamic(
     () =>
@@ -10,7 +11,7 @@ const DynamicMapShowCountry = dynamic(
         ),
     {
         ssr: false,
-        loading: () => <p className="text-white">Loading COUNTRY Map...</p>,
+        loading: () => <MapShowCountrySkeleton />,
     },
 )
 
