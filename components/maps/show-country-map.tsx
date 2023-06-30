@@ -12,7 +12,7 @@ import { useTheme } from 'next-themes'
 import { GetOneCountryProps } from '@/services/fetchers'
 
 import { RESPONSIVE_MAP_SIZE } from '@/constants/map-styles'
-const { mapHeight, mapWidth } = RESPONSIVE_MAP_SIZE
+const { mapHeight } = RESPONSIVE_MAP_SIZE
 
 interface MapShowCountryProps {
     latLng: GetOneCountryProps['latlng']
@@ -44,16 +44,18 @@ const MapShowCountry: FC<MapShowCountryProps> = ({ ISOCtyName, latLng }) => {
 
     return (
         <>
-            <div className={`${mapHeight} ${mapWidth}`}>
+            <div className={`${mapHeight} w-full`}>
                 <Map
                     // onIdle={() => setIsStyleLoaded(true)}
+                    // onZoom={e => console.log(e.viewState.zoom)}
                     cooperativeGestures={true}
                     initialViewState={{
                         longitude: latLng[1],
                         latitude: latLng[0],
-                        zoom: 4,
+                        zoom: 3,
                     }}
                     maxZoom={maxZoom}
+                    minZoom={0.5}
                     mapStyle={theme === 'dark' ? MAP_STYLES.dark : MAP_STYLES.light}
                     mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
                     attributionControl={false}

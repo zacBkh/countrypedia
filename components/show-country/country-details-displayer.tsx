@@ -34,7 +34,11 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
         maps,
     } = countryDetails
 
-    return <></>
+    return (
+        <>
+            <p>Here come country details</p>
+        </>
+    )
 }
 
 export default CountryDetailsDisplayer

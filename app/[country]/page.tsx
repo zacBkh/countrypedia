@@ -6,6 +6,8 @@ import Carousel from '@/components/show-country/carousel'
 import DynamicMapShowCountry from '@/components/dynamic-imports/dynamic-country-map'
 import CountryDetailsDisplayer from '@/components/show-country/country-details-displayer'
 
+import { SUPER_TITLE_FONT_SIZE } from '@/constants/responsive-fonts'
+
 export async function generateStaticParams() {
     const allCountries = await getAllCountries()
 
@@ -49,22 +51,23 @@ const ShowCountry: FC<ShowCountryProps> = async ({ params: countryName }) => {
         maps,
     } = showCountry[0]
     return (
-        <>
-            <div className="flex items-center justify-between">
-                <div className="flex flex-col gap-y-4 ">
-                    <Carousel
-                        countryName={name.common}
-                        coa={coatOfArms.png}
-                        flag={flags.svg}
-                    />
-                    <DynamicMapShowCountry ISOCtyName={cca3} latLng={latlng} />
-                </div>
+        <div className="mb-28">
+            <h1 className={`${SUPER_TITLE_FONT_SIZE} py-2 md:py-3 2xl:py-5 text-center`}>
+                {name.common}
+            </h1>
+
+            <DynamicMapShowCountry ISOCtyName={cca3} latLng={latlng} />
+
+            <div className="px-6 flex justify-between w-full">
+                <Carousel
+                    countryName={name.common}
+                    coa={coatOfArms.png}
+                    flag={flags.svg}
+                />
+                {/* </div> */}
                 <CountryDetailsDisplayer countryDetails={showCountry[0]} />
             </div>
-            {/* <h1>Hello</h1>
-            <p>{name.common}</p>
-            <p>{capital}</p> */}
-        </>
+        </div>
     )
 }
 
