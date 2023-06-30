@@ -29,7 +29,9 @@
         "**/*.tsx",
         ".next/types/**/*.ts",
         "app/FRGZGtsx",
-        "components/search-bar.jsx"
+        "components/search-bar.jsx",
+        "components/show-country/flag-coat-displayer.jsx",
+        "components/show-country/pic-viewer.jsx"
     ],
     "exclude": ["node_modules"]
 }

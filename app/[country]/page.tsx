@@ -1,6 +1,8 @@
 import { FC } from 'react'
 import { getOneCountry, getAllCountries } from '@/services/fetchers'
-// Return a list of `params` to populate the [slug] dynamic segment
+
+import Carousel from '@/components/show-country/carousel'
+
 export async function generateStaticParams() {
     const allCountries = await getAllCountries()
 
@@ -17,12 +19,37 @@ const ShowCountry: FC<ShowCountryProps> = async ({ params: countryName }) => {
     const { country } = countryName
 
     const showCountry = await getOneCountry(country)
-    const { capital, coatOfArms, flags, languages, maps, name, region } = showCountry[0]
+    const {
+        coatOfArms,
+        flags,
+
+        name,
+        capital,
+        area: size,
+
+        languages,
+        population,
+        demonyms,
+
+        timezones,
+        startOfWeek,
+        currencies,
+
+        independent,
+        unMember,
+
+        region,
+        subregion,
+        latlng,
+        maps,
+    } = showCountry[0]
     return (
         <>
-            <h1>Hello</h1>
+            <Carousel countryName={name.common} coa={coatOfArms.png} flag={flags.svg} />
+
+            {/* <h1>Hello</h1>
             <p>{name.common}</p>
-            <p>{capital}</p>
+            <p>{capital}</p> */}
         </>
     )
 }

@@ -30,6 +30,10 @@ export interface GetOneCountryProps extends getAllCountriesProps {
     subregion: string
     area: number
     demonyms: {}
+    latlng: [number, number]
+    population: number
+    timezones: string
+    startOfWeek: string
 }
 
 export const getOneCountry = async (

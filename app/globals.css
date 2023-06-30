@@ -111,3 +111,31 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 998; /* Ensure the overlay is on top */
 }
+
+/* Carrousel */
+
+.active {
+    transform: translateX(0);
+}
+
+.prev {
+    transform: translateX(-100%);
+}
+
+.next {
+    transform: translateX(100%);
+}
+
+.alignBtnCarrPopUpLeft {
+    position: absolute;
+    top: 50%;
+    left: 7%;
+    transform: translate(-50%, -50%) !important;
+}
+
+.alignBtnCarrPopUpRight {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translate(-50%, -50%) !important;
+}

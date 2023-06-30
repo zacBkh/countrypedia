@@ -1,21 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: 'class',
-    content: [
-        './pages/**/*.{ts,tsx}',
-        './components/**/*.{ts,tsx}',
-        './app/**/*.{ts,tsx}',
-        './src/**/*.{ts,tsx}',
-        './constants/*.ts',
-    ],
+    content: ['./components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './constants/*.ts'],
     theme: {
-        container: {
-            center: true,
-            padding: '2rem',
-            screens: {
-                '2xl': '1400px',
-            },
-        },
         extend: {
             fontFamily: {
                 sans: ['var(--font-inter)'],
@@ -46,21 +33,6 @@ module.exports = {
                 'react-txt-light': 'rgb(35, 39, 47)',
                 'react-txt-dark': 'rgb(246, 247, 249)',
             },
-            keyframes: {
-                'accordion-down': {
-                    from: { height: 0 },
-                    to: { height: 'var(--radix-accordion-content-height)' },
-                },
-                'accordion-up': {
-                    from: { height: 'var(--radix-accordion-content-height)' },
-                    to: { height: 0 },
-                },
-            },
-            animation: {
-                'accordion-down': 'accordion-down 0.2s ease-out',
-                'accordion-up': 'accordion-up 0.2s ease-out',
-            },
         },
     },
-    plugins: [require('tailwindcss-animate')],
 }
