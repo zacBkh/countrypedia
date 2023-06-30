@@ -8,11 +8,5 @@ export const metadata = {
 }
 
 export default function AboutLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <div>
-            <h1>-- Country Layout --</h1>
-
-            {children}
-        </div>
-    )
+    return <div>{children}</div>
 }

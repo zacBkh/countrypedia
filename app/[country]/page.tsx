@@ -23,6 +23,8 @@ const ShowCountry: FC<ShowCountryProps> = async ({ params: countryName }) => {
 
     const showCountry = await getOneCountry(country)
     const {
+        cca3,
+
         coatOfArms,
         flags,
 
@@ -48,8 +50,14 @@ const ShowCountry: FC<ShowCountryProps> = async ({ params: countryName }) => {
     } = showCountry[0]
     return (
         <>
-            <Carousel countryName={name.common} coa={coatOfArms.png} flag={flags.svg} />
-            <DynamicMapShowCountry />
+            <div className="flex flex-col gap-y-4 ">
+                <Carousel
+                    countryName={name.common}
+                    coa={coatOfArms.png}
+                    flag={flags.svg}
+                />
+                <DynamicMapShowCountry ISOCtyName={cca3} latLng={latlng} />
+            </div>
 
             {/* <h1>Hello</h1>
             <p>{name.common}</p>

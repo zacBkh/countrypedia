@@ -1,6 +1,6 @@
 'use client'
 
-import Map from 'react-map-gl'
+import Map, { FullscreenControl, Source, Layer } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 import { FC } from 'react'
@@ -9,39 +9,63 @@ import { MAP_STYLES, MESSAGE_MAP_MAC, MESSAGE_MAP_PC } from '@/constants/map-sty
 
 import { useTheme } from 'next-themes'
 
+import { GetOneCountryProps } from '@/services/fetchers'
+
 interface MapShowCountryProps {
-    a?: any
+    latLng: GetOneCountryProps['latlng']
+    ISOCtyName: string
 }
 
-const MapShowCountry: FC<MapShowCountryProps> = ({ a }) => {
-    const { theme, setTheme } = useTheme()
-    console.log('theme from map', theme)
-    console.log('hello from map')
+const MapShowCountry: FC<MapShowCountryProps> = ({ ISOCtyName, latLng }) => {
+    const { theme } = useTheme()
+    const responsiveHeight = 'h-[128px] sm:h-64'
+    const responsiveWidth = 'w-[190px] sm:w-96'
+
+    const boundsSource = {
+        type: 'vector',
+        url: 'mapbox://mapbox.country-boundaries-v1',
+    }
+
+    const maxZoom = 6
+
+    const boundsLayer = {
+        maxZoom,
+        id: 'country-boundaries',
+        type: 'line',
+        source: 'country-boundaries',
+        'source-layer': 'country_boundaries',
+        paint: {
+            'line-color': theme === 'dark' ? '#149ECA' : '#087EA4',
+            'line-width': 1,
+        },
+        filter: ['==', ['get', 'iso_3166_1_alpha_3'], ISOCtyName],
+    } as any
 
     return (
         <>
-            <div className={`w-96 h-96`}>
+            <div className={`${responsiveHeight} ${responsiveWidth}`}>
                 <Map
                     // onIdle={() => setIsStyleLoaded(true)}
                     cooperativeGestures={true}
-                    // id={markerCoordinates}
                     initialViewState={{
-                        longitude: -100,
-                        latitude: 40,
-                        zoom: 3.5,
+                        longitude: latLng[1],
+                        latitude: latLng[0],
+                        zoom: 4,
                     }}
-                    style={{ width: 600, height: 400 }}
-                    mapStyle={MAP_STYLES[0].link}
+                    maxZoom={maxZoom}
+                    mapStyle={theme === 'dark' ? MAP_STYLES.dark : MAP_STYLES.light}
                     mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
                     attributionControl={false}
-                    minZoom={2}
-                    maxZoom={18}
                     locale={{
                         'ScrollZoomBlocker.CtrlMessage': MESSAGE_MAP_PC,
                         'ScrollZoomBlocker.CmdMessage': MESSAGE_MAP_MAC,
                     }}
                 >
-                    {/* <FullscreenControl /> */}
+                    <Source id="country-boundaries" type="vector" url={boundsSource.url}>
+                        <Layer {...boundsLayer} />
+                    </Source>
+
+                    <FullscreenControl />
                     {/* <GeolocateControl /> */}
                     {/* <NavigationControl /> */}
                     {/* <ScaleControl /> */}
