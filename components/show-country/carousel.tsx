@@ -88,6 +88,7 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
                             )}`}
                         >
                             <Image
+                                loading="eager"
                                 fill
                                 src={media.media}
                                 alt={`${media.name}`}
