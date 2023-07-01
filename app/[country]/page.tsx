@@ -5,7 +5,7 @@ import { getOneCountry, getAllCountries } from '@/services/fetchers'
 import Carousel from '@/components/show-country/carousel'
 import DynamicMapShowCountry from '@/components/dynamic-imports/dynamic-country-map'
 
-// import MapShowCountrySkeleton from '@/components/ui/skeletons/map-show-country-skeleton'
+import MapShowCountrySkeleton from '@/components/ui/skeletons/map-show-country-skeleton'
 
 import CountryDetailsDisplayer from '@/components/show-country/country-details-displayer'
 

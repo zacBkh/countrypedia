@@ -70,7 +70,7 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
                     ))}
                 </div>
                 <div
-                    className={`bg-[#EEEFF2] dark:bg-[#16181D] rounded-lg flex relative overflow-hidden ${height}`}
+                    className={`bg-[#EEEFF2] dark:bg-[#16181D] rounded-lg flex relative overflow-hidden ${height} border-2 border-[#EBECF0]`}
                 >
                     <button
                         aria-label="Previous picture"
