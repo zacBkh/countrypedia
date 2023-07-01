@@ -10,12 +10,9 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
     const {
         cca3,
 
-        coatOfArms,
-        flags,
-
         name,
         capital,
-        area: size,
+        area,
 
         languages,
         population,
@@ -35,9 +32,65 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
     } = countryDetails
 
     return (
-        <>
-            <p>Here come country details</p>
-        </>
+        <div className="w-1/2 text-lg grid grid-cols-2 gap-4" id="detailCountryContainer">
+            <div>
+                <p>
+                    <span>Capital: </span> {capital}
+                </p>
+                <p>
+                    <span>Area: </span> {area}
+                </p>
+                <p>
+                    <span>Currency: </span>
+                    {Object.values(currencies)[0].name}
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    <span>Population: </span>
+                    {population}
+                </p>
+                <p>
+                    <span>Demonym: </span>
+                    {demonyms.eng.m}
+                </p>
+                <p>
+                    <span>Language: </span> {Object.values(languages)[0]}
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    <span>Independency: </span>
+                    {independent ? 'Yes' : 'No'}
+                </p>
+                <p>
+                    <span>Member of United Nations: </span>
+                    {unMember ? 'Yes' : 'No'}
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    <span>Region: </span>
+                    {region}
+                </p>
+                <p>
+                    <span>Subregion: </span>
+                    {subregion}
+                </p>
+
+                <p>
+                    <span>Timezone: </span>
+                    {timezones[0]}
+                </p>
+                <p>
+                    <span>Start week: </span>
+                    {startOfWeek}
+                </p>
+            </div>
+        </div>
     )
 }
 

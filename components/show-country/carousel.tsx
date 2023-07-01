@@ -55,7 +55,7 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
     const height = 'h-[128px] sm:h-[256px] 2xl:h-[307px]'
     return (
         <>
-            <div className={`${width}  overflow-hidden mt-6 `}>
+            <div className={`${width} overflow-hidden`}>
                 <div className="flex items-center relative h-8 w-full">
                     {mediaObject.map((media, index) => (
                         <p
@@ -88,10 +88,9 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
                             )}`}
                         >
                             <Image
-                                title="Bla bla"
                                 fill
                                 src={media.media}
-                                alt={'Flag of a country'}
+                                alt={`${media.name}`}
                                 className={` rounded-lg ${
                                     index === 0 ? 'object-cover' : 'object-contain'
                                 } `}

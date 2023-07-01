@@ -144,3 +144,13 @@ body {
 .mapboxgl-ctrl-bottom-left {
     display: none !important;
 }
+
+div#detailCountryContainer div p span {
+    @apply font-semibold;
+}
+
+div#detailCountryContainer div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

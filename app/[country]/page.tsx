@@ -5,7 +5,7 @@ import { getOneCountry, getAllCountries } from '@/services/fetchers'
 import Carousel from '@/components/show-country/carousel'
 import DynamicMapShowCountry from '@/components/dynamic-imports/dynamic-country-map'
 
-import MapShowCountrySkeleton from '@/components/ui/skeletons/map-show-country-skeleton'
+// import MapShowCountrySkeleton from '@/components/ui/skeletons/map-show-country-skeleton'
 
 import CountryDetailsDisplayer from '@/components/show-country/country-details-displayer'
 
@@ -23,8 +23,8 @@ interface ShowCountryProps {
     params: { country: string }
 }
 
-const ShowCountry: FC<ShowCountryProps> = async ({ params: countryName }) => {
-    const { country } = countryName
+const ShowCountry: FC<ShowCountryProps> = async ({ params }) => {
+    const { country } = params
 
     const showCountry = await getOneCountry(country)
     const {
@@ -61,7 +61,7 @@ const ShowCountry: FC<ShowCountryProps> = async ({ params: countryName }) => {
 
             <DynamicMapShowCountry ISOCtyName={cca3} latLng={latlng} />
             {/* <MapShowCountrySkeleton /> */}
-            <div className="px-6 flex justify-between w-full">
+            <div className="px-6 md:px-10 2xl:px-12 flex justify-between items-center w-full mt-6">
                 <Carousel
                     countryName={name.common}
                     coa={coatOfArms.png}

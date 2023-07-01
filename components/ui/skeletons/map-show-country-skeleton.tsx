@@ -14,7 +14,6 @@ import MapSkeletonSVG from '../icons/map-skeleton-svg'
 
 const MapShowCountrySkeleton: FC<MapShowCountrySkeletonProps> = ({ style }) => {
     const { theme } = useTheme()
-    console.log('theme++', theme)
 
     return (
         <div

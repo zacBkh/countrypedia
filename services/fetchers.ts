@@ -29,10 +29,10 @@ export interface GetOneCountryProps extends getAllCountriesProps {
     currencies: { string: { name: string; symbol: string } }
     subregion: string
     area: number
-    demonyms: {}
+    demonyms: { eng: { f: string; m: string }; fra: { f: string; m: string } }
     latlng: [number, number]
     population: number
-    timezones: string
+    timezones: Array<String>
     startOfWeek: string
 }
 
