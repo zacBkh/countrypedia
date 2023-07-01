@@ -10,6 +10,10 @@ import Button from './ui/buttons'
 
 import { useGlobalContext } from '@/app/context/store'
 
+import { RESPONSIVE_PADDING } from '@/constants/responsive-padding'
+
+import Loading from '@/app/(homepage)/loading'
+
 interface CountriesProps {
     allCountries: getAllCountriesProps[]
 }
@@ -38,7 +42,8 @@ const Countries: FC<CountriesProps> = ({ allCountries }) => {
 
     return (
         <>
-            <div className={`flex flex-col items-center`}>
+            {/* <Loading /> */}
+            <div className={`${RESPONSIVE_PADDING} flex flex-col items-center`}>
                 <div className="flex flex-wrap justify-between items-center gap-y-6 gap-x-4">
                     {whichView.map(cty => (
                         <CountryCard key={cty.cca3} details={cty} />

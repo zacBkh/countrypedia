@@ -42,7 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <GlobalContextProvider>
                         <Navbar />
                         <Overlay />
-                        <main className="p-4 md:p-8 2xl:p-10">{children}</main>
+                        <main>{children}</main>
                     </GlobalContextProvider>
                 </ThemeProviderWrap>
             </body>

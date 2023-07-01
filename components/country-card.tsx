@@ -18,6 +18,10 @@ interface CountryCardProps {
 
 const CountryCard: FC<CountryCardProps> = ({ details }) => {
     const { name, flags, capital, region, languages, maps, coatOfArms } = details
+
+    const displaySuspensionPoints =
+        'text-ellipsis whitespace-nowrap overflow-hidden text-start'
+
     return (
         <div
             className={`w-[300px] md:w-[350px] bg-[#F7F7F9] border border-[#d9dbe3] dark:border-gray-600 rounded-lg shadow dark:bg-[#16181D] overflow-hidden mx-auto`}
@@ -53,23 +57,28 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                     className={`${DETAILS_FONT_SIZE} flex justify-between gap-x-2 text-gray-700 dark:text-gray-400`}
                 >
                     {capital[0] ? (
-                        <div className="flex items-center gap-x-1 sm:gap-x-2">
-                            <BiSolidCity /> {capital[0]}
+                        <div className="flex items-center gap-x-1 sm:gap-x-2 min-w-[33%]">
+                            <BiSolidCity className="min-w-[16px] min-h-[16px]" />
+                            <p className={displaySuspensionPoints}> {capital[0]}</p>
                         </div>
                     ) : (
                         ''
                     )}
                     {region ? (
-                        <div className="flex items-center gap-x-1 sm:gap-x-2">
-                            <BiWorld /> {region}
+                        <div className="flex items-center gap-x-1 sm:gap-x-2 min-w-[33%]">
+                            <BiWorld className="min-w-[16px] min-h-[16px]" />
+                            <p className={displaySuspensionPoints}>{region}</p>
                         </div>
                     ) : (
                         ''
                     )}
 
                     {Object.values(languages)[0] ? (
-                        <div className="flex items-center gap-x-1 sm:gap-x-2">
-                            <BiUserVoice /> {Object.values(languages)[0]}
+                        <div className="flex items-center gap-x-1 sm:gap-x-2 min-w-[33%]">
+                            <BiUserVoice className="min-w-[16px] min-h-[16px]" />
+                            <p className={displaySuspensionPoints}>
+                                {Object.values(languages)[0]}
+                            </p>
                         </div>
                     ) : (
                         ''

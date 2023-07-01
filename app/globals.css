@@ -31,7 +31,7 @@ body {
 }
 
 .skeletonBG {
-    @apply dark:bg-[#23272F] bg-[#FFFFFF];
+    @apply dark:bg-[#23272F] bg-[#c4c4c5];
 }
 
 /* Hamburger Menu */
@@ -138,4 +138,19 @@ body {
     top: 50%;
     right: 0%;
     transform: translate(-50%, -50%) !important;
+}
+
+/* Remove mapbox logo */
+.mapboxgl-ctrl-bottom-left {
+    display: none !important;
+}
+
+div#detailCountryContainer div p span {
+    @apply font-semibold;
+}
+
+div#detailCountryContainer div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

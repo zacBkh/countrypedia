@@ -51,12 +51,11 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
         return 'next'
     }
 
-    const responsiveHeight = 'h-[128px] sm:h-64'
-    const responsiveWidth = 'w-[190px] sm:w-96'
-
+    const width = 'w-[190px] sm:w-[384px] 2xl:w-[461px]'
+    const height = 'h-[128px] sm:h-[256px] 2xl:h-[307px]'
     return (
         <>
-            <div className={`${responsiveWidth} overflow-hidden mt-6 `}>
+            <div className={`${width} overflow-hidden`}>
                 <div className="flex items-center relative h-8 w-full">
                     {mediaObject.map((media, index) => (
                         <p
@@ -71,7 +70,7 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
                     ))}
                 </div>
                 <div
-                    className={`bg-[#EEEFF2] dark:bg-[#16181D] rounded-lg flex ${responsiveHeight} relative overflow-hidden`}
+                    className={`bg-[#EEEFF2] dark:bg-[#16181D] rounded-lg flex relative overflow-hidden ${height}`}
                 >
                     <button
                         aria-label="Previous picture"
@@ -84,15 +83,14 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
                     {mediaObject.map((media, index) => (
                         <div
                             key={media.name}
-                            className={`${responsiveHeight} ${responsiveWidth} transition-transform duration-700 shrink-0 grow absolute ${getImgQueue(
+                            className={`${width}  ${height}  transition-transform duration-700 shrink-0 grow absolute ${getImgQueue(
                                 index,
                             )}`}
                         >
                             <Image
-                                title="Bla bla"
                                 fill
                                 src={media.media}
-                                alt={'Flag of a country'}
+                                alt={`${media.name}`}
                                 className={` rounded-lg ${
                                     index === 0 ? 'object-cover' : 'object-contain'
                                 } `}
