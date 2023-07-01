@@ -57,7 +57,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                     className={`${DETAILS_FONT_SIZE} flex justify-between gap-x-2 text-gray-700 dark:text-gray-400`}
                 >
                     {capital[0] ? (
-                        <div className="flex items-center gap-x-1 sm:gap-x-2 min-w-[33%]">
+                        <div className="flex justify-center items-center gap-x-1 sm:gap-x-2 min-w-[33%]">
                             <BiSolidCity className="min-w-[16px] min-h-[16px]" />
                             <p className={displaySuspensionPoints}> {capital[0]}</p>
                         </div>
@@ -65,7 +65,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                         ''
                     )}
                     {region ? (
-                        <div className="flex items-center gap-x-1 sm:gap-x-2 min-w-[33%]">
+                        <div className="flex justify-center items-center gap-x-1 sm:gap-x-2 min-w-[33%]">
                             <BiWorld className="min-w-[16px] min-h-[16px]" />
                             <p className={displaySuspensionPoints}>{region}</p>
                         </div>
@@ -74,7 +74,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                     )}
 
                     {Object.values(languages)[0] ? (
-                        <div className="flex items-center gap-x-1 sm:gap-x-2 min-w-[33%]">
+                        <div className="flex justify-center items-center gap-x-1 sm:gap-x-2 min-w-[33%]">
                             <BiUserVoice className="min-w-[16px] min-h-[16px]" />
                             <p className={displaySuspensionPoints}>
                                 {Object.values(languages)[0]}
