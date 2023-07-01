@@ -12,6 +12,7 @@ import { useTheme } from 'next-themes'
 import { GetOneCountryProps } from '@/services/fetchers'
 
 import { RESPONSIVE_MAP_SIZE } from '@/constants/map-styles'
+
 const { mapHeight } = RESPONSIVE_MAP_SIZE
 
 interface MapShowCountryProps {
@@ -42,11 +43,23 @@ const MapShowCountry: FC<MapShowCountryProps> = ({ ISOCtyName, latLng }) => {
         filter: ['==', ['get', 'iso_3166_1_alpha_3'], ISOCtyName],
     } as any
 
+    const countryFillLayer = {
+        maxZoom,
+        id: 'country-fill',
+        type: 'fill',
+        source: 'country-boundaries',
+        'source-layer': 'country_boundaries',
+        paint: {
+            'fill-color': '#149ECA',
+            'fill-opacity': 0.8,
+        },
+        filter: ['==', ['get', 'iso_3166_1_alpha_3'], ISOCtyName],
+    } as any
+
     return (
         <>
-            <div className={`${mapHeight} w-full`}>
+            <div className={`${mapHeight} relative w-full`}>
                 <Map
-                    // onIdle={() => setIsStyleLoaded(true)}
                     // onZoom={e => console.log(e.viewState.zoom)}
                     cooperativeGestures={true}
                     initialViewState={{
@@ -66,6 +79,7 @@ const MapShowCountry: FC<MapShowCountryProps> = ({ ISOCtyName, latLng }) => {
                 >
                     <Source id="country-boundaries" type="vector" url={boundsSource.url}>
                         <Layer {...boundsLayer} />
+                        <Layer {...countryFillLayer} />
                     </Source>
 
                     <FullscreenControl />

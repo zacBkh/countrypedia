@@ -12,9 +12,9 @@ const MapSkeleton: FC<MapSkeletonProps> = ({ fillColor, strokeColor }) => {
             fill={fillColor}
             stroke={strokeColor}
             height="857"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width=".2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth=".2"
             version="1.2"
             viewBox="0 0 2000 857"
             width="2000"
