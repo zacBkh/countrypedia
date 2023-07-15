@@ -8,11 +8,15 @@ import CloseButton from './ui/icons/close-button'
 
 import { useGlobalContext } from '@/app/context/store'
 
+import useOnClickOutside from '@/hooks/useOnClickOutside'
+
 interface SearchBarProps {
     hello?: any
 }
 
 const SearchBar: FC<SearchBarProps> = ({}) => {
+    const [isSuggestionVisible, setIsSuggestionVisible] = useState(false)
+
     const searchBarRef = useRef<HTMLInputElement>(null)
 
     const { searchQuery, setSearchQuery } = useGlobalContext()
@@ -20,6 +24,11 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
     const searchHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const search = evt.target.value
         setSearchQuery(search) // send to global context
+        if (search.length > 0) {
+            setIsSuggestionVisible(true) // reveal suggestion popup
+        } else {
+            setIsSuggestionVisible(false)
+        }
     }
 
     const [currentOS, setCurrentOS] = useState('Windows')
@@ -44,11 +53,20 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         }
     }, [])
 
+    const deleteSearchHandler = () => {
+        setSearchQuery('')
+        setIsSuggestionVisible(false)
+    }
+
+    const suggestedPopUp = useRef(null)
+
+    useOnClickOutside(suggestedPopUp, () => setIsSuggestionVisible(false))
+
     return (
         <div className="relative flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
             <div className="z-50 absolute left-[3%] 2xl:left-[14px] top-auto flex justify-center items-center">
                 {searchQuery ? (
-                    <CloseButton onDeleteSearch={() => setSearchQuery('')} />
+                    <CloseButton onDeleteSearch={deleteSearchHandler} />
                 ) : (
                     <MagnifyingGlass />
                 )}
@@ -62,24 +80,33 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                 className="p-2 pl-10 flex 2xl:mx-0 relative pr-1 py-1 h-10 outline-none focus:outline-react-blue-txt-light&dark items-center text-left text-gray-30 rounded-full align-middle text-base bg-[#EBECF0] dark:bg-[#333944] !w-full"
             />
 
-            {
-                <div className="z-50 absolute flex items-center right-[2%] top-auto">
-                    {currentOS === 'Mac' ? (
-                        <KeyBoardStroke
-                            moreCSS="w-5 h-5 p-2"
-                            data_platform="mac"
-                            text="⌘"
-                        />
-                    ) : (
-                        <KeyBoardStroke
-                            moreCSS="w-10 h-5"
-                            data_platform="win"
-                            text="Ctrl"
-                        />
-                    )}
-                    <KeyBoardStroke moreCSS="w-5 h-5" text="K" />
+            <div className="z-50 absolute flex items-center right-[2%] top-auto">
+                {currentOS === 'Mac' ? (
+                    <KeyBoardStroke moreCSS="w-5 h-5 p-2" data_platform="mac" text="⌘" />
+                ) : (
+                    <KeyBoardStroke moreCSS="w-10 h-5" data_platform="win" text="Ctrl" />
+                )}
+                <KeyBoardStroke moreCSS="w-5 h-5" text="K" />
+            </div>
+
+            {isSuggestionVisible ? (
+                <div
+                    ref={suggestedPopUp}
+                    className="rounded-md w-full max-h-52 absolute top-full z-20 h-fit shadow-md overflow-hidden overflow-y-auto"
+                >
+                    <p className="resultSearchBar pl-2 py-2">
+                        No country matches your query... 😢
+                    </p>
+                    <p className="resultSearchBar pl-2 py-2">
+                        No country matches your query... 😢
+                    </p>
+                    <p className="resultSearchBar pl-2 py-2">
+                        No country matches your query... 😢
+                    </p>
                 </div>
-            }
+            ) : (
+                ''
+            )}
         </div>
     )
 }

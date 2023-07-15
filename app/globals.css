@@ -154,3 +154,9 @@ div#detailCountryContainer div {
     flex-direction: column;
     justify-content: center;
 }
+
+.resultSearchBar {
+    @apply bg-[#F6F7F9] hover:bg-[#087EA4] dark:bg-[#23272F] dark:hover:bg-[#149ECA]
+     text-[#23272F] hover:text-white dark:text-white
+     hover:cursor-pointer;
+}
