@@ -10,7 +10,6 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
     const {
         cca3,
 
-        name,
         capital,
         area,
 
@@ -18,7 +17,6 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
         population,
         demonyms,
 
-        timezones,
         startOfWeek,
         currencies,
 
@@ -27,16 +25,17 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
 
         region,
         subregion,
-        latlng,
-        maps,
     } = countryDetails
 
     return (
-        <div className="w-1/2 text-lg grid grid-cols-2 gap-4" id="detailCountryContainer">
+        <div
+            className="lg:w-1/2 text-lg grid grid-cols-1 sm:grid-cols-2 gap-4 text-center"
+            id="detailCountryContainer"
+        >
             <div id="capital-area-currency">
                 {capital ? (
                     <p>
-                        <span>Capital: </span> {capital}
+                        <span>🏛️ Capital: </span> {capital}
                     </p>
                 ) : (
                     ''
@@ -44,7 +43,7 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
 
                 {area ? (
                     <p>
-                        <span>Area: </span> {area}
+                        <span>📍 Area: </span> {area.toLocaleString()}
                     </p>
                 ) : (
                     ''
@@ -52,7 +51,7 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
 
                 {currencies ? (
                     <p>
-                        <span>Currency: </span>
+                        <span>💰 Currency: </span>
                         {Object.values(currencies)[0].name}
                     </p>
                 ) : (
@@ -63,8 +62,8 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
             <div id="population-languages">
                 {population ? (
                     <p>
-                        <span>Population: </span>
-                        {population}
+                        <span>👨‍👨‍👧‍👦 Population: </span>
+                        {population.toLocaleString()}
                     </p>
                 ) : (
                     ''
@@ -72,7 +71,7 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
 
                 {demonyms ? (
                     <p>
-                        <span>Demonym: </span>
+                        <span>👨‍👨‍👧‍👦 Demonym: </span>
                         {demonyms.eng.m}
                     </p>
                 ) : (
@@ -81,7 +80,7 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
 
                 {languages ? (
                     <p>
-                        <span>Language: </span> {Object.values(languages)[0]}
+                        <span>💬 Language: </span> {Object.values(languages)[0]}
                     </p>
                 ) : (
                     ''
@@ -91,7 +90,7 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
             <div id="independent-unMember">
                 {independent ? (
                     <p>
-                        <span>Independency: </span>
+                        <span>💪🏼 Independency: </span>
                         {independent ? 'Yes' : 'No'}
                     </p>
                 ) : (
@@ -100,7 +99,7 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
 
                 {unMember ? (
                     <p>
-                        <span>Member of United Nations: </span>
+                        <span>☮️ Member of United Nations: </span>
                         {unMember ? 'Yes' : 'No'}
                     </p>
                 ) : (
@@ -108,10 +107,10 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
                 )}
             </div>
 
-            <div id="regions-timezones-startWeek">
+            <div id="regions-startWeek">
                 {region ? (
                     <p>
-                        <span>Region: </span>
+                        <span>📍 Region: </span>
                         {region}
                     </p>
                 ) : (
@@ -120,17 +119,8 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
 
                 {subregion ? (
                     <p>
-                        <span>Subregion: </span>
+                        <span>📍 Subregion: </span>
                         {subregion}
-                    </p>
-                ) : (
-                    ''
-                )}
-
-                {timezones ? (
-                    <p>
-                        <span>Timezone: </span>
-                        {timezones[0]}
                     </p>
                 ) : (
                     ''
@@ -138,7 +128,7 @@ const CountryDetailsDisplayer: FC<CountryDetailsDisplayerProps> = ({
 
                 {startOfWeek ? (
                     <p>
-                        <span>Start week: </span>
+                        <span>📆 Start week: </span>
                         {startOfWeek}
                     </p>
                 ) : (

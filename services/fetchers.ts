@@ -32,7 +32,6 @@ export interface GetOneCountryProps extends getAllCountriesProps {
     demonyms: { eng: { f: string; m: string }; fra: { f: string; m: string } }
     latlng: [number, number]
     population: number
-    timezones: Array<String>
     startOfWeek: string
 }
 

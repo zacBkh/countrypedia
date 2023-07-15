@@ -51,8 +51,8 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
         return 'next'
     }
 
-    const width = 'w-[190px] sm:w-[384px] 2xl:w-[461px]'
-    const height = 'h-[128px] sm:h-[256px] 2xl:h-[307px]'
+    const width = 'w-[269px] sm:w-[384px] 2xl:w-[461px]'
+    const height = 'h-[143px] sm:h-[256px] 2xl:h-[307px]'
     return (
         <>
             <div className={`${width} overflow-hidden`}>
