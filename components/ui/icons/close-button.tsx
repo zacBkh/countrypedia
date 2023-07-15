@@ -6,7 +6,7 @@ const CloseButton: React.FC<CloseButtonProps> = ({ onDeleteSearch }) => {
     return (
         <button
             onClick={onDeleteSearch}
-            className="text-[#99A1B3] rounded-full hover:!bg-transparent"
+            className="text-[#99A1B3] rounded-full hover:!bg-transparent active:transform-none"
             title="Delete searched content"
         >
             <span className="sr-only">Delete search</span>
