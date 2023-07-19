@@ -27,6 +27,7 @@ const ShowCountry: FC<ShowCountryProps> = async ({ params }) => {
     const { country } = params
 
     const showCountry = await getOneCountry(country)
+    console.log('showCountry', showCountry)
     const {
         cca3,
 
