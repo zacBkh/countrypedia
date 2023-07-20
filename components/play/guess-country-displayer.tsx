@@ -1,20 +1,17 @@
 'use client'
-
 import { useState } from 'react'
-
 import useSWR from 'swr'
-import { getRandomCountry, getRandomCountryTypes } from '@/services/fetchers'
+import { getRandomCountry } from '@/services/fetchers'
 
 import SWR_KEYS from '@/constants/SWR-keys'
 
 const GuessCountryDisplayer = ({}) => {
-    const [activeRandomCountry, setActiveRandomCountry] =
-        useState<getRandomCountryTypes | null>(null)
+    const [activeCountry, setActiveCountry] = useState('')
 
     const fetcher = async () => {
-        const res = await getRandomCountry()
-        setActiveRandomCountry(res)
-        return res
+        const newCountry = await getRandomCountry()
+        setActiveCountry(newCountry.name.common)
+        return newCountry
     }
 
     const { data, error, isLoading } = useSWR(SWR_KEYS.RANDOM_COUNTRY, fetcher, {
@@ -22,14 +19,14 @@ const GuessCountryDisplayer = ({}) => {
         revalidateOnReconnect: false,
     })
 
+    console.log('error', error)
+
     if (error) return <div>Failed to load</div>
     if (isLoading) return <div>Loading...</div>
 
-    console.log('cca2', activeRandomCountry?.cca2)
-    console.log('cca3', activeRandomCountry?.cca3)
     return (
         <>
-            <h1>{activeRandomCountry?.name.common}</h1>
+            <h1>{activeCountry}</h1>
             <button onClick={fetcher}>Re fetch country</button>
         </>
     )
