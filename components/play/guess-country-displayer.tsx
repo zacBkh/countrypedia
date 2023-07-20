@@ -19,8 +19,6 @@ const GuessCountryDisplayer = ({}) => {
         revalidateOnReconnect: false,
     })
 
-    console.log('error', error)
-
     if (error) return <div>Failed to load</div>
     if (isLoading) return <div>Loading...</div>
 
