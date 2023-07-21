@@ -3,6 +3,11 @@ export const MAP_STYLES = {
     dark: 'mapbox://styles/mapbox/dark-v11?optimize=true',
 }
 
+export const CUSTOM_MAP_STYLES = {
+    dark: 'mapbox://styles/zacharie123dxb/clkbd8uln00v101pe5jdj3unh',
+    light: 'mapbox://styles/zacharie123dxb/clkbbqlih00uu01pe35f4fkh7',
+}
+
 export const MESSAGE_MAP_PC = 'Use CTRL + Scroll to zoom the map'
 export const MESSAGE_MAP_MAC = 'Use ⌘ + Scroll to zoom the map'
 

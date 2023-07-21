@@ -1,5 +1,7 @@
 'use client'
 
+import { useState, useMemo, useCallback } from 'react'
+
 import Map, { Source, Layer } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
@@ -8,16 +10,40 @@ const { countryLocatorMap } = RESPONSIVE_MAP_SIZE
 
 import { useTheme } from 'next-themes'
 
+import { highlightedCountryLayerHover, countriesLayer } from './layers'
+
+import { CUSTOM_MAP_STYLES } from '@/constants/map-styles'
+const { dark: darkMapStyle, light: lightMapStyle } = CUSTOM_MAP_STYLES
+
 const CountryLocator = ({}) => {
+    const [hoverInfo, setHoverInfo] = useState('')
+
     const { theme } = useTheme()
 
-    const onHover = (event: any) => {
-        console.log('event.features', event.features[0]?.properties?.name_en) // is undefined 8 out of 10 times
+    const clickMapHandler = (event: any) => {
+        console.log('event.features', event.features[0]?.properties?.name_en)
     }
+
+    const hoverMapHandler = useCallback((event: any) => {
+        console.log('event.features', event.features)
+
+        const activeCty = event.features && event.features[0]?.properties?.name_en
+        console.log('hoverInfo', hoverInfo)
+        if (activeCty) {
+            setHoverInfo(activeCty)
+        }
+    }, [])
+
+    const filterHoveredCty = useMemo(
+        () => ['in', 'name_en', hoverInfo],
+        [hoverInfo],
+    ) as any
 
     return (
         <div className={`${countryLocatorMap} relative w-full`}>
             <Map
+                onMouseMove={hoverMapHandler}
+                onMouseDown={clickMapHandler}
                 renderWorldCopies={false}
                 cooperativeGestures={true}
                 initialViewState={{
@@ -25,28 +51,26 @@ const CountryLocator = ({}) => {
                     latitude: 37.8,
                     zoom: 1,
                 }}
-                mapStyle={
-                    theme === 'dark'
-                        ? 'mapbox://styles/zacharie123dxb/clkbd8uln00v101pe5jdj3unh'
-                        : 'mapbox://styles/zacharie123dxb/clkbbqlih00uu01pe35f4fkh7'
-                }
+                mapStyle={theme === 'dark' ? darkMapStyle : lightMapStyle}
                 mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-                onMouseDown={onHover}
                 interactiveLayerIds={['countries-fill']}
                 attributionControl={false}
             >
                 <Source type="vector" url="mapbox://mapbox.country-boundaries-v1">
                     <Layer
+                        {...countriesLayer}
                         beforeId="waterway-label"
-                        id="countries-fill"
-                        source="country_boundaries"
-                        source-layer="country_boundaries"
-                        type="fill"
                         paint={{
                             'fill-outline-color':
                                 theme === 'dark' ? '#666666' : '#EBECF0',
                             'fill-color': theme === 'dark' ? '#363636' : '#FDFDFD',
                         }}
+                    />
+
+                    <Layer
+                        {...highlightedCountryLayerHover}
+                        beforeId="waterway-label"
+                        filter={filterHoveredCty}
                     />
                 </Source>
             </Map>

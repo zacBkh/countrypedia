@@ -1,25 +1,17 @@
-export const countryFillLayer = {
-    beforeId: 'waterway-label',
+import type { FillLayer } from 'react-map-gl'
+
+export const countriesLayer: FillLayer = {
     id: 'countries-fill',
+    type: 'fill',
     source: 'country_boundaries',
     'source-layer': 'country_boundaries',
+}
+export const highlightedCountryLayerHover: FillLayer = {
+    id: 'countries-hover',
     type: 'fill',
+    source: 'country_boundaries',
+    'source-layer': 'country_boundaries',
     paint: {
-        'fill-opacity': 0.8,
-        'fill-outline-color': 'black',
         'fill-color': '#149ECA',
     },
-} as any
-
-// const countryFillLayer = {
-//     maxZoom,
-//     id: 'country-fill',
-//     type: 'fill',
-//     source: 'country-boundaries',
-//     'source-layer': 'country_boundaries',
-//     paint: {
-//         'fill-color': '#149ECA',
-//         'fill-opacity': 0.8,
-//     },
-//     filter: ['==', ['get', 'iso_3166_1_alpha_3'], ISOCtyName],
-// } as any
+}
