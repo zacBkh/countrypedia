@@ -24,7 +24,7 @@ const ThemeSwitcher = () => {
     if (!isMounted) {
         return (
             <div className="w-12 h-12 flex justify-center items-center">
-                <Spinner moreCSS="opacity-50 border-t-react-blue-txt-light&dark " />
+                <Spinner moreCSS="opacity-75 border-t-react-blue-txt-light&dark" />
             </div>
         )
     }

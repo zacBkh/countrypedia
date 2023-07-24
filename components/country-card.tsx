@@ -86,6 +86,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                 </div>
                 <div className="flex justify-between gap-x-8">
                     <Button
+                        ariaLabel={`Learn more about ${name.common}`}
                         iconClass="text-xl"
                         icon={<FiArrowRight />}
                         text="Read more"
@@ -95,6 +96,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                     />
 
                     <Button
+                        ariaLabel={`Open ${name.common} in Google Maps`}
                         iconClass="text-base"
                         icon={<SiGooglemaps />}
                         secondary

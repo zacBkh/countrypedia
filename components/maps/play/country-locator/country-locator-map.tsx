@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useCallback } from 'react'
+import { FC, useState, useMemo, useCallback } from 'react'
 
 import Map, { Source, Layer } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -15,24 +15,37 @@ import { highlightedCountryLayerHover, countriesLayer } from './layers'
 import { CUSTOM_MAP_STYLES } from '@/constants/map-styles'
 const { dark: darkMapStyle, light: lightMapStyle } = CUSTOM_MAP_STYLES
 
-const CountryLocator = ({}) => {
+interface CountryLocatorMapProps {
+    onCtySelection: any
+}
+
+const CountryLocatorMap: FC<CountryLocatorMapProps> = ({ onCtySelection }) => {
     const [hoverInfo, setHoverInfo] = useState('')
 
     const { theme } = useTheme()
 
     const clickMapHandler = (event: any) => {
-        console.log('event.features', event.features[0]?.properties?.name_en)
+        const selectedCty = event.features[0]?.properties
+        if (!selectedCty) {
+            return
+        }
+        const { iso_3166_1_alpha_3: code, name_en: name } = selectedCty
+        onCtySelection({ code, name })
     }
 
     const hoverMapHandler = useCallback((event: any) => {
-        console.log('event.features', event.features)
-
-        const activeCty = event.features && event.features[0]?.properties?.name_en
-        console.log('hoverInfo', hoverInfo)
+        const activeCty = event.features[0]?.properties?.name_en ?? ''
         if (activeCty) {
             setHoverInfo(activeCty)
+        } else {
+            setHoverInfo('')
         }
+        console.log('hoverInfo', hoverInfo)
     }, [])
+
+    const leaveMapHandler = () => {
+        setHoverInfo('')
+    }
 
     const filterHoveredCty = useMemo(
         () => ['in', 'name_en', hoverInfo],
@@ -40,9 +53,11 @@ const CountryLocator = ({}) => {
     ) as any
 
     return (
-        <div className={`${countryLocatorMap} relative w-full`}>
+        <div className={`${countryLocatorMap} relative w-full my-2`}>
             <Map
+                cursor={hoverInfo ? 'pointer' : 'auto'}
                 onMouseMove={hoverMapHandler}
+                onMouseLeave={leaveMapHandler}
                 onMouseDown={clickMapHandler}
                 renderWorldCopies={false}
                 cooperativeGestures={true}
@@ -54,7 +69,9 @@ const CountryLocator = ({}) => {
                 mapStyle={theme === 'dark' ? darkMapStyle : lightMapStyle}
                 mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
                 interactiveLayerIds={['countries-fill']}
+                doubleClickZoom={false}
                 attributionControl={false}
+                dragRotate={false}
             >
                 <Source type="vector" url="mapbox://mapbox.country-boundaries-v1">
                     <Layer
@@ -78,4 +95,4 @@ const CountryLocator = ({}) => {
     )
 }
 
-export default CountryLocator
+export default CountryLocatorMap
