@@ -200,3 +200,13 @@ div#detailCountryContainer div {
      text-[#23272F] hover:text-white dark:text-white
      hover:cursor-pointer;
 }
+
+.shadowCardsHov {
+    box-shadow: none;
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.shadowCardsHov:hover {
+    box-shadow: inset 0 4px 7px 1px #ffffff, inset 0 -5px 20px rgba(173, 186, 204, 0.25),
+        0 0 20px rgba(0, 21, 64, 0.14), 0 0 40px rgba(0, 0, 0, 0.2);
+}
