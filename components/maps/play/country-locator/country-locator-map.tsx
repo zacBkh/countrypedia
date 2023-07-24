@@ -2,7 +2,7 @@
 
 import { FC, useState, useMemo, useCallback } from 'react'
 
-import Map, { Source, Layer } from 'react-map-gl'
+import Map, { Source, Layer, ViewStateChangeEvent } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 import { RESPONSIVE_MAP_SIZE } from '@/constants/map-styles'
@@ -22,9 +22,14 @@ interface CountryLocatorMapProps {
 const CountryLocatorMap: FC<CountryLocatorMapProps> = ({ onCtySelection }) => {
     const [hoverInfo, setHoverInfo] = useState('')
 
+    const [isDragging, setIsDragging] = useState(false)
+
     const { theme } = useTheme()
 
     const clickMapHandler = (event: any) => {
+        if (isDragging) {
+            return
+        }
         const selectedCty = event.features[0]?.properties
         if (!selectedCty) {
             return
@@ -52,18 +57,28 @@ const CountryLocatorMap: FC<CountryLocatorMapProps> = ({ onCtySelection }) => {
         [hoverInfo],
     ) as any
 
+    const handleDragStart = () => {
+        setIsDragging(true)
+    }
+
+    const handleDragEnd = () => {
+        setIsDragging(false)
+    }
+
     return (
         <div className={`${countryLocatorMap} relative w-full my-2`}>
             <Map
+                onDragStart={handleDragStart}
+                onDragEnd={handleDragEnd}
                 cursor={hoverInfo ? 'pointer' : 'auto'}
                 onMouseMove={hoverMapHandler}
                 onMouseLeave={leaveMapHandler}
-                onMouseDown={clickMapHandler}
+                onMouseUp={clickMapHandler}
                 renderWorldCopies={false}
                 cooperativeGestures={true}
                 initialViewState={{
-                    longitude: -122.4,
-                    latitude: 37.8,
+                    longitude: 0,
+                    latitude: 66.919,
                     zoom: 1,
                 }}
                 mapStyle={theme === 'dark' ? darkMapStyle : lightMapStyle}
