@@ -5,8 +5,6 @@ import { getOneCountry, getAllCountries } from '@/services/fetchers'
 import Carousel from '@/components/show-country/carousel'
 import DynamicMapShowCountry from '@/components/dynamic-imports/dynamic-country-map'
 
-import MapShowCountrySkeleton from '@/components/ui/skeletons/map-show-country-skeleton'
-
 import CountryDetailsDisplayer from '@/components/show-country/country-details-displayer'
 
 import { SUPER_TITLE_FONT_SIZE } from '@/constants/responsive-fonts'
@@ -59,7 +57,6 @@ const ShowCountry: FC<ShowCountryProps> = async ({ params }) => {
             </h1>
 
             <DynamicMapShowCountry ISOCtyName={cca3} latLng={latlng} />
-            {/* <MapShowCountrySkeleton /> */}
             <div className="px-6 md:px-10 2xl:px-12 flex flex-col gap-y-8 lg:gap-y-0 lg:flex-row justify-between items-center w-full mt-4 md;mt-6">
                 <Carousel
                     countryName={name.common}

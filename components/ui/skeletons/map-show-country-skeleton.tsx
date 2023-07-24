@@ -17,7 +17,7 @@ const MapShowCountrySkeleton: FC<MapShowCountrySkeletonProps> = ({ style }) => {
 
     return (
         <div
-            className={`${RESPONSIVE_MAP_SIZE.mapHeight} overflow-hidden animate-pulse !bg-[#DBDBDC] dark:!bg-[#1F1F1F] w-full ${style}`}
+            className={`${RESPONSIVE_MAP_SIZE.showCountryMap} overflow-hidden animate-pulse !bg-[#DBDBDC] dark:!bg-[#1F1F1F] w-full ${style}`}
         >
             <MapSkeletonSVG
                 strokeColor={theme === 'dark' ? '#676767' : '#B4B4B3'}

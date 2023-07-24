@@ -1,5 +1,5 @@
 import { FetchLinks } from '@/constants/urls'
-const { ALL_COUNTRIES, ONE_COUNTRY_BASE } = FetchLinks
+const { ALL_COUNTRIES, ONE_COUNTRY_BASE, ALL_ISO } = FetchLinks
 
 export interface getAllCountriesProps {
     name: { common: string; official: string; nativeName: object }
@@ -10,12 +10,12 @@ export interface getAllCountriesProps {
     languages: object
     maps: { googleMaps: string; openStreetMaps: string }
     cca3: string
+    cca2: string
 }
 
 export const getAllCountries = async (): Promise<getAllCountriesProps[]> => {
     try {
         const res = await fetch(ALL_COUNTRIES)
-        // await new Promise(resolve => setTimeout(resolve, 3000))
         return res.json()
     } catch (error) {
         console.log('error [1]', error)
@@ -40,10 +40,31 @@ export const getOneCountry = async (
 ): Promise<GetOneCountryProps[]> => {
     try {
         const res = await fetch(`${ONE_COUNTRY_BASE}/${countryName}`)
-        // await new Promise(resolve => setTimeout(resolve, 3000))
         return res.json()
     } catch (error) {
         console.log('error [2]', error)
+        throw error
+    }
+}
+
+export interface getRandomCountryTypes {
+    name: { common: string; official: string; nativeName: object }
+    cca3: string
+    cca2: string
+}
+
+export const getRandomCountry = async (): Promise<getRandomCountryTypes> => {
+    try {
+        const res = await fetch(ALL_ISO)
+        const allCountries = await res.json()
+
+        const randomIndex = Math.floor(Math.random() * allCountries.length)
+
+        const randomlySelectedCty = allCountries[randomIndex]
+
+        return randomlySelectedCty
+    } catch (error) {
+        console.log('error [3]', error)
         throw error
     }
 }

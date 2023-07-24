@@ -52,6 +52,7 @@ const Countries: FC<CountriesProps> = ({ allCountries }) => {
 
                 {shoulSeeMoreBtnShow ? (
                     <Button
+                        ariaLabel="See more countries"
                         iconClass="text-xl"
                         icon={<FiArrowRight />}
                         moreStyle={'mt-8'}
