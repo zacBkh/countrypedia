@@ -1,6 +1,10 @@
 import { FetchLinks } from '@/constants/urls'
 const { ALL_COUNTRIES, ONE_COUNTRY_BASE, ALL_ISO } = FetchLinks
 
+import { EASY_COUNTRIES } from '@/utils/difficulty-countries'
+
+import { DifficultyLvlCountrySelector } from '@/app/context/store'
+
 export interface getAllCountriesProps {
     name: { common: string; official: string; nativeName: object }
     flags: { png: string; svg: string; alt: string }
@@ -53,16 +57,27 @@ export interface getRandomCountryTypes {
     cca2: string
 }
 
-export const getRandomCountry = async (): Promise<getRandomCountryTypes> => {
+export const getRandomCountry = async (
+    lvl: DifficultyLvlCountrySelector,
+): Promise<getRandomCountryTypes> => {
     try {
         const res = await fetch(ALL_ISO)
         const allCountries = await res.json()
 
-        const randomIndex = Math.floor(Math.random() * allCountries.length)
+        // here take allCountries and .map to return only the one according to difficuluties as per difficulty-countries.ts
 
-        const randomlySelectedCty = allCountries[randomIndex]
-
-        return randomlySelectedCty
+        if (lvl === DifficultyLvlCountrySelector.EASY) {
+            const easyCountries = allCountries.filter((cty: getRandomCountryTypes) =>
+                EASY_COUNTRIES.includes(cty.cca3),
+            )
+            const randomIndex = Math.floor(Math.random() * easyCountries.length + 1)
+            const randomlySelectedEasyCty = easyCountries[randomIndex]
+            return randomlySelectedEasyCty
+        } else {
+            const randomIndex = Math.floor(Math.random() * allCountries.length + 1)
+            const randomlySelectedCty = allCountries[randomIndex]
+            return randomlySelectedCty
+        }
     } catch (error) {
         console.log('error [3]', error)
         throw error

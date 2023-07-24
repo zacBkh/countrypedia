@@ -17,6 +17,8 @@ interface ButtonProps {
 
     icon?: any
     iconClass?: string
+
+    title?: string
 }
 
 const Button: FC<ButtonProps> = ({
@@ -31,6 +33,7 @@ const Button: FC<ButtonProps> = ({
     moreStyle,
     icon,
     iconClass,
+    title,
 }) => {
     const style = `flex justify-between gap-x-3 items-center px-4 py-[5px] md:py-[10px] ${BUTTON_FONT_SIZE} text-center rounded-full font-bold
     ${moreStyle}
@@ -61,7 +64,7 @@ const Button: FC<ButtonProps> = ({
     }
 
     return (
-        <button aria-label={ariaLabel} onClick={onAction} className={style}>
+        <button title={title} aria-label={ariaLabel} onClick={onAction} className={style}>
             <span className="md:hidden">{textSm ?? text}</span>
             <span className="hidden md:inline">{text}</span>
             {icon ? <span className={iconClass}>{icon}</span> : ''}

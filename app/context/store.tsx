@@ -9,6 +9,13 @@ import {
     ReactNode,
 } from 'react'
 
+export const enum DifficultyLvlCountrySelector {
+    EASY = 'easy',
+    HARD = 'hard',
+}
+
+type SetDifficultyLevelFunction = (lvl: DifficultyLvlCountrySelector) => void
+
 interface GlobalContextProps {
     searchQuery: string
     setSearchQuery: Dispatch<SetStateAction<string>>
@@ -18,6 +25,8 @@ interface GlobalContextProps {
         countryLocatorRules: {
             isActive: boolean
             toggleModalState: Function
+            difficultyLevel: DifficultyLvlCountrySelector
+            setDifficultyLvl: SetDifficultyLevelFunction
         }
     }
 }
@@ -33,6 +42,9 @@ export const GlobalContext = createContext<GlobalContextProps>({
 // Glboal context provider component
 export const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
     const [ctyLocatorModalIsOpen, setCtyLocatorModalIsOpen] = useState(true)
+    const [difficultyLvl, setDifficultyLvl] = useState<DifficultyLvlCountrySelector>(
+        DifficultyLvlCountrySelector.EASY,
+    )
     const [searchQuery, setSearchQuery] = useState('')
     const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false)
 
@@ -41,6 +53,10 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
             isActive: ctyLocatorModalIsOpen,
             toggleModalState: () => {
                 setCtyLocatorModalIsOpen(prev => !prev)
+            },
+            difficultyLevel: difficultyLvl,
+            setDifficultyLvl: (lvl: DifficultyLvlCountrySelector) => {
+                setDifficultyLvl(lvl)
             },
         },
     }

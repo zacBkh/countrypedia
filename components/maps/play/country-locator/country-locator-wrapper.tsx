@@ -19,6 +19,8 @@ import Spinner from '@/components/ui/spinner'
 
 import RulesCountryLocatorModal from '@/components/ui/modals/rules-country-locator-modal'
 
+import { DifficultyLvlCountrySelector } from '@/app/context/store'
+
 interface ClickedCountryTypes {
     code: string
     name: string
@@ -41,7 +43,12 @@ const CountryLocatorWrapper = () => {
     const [isUserCorrect, setIsUserCorrect] = useState<boolean | null>(null)
 
     const fetcher = async () => {
-        const newCountry = await getRandomCountry()
+        let newCountry
+        if (countryLocatorRules.difficultyLevel === DifficultyLvlCountrySelector.EASY) {
+            newCountry = await getRandomCountry(DifficultyLvlCountrySelector.EASY)
+        } else {
+            newCountry = await getRandomCountry(DifficultyLvlCountrySelector.HARD)
+        }
         return newCountry
     }
 
@@ -135,7 +142,7 @@ const CountryLocatorWrapper = () => {
                             onClick={openModal}
                             className="text-[#087da4] dark:text-[#149eca] font-semibold hover:underline hover:!bg-transparent text-base active:transform-none"
                         >
-                            See instructions
+                            See instructions or change difficulty
                         </button>
                     </p>
                 </div>
