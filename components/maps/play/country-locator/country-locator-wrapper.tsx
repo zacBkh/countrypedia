@@ -84,7 +84,7 @@ const CountryLocatorWrapper = () => {
     return (
         <>
             {countryLocatorRules.isActive ? <RulesCountryLocatorModal /> : ''}
-            <div className="p-3 2xl:p-5 flex flex-col gap-y-4 select-none">
+            <div className="p-2 lg:p-3 2xl:p-5 flex flex-col gap-y-4 select-none">
                 <div className="flex justify-center items-center gap-x-2">
                     <h1
                         title="That is the country you need to locate on the map."
@@ -113,12 +113,12 @@ const CountryLocatorWrapper = () => {
                 <div className="flex items-center justify-between text-center">
                     <p className="basis-1/3">
                         {isUserCorrect === null ? (
-                            '👨🏼‍🏫 A feedback will appear here'
+                            ''
                         ) : isUserCorrect ? (
                             '✅ Correct!'
                         ) : (
                             <>
-                                ❌ You missed it! You have selected{' '}
+                                ❌ Wrong! You selected{' '}
                                 <span className="text-[#087da4] dark:text-[#149eca]">
                                     {selectedCty.name}
                                 </span>{' '}
@@ -135,7 +135,7 @@ const CountryLocatorWrapper = () => {
                             onClick={openModal}
                             className="text-[#087da4] dark:text-[#149eca] font-semibold hover:underline hover:!bg-transparent text-base active:transform-none"
                         >
-                            See the instructions
+                            See instructions
                         </button>
                     </p>
                 </div>

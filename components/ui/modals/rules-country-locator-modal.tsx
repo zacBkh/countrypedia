@@ -28,14 +28,14 @@ const RulesCountryLocatorModal = ({}) => {
                 className="transition-modal z-[99999] overflow-hidden text-form-color centerModalWrapper overlay"
             >
                 <div className="relative bg-white dark:bg-[#23272F] rounded-lg shadow centerAbsoluteContent w-[80%] md:w-[50%] ">
-                    <button
+                    {/* <button
                         aria-label="Close modal"
                         onClick={closeModal}
                         type="button"
                         className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                     >
                         <AiOutlineClose className="w-5 h-5" />
-                    </button>
+                    </button> */}
                     <div className="p-6 text-center flex flex-col gap-y-8">
                         <h1 className={`${MODAL_TITLE_FONT_SIZE} font-semibold`}>
                             Are you ready to play? 🤯
