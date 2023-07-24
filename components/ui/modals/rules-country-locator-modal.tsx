@@ -48,8 +48,8 @@ const RulesCountryLocatorModal = ({}) => {
                                 page
                             </div>
                             <div>
-                                👉🏼 Try to locate this country on the map as fast as
-                                possible!
+                                👉🏼 Try to locate this country on the map and click as fast
+                                as possible!
                             </div>
                             <div>👉🏼 Each correct answers will bring you one point</div>
                         </div>
