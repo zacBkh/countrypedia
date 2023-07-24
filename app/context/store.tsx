@@ -10,8 +10,8 @@ import {
 } from 'react'
 
 export const enum DifficultyLvlCountrySelector {
-    easy = 'EASY',
-    hard = 'HARD',
+    EASY = 'easy',
+    HARD = 'hard',
 }
 
 type SetDifficultyLevelFunction = (lvl: DifficultyLvlCountrySelector) => void
@@ -43,7 +43,7 @@ export const GlobalContext = createContext<GlobalContextProps>({
 export const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
     const [ctyLocatorModalIsOpen, setCtyLocatorModalIsOpen] = useState(true)
     const [difficultyLvl, setDifficultyLvl] = useState<DifficultyLvlCountrySelector>(
-        DifficultyLvlCountrySelector.easy,
+        DifficultyLvlCountrySelector.EASY,
     )
     const [searchQuery, setSearchQuery] = useState('')
     const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false)

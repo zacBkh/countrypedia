@@ -66,7 +66,7 @@ export const getRandomCountry = async (
 
         // here take allCountries and .map to return only the one according to difficuluties as per difficulty-countries.ts
 
-        if (lvl === DifficultyLvlCountrySelector.easy) {
+        if (lvl === DifficultyLvlCountrySelector.EASY) {
             const easyCountries = allCountries.filter((cty: getRandomCountryTypes) =>
                 EASY_COUNTRIES.includes(cty.cca3),
             )

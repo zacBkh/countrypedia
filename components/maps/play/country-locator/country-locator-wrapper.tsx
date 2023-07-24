@@ -44,10 +44,10 @@ const CountryLocatorWrapper = () => {
 
     const fetcher = async () => {
         let newCountry
-        if (countryLocatorRules.difficultyLevel === DifficultyLvlCountrySelector.easy) {
-            newCountry = await getRandomCountry(DifficultyLvlCountrySelector.easy)
+        if (countryLocatorRules.difficultyLevel === DifficultyLvlCountrySelector.EASY) {
+            newCountry = await getRandomCountry(DifficultyLvlCountrySelector.EASY)
         } else {
-            newCountry = await getRandomCountry(DifficultyLvlCountrySelector.hard)
+            newCountry = await getRandomCountry(DifficultyLvlCountrySelector.HARD)
         }
         return newCountry
     }

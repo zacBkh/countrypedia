@@ -1,4 +1,6 @@
-// import { AiOutlineClose } from 'react-icons/ai'
+import { AiOutlineClose } from 'react-icons/ai'
+
+import { useSWRConfig } from 'swr'
 
 import { useGlobalContext } from '@/app/context/store'
 
@@ -9,7 +11,12 @@ import Button from '../buttons'
 import { DifficultyLvlCountrySelector } from '@/app/context/store'
 // import { MdDoDisturbOff } from 'react-icons/md'
 
+import Divider from '../divider'
+
+import SWR_KEYS from '@/constants/SWR-keys'
 const RulesCountryLocatorModal = ({}) => {
+    const { mutate } = useSWRConfig()
+
     const { modalsCtx } = useGlobalContext()
 
     const shouldCloseModal = (evt: any) => {
@@ -24,13 +31,17 @@ const RulesCountryLocatorModal = ({}) => {
     }
 
     const startGame = (lvlChosen: DifficultyLvlCountrySelector) => {
-        if (lvlChosen === DifficultyLvlCountrySelector.easy) {
+        if (lvlChosen !== modalsCtx.countryLocatorRules.difficultyLevel) {
+            mutate(SWR_KEYS.RANDOM_COUNTRY)
+        }
+
+        if (lvlChosen === DifficultyLvlCountrySelector.EASY) {
             modalsCtx.countryLocatorRules.setDifficultyLvl(
-                DifficultyLvlCountrySelector.easy,
+                DifficultyLvlCountrySelector.EASY,
             )
         } else {
             modalsCtx.countryLocatorRules.setDifficultyLvl(
-                DifficultyLvlCountrySelector.hard,
+                DifficultyLvlCountrySelector.HARD,
             )
         }
 
@@ -50,17 +61,17 @@ const RulesCountryLocatorModal = ({}) => {
                 className="transition-modal z-[99999] overflow-hidden text-form-color centerModalWrapper overlay"
             >
                 <div className="relative bg-white dark:bg-[#23272F] rounded-lg shadow centerAbsoluteContent w-[80%] md:w-[50%] ">
-                    {/* <button
+                    <button
                         aria-label="Close modal"
                         onClick={closeModal}
                         type="button"
-                        className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                        className="absolute top-2 right-2 dark:text-white text-black bg-transparent hover:bg-gray-200  rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                     >
                         <AiOutlineClose className="w-5 h-5" />
-                    </button> */}
+                    </button>
                     <div className="p-6 text-center flex flex-col gap-y-8">
                         <h1 className={`${MODAL_TITLE_FONT_SIZE} font-semibold`}>
-                            Are you ready to play? 🤯
+                            Ready to play? 🤯
                         </h1>
                         <div
                             className={`${MODAL_BODY_FONT_SIZE} font-semibold flex flex-col gap-y-2 items-start`}
@@ -76,10 +87,22 @@ const RulesCountryLocatorModal = ({}) => {
                             <div>👉🏼 Each correct answers will bring you one point</div>
                         </div>
 
+                        <Divider moreCSS="w-[65%] mx-auto" />
+                        <div>
+                            <p className="italic">
+                                You are currently playing with the{' '}
+                                <span className="text-[#087da4] dark:text-[#149eca] font-bold">
+                                    {' '}
+                                    {modalsCtx.countryLocatorRules.difficultyLevel}{' '}
+                                </span>
+                                level
+                            </p>
+                        </div>
+
                         <div className="flex justify-between items-center">
                             <Button
                                 onAction={() =>
-                                    startGame(DifficultyLvlCountrySelector.easy)
+                                    startGame(DifficultyLvlCountrySelector.EASY)
                                 }
                                 ariaLabel={ariaLabelAndTitle.easy}
                                 title={ariaLabelAndTitle.easy}
@@ -88,7 +111,7 @@ const RulesCountryLocatorModal = ({}) => {
                             />
                             <Button
                                 onAction={() =>
-                                    startGame(DifficultyLvlCountrySelector.hard)
+                                    startGame(DifficultyLvlCountrySelector.HARD)
                                 }
                                 ariaLabel={ariaLabelAndTitle.hard}
                                 title={ariaLabelAndTitle.hard}
