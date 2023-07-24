@@ -1,10 +1,13 @@
-import { AiOutlineClose } from 'react-icons/ai'
+// import { AiOutlineClose } from 'react-icons/ai'
 
 import { useGlobalContext } from '@/app/context/store'
 
 import { MODAL_TITLE_FONT_SIZE, MODAL_BODY_FONT_SIZE } from '@/constants/responsive-fonts'
 
 import Button from '../buttons'
+
+import { DifficultyLvlCountrySelector } from '@/app/context/store'
+// import { MdDoDisturbOff } from 'react-icons/md'
 
 const RulesCountryLocatorModal = ({}) => {
     const { modalsCtx } = useGlobalContext()
@@ -18,6 +21,25 @@ const RulesCountryLocatorModal = ({}) => {
 
     const closeModal = () => {
         modalsCtx.countryLocatorRules.toggleModalState()
+    }
+
+    const startGame = (lvlChosen: DifficultyLvlCountrySelector) => {
+        if (lvlChosen === DifficultyLvlCountrySelector.easy) {
+            modalsCtx.countryLocatorRules.setDifficultyLvl(
+                DifficultyLvlCountrySelector.easy,
+            )
+        } else {
+            modalsCtx.countryLocatorRules.setDifficultyLvl(
+                DifficultyLvlCountrySelector.hard,
+            )
+        }
+
+        closeModal()
+    }
+
+    const ariaLabelAndTitle = {
+        easy: 'Start the game with an easy level - approx. 60 common countries.',
+        hard: 'Start the game with a hard level - 250 countries, including the most exotic ones!',
     }
 
     return (
@@ -54,12 +76,26 @@ const RulesCountryLocatorModal = ({}) => {
                             <div>👉🏼 Each correct answers will bring you one point</div>
                         </div>
 
-                        <Button
-                            onAction={closeModal}
-                            ariaLabel="Click to start the game."
-                            text="Let's go! 💪🏼"
-                            moreStyle={'w-fit mx-auto !text-base'}
-                        />
+                        <div className="flex justify-between items-center">
+                            <Button
+                                onAction={() =>
+                                    startGame(DifficultyLvlCountrySelector.easy)
+                                }
+                                ariaLabel={ariaLabelAndTitle.easy}
+                                title={ariaLabelAndTitle.easy}
+                                text="Easy level 😎"
+                                moreStyle={'w-fit mx-auto !text-base'}
+                            />
+                            <Button
+                                onAction={() =>
+                                    startGame(DifficultyLvlCountrySelector.hard)
+                                }
+                                ariaLabel={ariaLabelAndTitle.hard}
+                                title={ariaLabelAndTitle.hard}
+                                text="Hard level 💪🏼"
+                                moreStyle={'w-fit mx-auto !text-base'}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
