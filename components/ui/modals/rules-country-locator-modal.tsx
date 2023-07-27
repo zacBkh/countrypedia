@@ -107,6 +107,7 @@ const RulesCountryLocatorModal = ({}) => {
                                 ariaLabel={ariaLabelAndTitle.easy}
                                 title={ariaLabelAndTitle.easy}
                                 text="Easy level 😎"
+                                textSm="Easy 😎"
                                 moreStyle={'w-fit mx-auto !text-base'}
                             />
                             <Button
@@ -116,6 +117,7 @@ const RulesCountryLocatorModal = ({}) => {
                                 ariaLabel={ariaLabelAndTitle.hard}
                                 title={ariaLabelAndTitle.hard}
                                 text="Hard level 💪🏼"
+                                textSm="Hard 💪🏼"
                                 moreStyle={'w-fit mx-auto !text-base'}
                             />
                         </div>
