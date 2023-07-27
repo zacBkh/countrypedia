@@ -19,10 +19,6 @@ import Spinner from '@/components/ui/spinner'
 
 import RulesCountryLocatorModal from '@/components/ui/modals/rules-country-locator-modal'
 
-import { DifficultyLvl } from '@/app/context/store'
-
-import { sleep } from '@/utils/sleep'
-
 interface ClickedCountryTypes {
     code: string
     name: string
@@ -45,13 +41,7 @@ const CountryLocatorWrapper = () => {
     const [isUserCorrect, setIsUserCorrect] = useState<boolean | null>(null)
 
     const fetcher = async () => {
-        let newCountry
-
-        if (countryLocatorRules.difficultyLevel === DifficultyLvl.EASY) {
-            newCountry = await getRandomCountry(DifficultyLvl.EASY)
-        } else {
-            newCountry = await getRandomCountry(DifficultyLvl.HARD)
-        }
+        const newCountry = await getRandomCountry(countryLocatorRules.difficultyLevel)
         return newCountry
     }
 

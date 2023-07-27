@@ -1,7 +1,7 @@
 import { APP_LINKS } from '@/constants/urls'
 const { PLAY, COUNTRY_LOCATOR, CAPITAL_GUESSER } = APP_LINKS
 
-import GameCard from '@/components/game-card'
+import GameCard from '@/components/play/game-card'
 
 import TestPic from '../../../public/test.jpg'
 

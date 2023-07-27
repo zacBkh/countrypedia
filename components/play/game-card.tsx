@@ -10,7 +10,7 @@ import { StaticImageData } from 'next/image'
 // import { SiGooglemaps } from 'react-icons/si'
 // import { FiArrowRight } from 'react-icons/fi'
 
-import Button from './ui/buttons'
+import Button from '../ui/buttons'
 
 import { TITLE_FONT_SIZE, DETAILS_FONT_SIZE } from '@/constants/responsive-fonts'
 

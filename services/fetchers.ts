@@ -1,10 +1,11 @@
 import { FetchLinks } from '@/constants/urls'
-const { ALL_COUNTRIES, ONE_COUNTRY_BASE, ALL_ISO } = FetchLinks
+const { ALL_COUNTRIES, ONE_COUNTRY_BASE, ALL_ISO, ALL_CAPITAL } = FetchLinks
 
 import { EASY_COUNTRIES } from '@/utils/difficulty-countries'
 
 import { DifficultyLvl } from '@/app/context/store'
 
+// Get all countries
 export interface getAllCountriesProps {
     name: { common: string; official: string; nativeName: object }
     flags: { png: string; svg: string; alt: string }
@@ -26,6 +27,8 @@ export const getAllCountries = async (): Promise<getAllCountriesProps[]> => {
         throw error
     }
 }
+
+// Get one country
 
 export interface GetOneCountryProps extends getAllCountriesProps {
     independent: boolean
@@ -51,25 +54,28 @@ export const getOneCountry = async (
     }
 }
 
-export interface getRandomCountryTypes {
+// Get random country for Map country locator
+export interface GetRandomCountryResultCountryLocator {
     name: { common: string; official: string; nativeName: object }
     cca3: string
     cca2: string
 }
 
-export const getRandomCountry = async (
-    lvl: DifficultyLvl,
-): Promise<getRandomCountryTypes> => {
-    console.log('lvl', lvl)
+export interface GetRandomCountryTypes {
+    (lvl: DifficultyLvl): Promise<GetRandomCountryResultCountryLocator>
+}
+
+export const getRandomCountry: GetRandomCountryTypes = async (
+    lvl,
+): Promise<GetRandomCountryResultCountryLocator> => {
     try {
         const res = await fetch(ALL_ISO)
         const allCountries = await res.json()
 
-        // here take allCountries and .map to return only the one according to difficuluties as per difficulty-countries.ts
-
         if (lvl === DifficultyLvl.EASY) {
-            const easyCountries = allCountries.filter((cty: getRandomCountryTypes) =>
-                EASY_COUNTRIES.includes(cty.cca3),
+            const easyCountries = allCountries.filter(
+                (cty: GetRandomCountryResultCountryLocator) =>
+                    EASY_COUNTRIES.includes(cty.cca3),
             )
             const randomIndex = Math.floor(Math.random() * easyCountries.length + 1)
             const randomlySelectedEasyCty = easyCountries[randomIndex]
@@ -81,6 +87,64 @@ export const getRandomCountry = async (
         }
     } catch (error) {
         console.log('error [3]', error)
+        throw error
+    }
+}
+
+// Capital guesser
+export interface GetRandomCountryResultCapitalGuesser {
+    name: { common: string }
+    cca3: string
+    capital: string[]
+}
+
+export const getRandomCountries = (
+    nbOfCtyToReturn: number,
+    maxArray: [],
+): GetRandomCountryResultCapitalGuesser[] => {
+    const objectOutput: GetRandomCountryResultCapitalGuesser[] = []
+    for (let i = nbOfCtyToReturn; i > 0; i--) {
+        const randomIndex = Math.floor(Math.random() * maxArray.length + 1)
+        objectOutput.push(maxArray[randomIndex - 1])
+    }
+
+    return objectOutput
+}
+
+export interface GetRandomCountryTypesCapitalGuesser {
+    (lvl: DifficultyLvl, nbOfCty: number): Promise<GetRandomCountryResultCapitalGuesser[]>
+}
+
+export const getSeveralRandomCountries: GetRandomCountryTypesCapitalGuesser = async (
+    lvl,
+    nbOfCty,
+) => {
+    try {
+        const res = await fetch(ALL_CAPITAL)
+        const allCountries = await res.json()
+
+        const allCountriesWithCapital = allCountries.filter(
+            (cty: GetRandomCountryResultCapitalGuesser) => cty.capital.length,
+        )
+
+        if (lvl === DifficultyLvl.EASY) {
+            const easyCountries = allCountriesWithCapital.filter(
+                (cty: GetRandomCountryResultCapitalGuesser) =>
+                    EASY_COUNTRIES.includes(cty.cca3),
+            )
+            const arrayOfRandomCountries = getRandomCountries(nbOfCty, easyCountries)
+
+            return arrayOfRandomCountries
+        } else {
+            const arrayOfRandomCountries = getRandomCountries(
+                nbOfCty,
+                allCountriesWithCapital,
+            )
+
+            return arrayOfRandomCountries
+        }
+    } catch (error) {
+        console.log('error [4]', error)
         throw error
     }
 }
