@@ -9,12 +9,12 @@ import {
     ReactNode,
 } from 'react'
 
-export const enum DifficultyLvlCountrySelector {
+export const enum DifficultyLvl {
     EASY = 'easy',
     HARD = 'hard',
 }
 
-type SetDifficultyLevelFunction = (lvl: DifficultyLvlCountrySelector) => void
+type SetDifficultyLevelFunction = (lvl: DifficultyLvl) => void
 
 interface GlobalContextProps {
     searchQuery: string
@@ -25,7 +25,13 @@ interface GlobalContextProps {
         countryLocatorRules: {
             isActive: boolean
             toggleModalState: Function
-            difficultyLevel: DifficultyLvlCountrySelector
+            difficultyLevel: DifficultyLvl
+            setDifficultyLvl: SetDifficultyLevelFunction
+        }
+        capitalGuesserRules: {
+            isActive: boolean
+            toggleModalState: Function
+            difficultyLevel: DifficultyLvl
             setDifficultyLvl: SetDifficultyLevelFunction
         }
     }
@@ -42,10 +48,16 @@ export const GlobalContext = createContext<GlobalContextProps>({
 // Glboal context provider component
 export const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
     const [ctyLocatorModalIsOpen, setCtyLocatorModalIsOpen] = useState(true)
-    const [difficultyLvl, setDifficultyLvl] = useState<DifficultyLvlCountrySelector>(
-        DifficultyLvlCountrySelector.EASY,
+    const [capitalGuesserModalIsOpen, setCapitalGuesserModalIsOpen] = useState(true)
+
+    const [difficultyLvlCtyLocator, setDifficultyLvlCtyLocator] = useState<DifficultyLvl>(
+        DifficultyLvl.EASY,
     )
+    const [difficultyLvlCapitalGuesser, setDifficultyLvlCapitalGuesser] =
+        useState<DifficultyLvl>(DifficultyLvl.EASY)
+
     const [searchQuery, setSearchQuery] = useState('')
+
     const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false)
 
     const modalsCtx = {
@@ -54,9 +66,20 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
             toggleModalState: () => {
                 setCtyLocatorModalIsOpen(prev => !prev)
             },
-            difficultyLevel: difficultyLvl,
-            setDifficultyLvl: (lvl: DifficultyLvlCountrySelector) => {
-                setDifficultyLvl(lvl)
+            difficultyLevel: difficultyLvlCtyLocator,
+            setDifficultyLvl: (lvl: DifficultyLvl) => {
+                setDifficultyLvlCtyLocator(lvl)
+            },
+        },
+
+        capitalGuesserRules: {
+            isActive: capitalGuesserModalIsOpen,
+            toggleModalState: () => {
+                setCapitalGuesserModalIsOpen(prev => !prev)
+            },
+            difficultyLevel: difficultyLvlCapitalGuesser,
+            setDifficultyLvl: (lvl: DifficultyLvl) => {
+                setDifficultyLvlCapitalGuesser(lvl)
             },
         },
     }

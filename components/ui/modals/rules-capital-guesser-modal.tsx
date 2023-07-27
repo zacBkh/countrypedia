@@ -17,7 +17,7 @@ import SWR_KEYS from '@/constants/SWR-keys'
 
 import { sleep } from '@/utils/sleep'
 
-const RulesCountryLocatorModal = ({}) => {
+const RulesCapitalGuesserModal = ({}) => {
     const { mutate } = useSWRConfig()
 
     const { modalsCtx } = useGlobalContext()
@@ -30,16 +30,15 @@ const RulesCountryLocatorModal = ({}) => {
     }
 
     const closeModal = () => {
-        modalsCtx.countryLocatorRules.toggleModalState()
+        modalsCtx.capitalGuesserRules.toggleModalState()
     }
 
     const startGame = async (lvlChosen: DifficultyLvl) => {
-        if (lvlChosen !== modalsCtx.countryLocatorRules.difficultyLevel) {
-            modalsCtx.countryLocatorRules.setDifficultyLvl(lvlChosen)
+        if (lvlChosen !== modalsCtx.capitalGuesserRules.difficultyLevel) {
+            modalsCtx.capitalGuesserRules.setDifficultyLvl(lvlChosen)
             await sleep(50) // get the latest updated ctx API value
-            mutate(SWR_KEYS.RANDOM_COUNTRY_LOCATOR)
+            mutate(SWR_KEYS.RANDOM_COUNTRY_CAPITAL)
         }
-
         closeModal()
     }
 
@@ -76,8 +75,8 @@ const RulesCountryLocatorModal = ({}) => {
                                 page
                             </div>
                             <div>
-                                👉🏼 Try to locate this country on the map and click as fast
-                                as possible!
+                                👉🏼 Try to pick its capital among the 4 options as fast as
+                                possible!
                             </div>
                             <div>👉🏼 Each correct answers will bring you one point</div>
                         </div>
@@ -88,7 +87,7 @@ const RulesCountryLocatorModal = ({}) => {
                                 You are currently playing with the{' '}
                                 <span className="text-[#087da4] dark:text-[#149eca] font-bold">
                                     {' '}
-                                    {modalsCtx.countryLocatorRules.difficultyLevel}{' '}
+                                    {modalsCtx.capitalGuesserRules.difficultyLevel}{' '}
                                 </span>
                                 level
                             </p>
@@ -119,4 +118,4 @@ const RulesCountryLocatorModal = ({}) => {
     )
 }
 
-export default RulesCountryLocatorModal
+export default RulesCapitalGuesserModal

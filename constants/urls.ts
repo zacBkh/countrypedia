@@ -10,6 +10,7 @@ export enum APP_LINKS {
     TEAM = '/about/team',
     PLAY = '/play',
     COUNTRY_LOCATOR = '/country-locator',
+    CAPITAL_GUESSER = '/capital-guesser',
 }
 
 export const NAV_LINKS = [

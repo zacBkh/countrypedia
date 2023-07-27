@@ -45,7 +45,6 @@ const CountryLocatorMap: FC<CountryLocatorMapProps> = ({ onCtySelection }) => {
         } else {
             setHoverInfo('')
         }
-        console.log('hoverInfo', hoverInfo)
     }, [])
 
     const leaveMapHandler = () => {

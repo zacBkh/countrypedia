@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 
-import CountryLocatorMap from './country-locator-map'
-
 import { BiRefresh } from 'react-icons/bi'
 
 import { getRandomCountry } from '@/services/fetchers'
@@ -17,20 +15,18 @@ import { TITLE_SEC_FONT_SIZE } from '@/constants/responsive-fonts'
 
 import Spinner from '@/components/ui/spinner'
 
-import RulesCountryLocatorModal from '@/components/ui/modals/rules-country-locator-modal'
+import RulesCapitalGuesserModal from '@/components/ui/modals/rules-capital-guesser-modal'
 
 import { DifficultyLvl } from '@/app/context/store'
-
-import { sleep } from '@/utils/sleep'
 
 interface ClickedCountryTypes {
     code: string
     name: string
 }
 
-const CountryLocatorWrapper = () => {
+const CapitalGuesser = () => {
     const {
-        modalsCtx: { countryLocatorRules },
+        modalsCtx: { capitalGuesserRules },
     } = useGlobalContext()
 
     const { mutate } = useSWRConfig()
@@ -46,8 +42,7 @@ const CountryLocatorWrapper = () => {
 
     const fetcher = async () => {
         let newCountry
-
-        if (countryLocatorRules.difficultyLevel === DifficultyLvl.EASY) {
+        if (capitalGuesserRules.difficultyLevel === DifficultyLvl.EASY) {
             newCountry = await getRandomCountry(DifficultyLvl.EASY)
         } else {
             newCountry = await getRandomCountry(DifficultyLvl.HARD)
@@ -59,48 +54,48 @@ const CountryLocatorWrapper = () => {
         data: fetchedCountry,
         error,
         isLoading,
-    } = useSWR(SWR_KEYS.RANDOM_COUNTRY_LOCATOR, fetcher, {
+    } = useSWR(SWR_KEYS.RANDOM_COUNTRY_CAPITAL, fetcher, {
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
     })
 
-    const userSelectCountryHandler = (ctySelected: ClickedCountryTypes) => {
-        setSelectedCty(ctySelected)
-        if (ctySelected.code === fetchedCountry?.cca3) {
-            // if user is correct
-            setUserGameData(prevState => ({
-                ...prevState,
-                score: prevState.score + 1,
-            }))
-            setIsUserCorrect(true)
-        } else {
-            setIsUserCorrect(false)
-        }
-        setUserGameData(prevState => ({
-            ...prevState,
-            countClick: prevState.countClick + 1,
-        }))
-        mutate(SWR_KEYS.RANDOM_COUNTRY_LOCATOR)
-    }
+    // const userSelectCountryHandler = (ctySelected: ClickedCountryTypes) => {
+    //     setSelectedCty(ctySelected)
+    //     if (ctySelected.code === fetchedCountry?.cca3) {
+    //         // if user is correct
+    //         setUserGameData(prevState => ({
+    //             ...prevState,
+    //             score: prevState.score + 1,
+    //         }))
+    //         setIsUserCorrect(true)
+    //     } else {
+    //         setIsUserCorrect(false)
+    //     }
+    //     setUserGameData(prevState => ({
+    //         ...prevState,
+    //         countClick: prevState.countClick + 1,
+    //     }))
+    //     mutate(SWR_KEYS.RANDOM_COUNTRY_CAPITAL)
+    // }
 
     const reFetchRequestHandler = () => {
-        mutate(SWR_KEYS.RANDOM_COUNTRY_LOCATOR)
+        mutate(SWR_KEYS.RANDOM_COUNTRY_CAPITAL)
     }
 
     const openModal = () => {
-        countryLocatorRules.toggleModalState()
+        capitalGuesserRules.toggleModalState()
     }
 
     return (
         <>
-            {countryLocatorRules.isActive ? <RulesCountryLocatorModal /> : ''}
+            {capitalGuesserRules.isActive ? <RulesCapitalGuesserModal /> : ''}
             <div className="p-2 lg:p-3 2xl:p-5 flex flex-col gap-y-4 select-none">
                 <div className="flex justify-center items-center gap-x-2">
                     <h1
                         title="That is the country you need to locate on the map."
                         className={`flex justify-center items-center  min-w-[140px] min-h-[44px] rounded-full w-fit px-5 py-2 bg-[#0D6D8C] font-bold text-react-txt-dark text-center ${TITLE_SEC_FONT_SIZE}`}
                     >
-                        {isLoading || countryLocatorRules.isActive ? (
+                        {isLoading || capitalGuesserRules.isActive ? (
                             <Spinner moreCSS="border-t-[#333A45]" />
                         ) : (
                             fetchedCountry?.name.common
@@ -146,9 +141,8 @@ const CountryLocatorWrapper = () => {
                     </p>
                 </div>
             </div>
-            <CountryLocatorMap onCtySelection={userSelectCountryHandler} />
         </>
     )
 }
 
-export default CountryLocatorWrapper
+export default CapitalGuesser

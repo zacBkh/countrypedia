@@ -64,5 +64,3 @@ export const EASY_COUNTRIES = [
     'MLI',
     'BRA',
 ]
-
-// fetch link pour bosser

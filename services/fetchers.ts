@@ -3,7 +3,7 @@ const { ALL_COUNTRIES, ONE_COUNTRY_BASE, ALL_ISO } = FetchLinks
 
 import { EASY_COUNTRIES } from '@/utils/difficulty-countries'
 
-import { DifficultyLvlCountrySelector } from '@/app/context/store'
+import { DifficultyLvl } from '@/app/context/store'
 
 export interface getAllCountriesProps {
     name: { common: string; official: string; nativeName: object }
@@ -58,15 +58,16 @@ export interface getRandomCountryTypes {
 }
 
 export const getRandomCountry = async (
-    lvl: DifficultyLvlCountrySelector,
+    lvl: DifficultyLvl,
 ): Promise<getRandomCountryTypes> => {
+    console.log('lvl', lvl)
     try {
         const res = await fetch(ALL_ISO)
         const allCountries = await res.json()
 
         // here take allCountries and .map to return only the one according to difficuluties as per difficulty-countries.ts
 
-        if (lvl === DifficultyLvlCountrySelector.EASY) {
+        if (lvl === DifficultyLvl.EASY) {
             const easyCountries = allCountries.filter((cty: getRandomCountryTypes) =>
                 EASY_COUNTRIES.includes(cty.cca3),
             )
