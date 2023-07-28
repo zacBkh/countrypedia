@@ -91,10 +91,11 @@ const CapitalGuesser = () => {
         }
     }
 
+    const styleText = 'text-[#087da4] dark:text-[#149eca] font-bold'
     return (
-        <div className="p-3 lg:p-6">
+        <div className="py-6 p-1 sm:p-6">
             {capitalGuesserRules.isActive ? <RulesCapitalGuesserModal /> : ''}
-            <div className="2xl:p-5 flex flex-col gap-y-4 select-none">
+            <div className="2xl:p-5 flex flex-col gap-y-6 select-none">
                 <div className="flex justify-center items-center gap-x-2">
                     <h1
                         title="That is the country you need to locate on the map."
@@ -116,7 +117,7 @@ const CapitalGuesser = () => {
                     </button>
                 </div>
 
-                <div className="flex items-center justify-between text-center">
+                <div className="flex gap-y-2 flex-col sm:flex-row sm:gap-y-0 items-center justify-between text-center text-sm sm:text-base">
                     <p className="basis-1/3">
                         {isUserCorrect === null ? (
                             ''
@@ -125,25 +126,26 @@ const CapitalGuesser = () => {
                         ) : (
                             <>
                                 {`❌ Wrong! `}
-                                <span className="text-[#087da4] dark:text-[#149eca]">
-                                    {selectedCapital}
-                                </span>
+                                <span className={`${styleText}`}>{selectedCapital}</span>
                                 {` is the capital of `}
-                                <span className="text-[#087da4] dark:text-[#149eca]">
+                                <span className={`${styleText}`}>
                                     {correctAnswer}
                                 </span>{' '}
                             </>
                         )}
                     </p>
-                    <p className="basis-1/3">
-                        🎯 Your score: {score}/{countClick}
+                    <p className="basis-1/3 rounded-md py-2">
+                        🎯 Your score:{' '}
+                        <span className={`${styleText}`}>
+                            {score}/{countClick}
+                        </span>
                     </p>
 
                     <p className="basis-1/3">
                         Feeling lost?{' '}
                         <button
                             onClick={openModal}
-                            className="text-[#087da4] dark:text-[#149eca] font-semibold hover:underline hover:!bg-transparent text-base active:transform-none"
+                            className={`${styleText} hover:underline hover:!bg-transparent active:transform-none"`}
                         >
                             See instructions or change difficulty
                         </button>
