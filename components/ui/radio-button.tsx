@@ -14,15 +14,21 @@ interface RadioButtonProps {
 const RadioButton: FC<RadioButtonProps> = ({ cca3, capital, name, onClickOption }) => {
     return (
         <>
-            <input
-                onChange={() => onClickOption(capital)}
-                type="radio"
-                id={cca3}
-                name={name}
-                value={capital}
-            />
+            <label
+                className="bg-[#f3f4f8] hover:bg-[#eaebf0] dark:bg-[#333A45] dark:hover:bg-[#333a45b2] cursor-pointer px-4 py-3 rounded-md"
+                htmlFor={cca3}
+            >
+                <input
+                    className="invisible w-0"
+                    onChange={() => onClickOption(capital)}
+                    type="radio"
+                    id={cca3}
+                    name={name}
+                    value={capital}
+                />
 
-            <label htmlFor={cca3}>{capital}</label>
+                {capital}
+            </label>
         </>
     )
 }

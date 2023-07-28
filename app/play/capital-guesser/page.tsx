@@ -18,11 +18,7 @@ import Spinner from '@/components/ui/spinner'
 import RulesCapitalGuesserModal from '@/components/ui/modals/rules-capital-guesser-modal'
 
 import CapitalGuesserOptions from '@/components/play/options-capital-guesser'
-
-interface ClickedCountryTypes {
-    code: string
-    name: string
-}
+import { sleep } from '@/utils/sleep'
 
 const CapitalGuesser = () => {
     const {
@@ -31,8 +27,10 @@ const CapitalGuesser = () => {
 
     const { mutate } = useSWRConfig()
 
+    const [countClick, setCountClick] = useState(0)
+    const [score, setScore] = useState(0)
+
     const [selectedCapital, setSelectedCapital] = useState('')
-    const [userGameData, setUserGameData] = useState({ score: 0, countClick: 0 })
     const [isUserCorrect, setIsUserCorrect] = useState<boolean | null>(null)
     const [correctAnswer, setCorrectAnswer] = useState<string | undefined>('')
 
@@ -41,7 +39,6 @@ const CapitalGuesser = () => {
             capitalGuesserRules.difficultyLevel,
             4,
         )
-
         return newCountry
     }
 
@@ -52,66 +49,8 @@ const CapitalGuesser = () => {
     } = useSWR(SWR_KEYS.RANDOM_COUNTRY_CAPITAL, fetcher, {
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
+        revalidateIfStale: false,
     })
-
-    // const userSelectCountryHandler = (ctySelected: ClickedCountryTypes) => {
-    //     setSelectedCty(ctySelected)
-    //     if (ctySelected.code === fetchedCountries?.cca3) {
-    //         // if user is correct
-    //         setUserGameData(prevState => ({
-    //             ...prevState,
-    //             score: prevState.score + 1,
-    //         }))
-    //         setIsUserCorrect(true)
-    //     } else {
-    //         setIsUserCorrect(false)
-    //     }
-    //     setUserGameData(prevState => ({
-    //         ...prevState,
-    //         countClick: prevState.countClick + 1,
-    //     }))
-    //     mutate(SWR_KEYS.RANDOM_COUNTRY_CAPITAL)
-    // }
-
-    const reFetchRequestHandler = () => {
-        mutate(SWR_KEYS.RANDOM_COUNTRY_CAPITAL)
-    }
-
-    const openModal = () => {
-        capitalGuesserRules.toggleModalState()
-    }
-
-    const selectCapitalHandler = async (capitalChosen: string) => {
-        if (!fetchedCountries) {
-            return
-        }
-
-        setUserGameData(prevState => ({
-            ...prevState,
-            countClick: prevState.countClick + 1,
-        }))
-
-        setSelectedCapital(capitalChosen)
-
-        const fetchedCapital = fetchedCountries[0].capital[0]
-
-        if (capitalChosen === fetchedCapital) {
-            setUserGameData(prevState => ({
-                ...prevState,
-                score: prevState.score + 1,
-            }))
-            setCorrectAnswer(capitalChosen)
-            setIsUserCorrect(true)
-        } else {
-            const countryOfIncorrectCapital = fetchedCountries.find(
-                cty => cty.capital[0] === capitalChosen,
-            )?.name.common
-            setCorrectAnswer(countryOfIncorrectCapital)
-            setIsUserCorrect(false)
-        }
-
-        mutate(SWR_KEYS.RANDOM_COUNTRY_CAPITAL)
-    }
 
     if (error) {
         return <div>Error: {error.message}</div>
@@ -121,10 +60,41 @@ const CapitalGuesser = () => {
         return <div>Loading...</div>
     }
 
+    const reFetchRequestHandler = async () => {
+        mutate(SWR_KEYS.RANDOM_COUNTRY_CAPITAL)
+    }
+
+    const openModal = () => {
+        capitalGuesserRules.toggleModalState()
+    }
+
+    const selectCapitalHandler = async (capitalChosen: string) => {
+        setCountClick(prev => prev + 1)
+        setSelectedCapital(capitalChosen)
+
+        if (capitalChosen === fetchedCountries[0].capital[0]) {
+            setScore(prev => prev + 1)
+            setIsUserCorrect(true)
+            setCorrectAnswer(capitalChosen)
+        } else {
+            const countryOfIncorrectCapital = fetchedCountries.find(
+                cty => cty.capital[0] === capitalChosen,
+            )?.name.common
+            setIsUserCorrect(false)
+            setCorrectAnswer(countryOfIncorrectCapital)
+        }
+
+        mutate(SWR_KEYS.RANDOM_COUNTRY_CAPITAL)
+
+        if (!fetchedCountries) {
+            return
+        }
+    }
+
     return (
-        <>
+        <div className="p-3 lg:p-6">
             {capitalGuesserRules.isActive ? <RulesCapitalGuesserModal /> : ''}
-            <div className="p-2 lg:p-3 2xl:p-5 flex flex-col gap-y-4 select-none">
+            <div className="2xl:p-5 flex flex-col gap-y-4 select-none">
                 <div className="flex justify-center items-center gap-x-2">
                     <h1
                         title="That is the country you need to locate on the map."
@@ -134,7 +104,6 @@ const CapitalGuesser = () => {
                             <Spinner moreCSS="border-t-[#333A45]" />
                         ) : (
                             fetchedCountries[0].name.common
-                            // fetchedCountries?.[0]?.name.common
                         )}
                     </h1>
 
@@ -167,7 +136,7 @@ const CapitalGuesser = () => {
                         )}
                     </p>
                     <p className="basis-1/3">
-                        🎯 Your score: {userGameData.score}/{userGameData.countClick}
+                        🎯 Your score: {score}/{countClick}
                     </p>
 
                     <p className="basis-1/3">
@@ -185,7 +154,7 @@ const CapitalGuesser = () => {
                 onSelectCapital={selectCapitalHandler}
                 arrayOfRandomCountries={fetchedCountries}
             />
-        </>
+        </div>
     )
 }
 

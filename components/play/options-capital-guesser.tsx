@@ -16,17 +16,21 @@ const CapitalGuesserOptions: FC<CapitalGuesserOptionsProps> = ({
         onSelectCapital(capitalChosen)
     }
 
+    const tempArray = [...arrayOfRandomCountries]
+    const newResortedArray = tempArray.sort(() => Math.random() - 0.5)
     return (
         <>
-            {arrayOfRandomCountries?.map((cty, index) => (
-                <RadioButton
-                    onClickOption={clickRadioHandler}
-                    name={'capital-guesser-choices'}
-                    capital={cty.capital[0]}
-                    cca3={cty.cca3}
-                    key={cty.cca3 + index}
-                />
-            ))}
+            <div className="mt-12 grid grid-cols-2 grid-rows-2 gap-4 w-fit mx-auto text-center">
+                {newResortedArray?.map((cty, index) => (
+                    <RadioButton
+                        onClickOption={clickRadioHandler}
+                        name={'capital-guesser-choices'}
+                        capital={cty.capital[0]}
+                        cca3={cty.cca3}
+                        key={cty.cca3 + index}
+                    />
+                ))}
+            </div>
         </>
     )
 }
