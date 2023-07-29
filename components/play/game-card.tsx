@@ -28,7 +28,7 @@ const GameCard: FC<GameCardProps> = ({ title, desc, img, level, link }) => {
 
     return (
         <div
-            className={`w-[300px] h-[307px] md:w-[350px] md:h-[385px] bg-[#F7F7F9] border border-[#d9dbe3] dark:border-gray-600 rounded-lg dark:shadow shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
+            className={`w-[300px] h-[320px] md:w-[350px] md:h-[402px] bg-[#F7F7F9] border border-[#d9dbe3] dark:border-gray-600 rounded-lg dark:shadow shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
         >
             <div className="w-full h-36 md:h-48 relative">
                 <Image fill className="object-cover" src={img} alt={'This is an alt'} />
@@ -42,7 +42,7 @@ const GameCard: FC<GameCardProps> = ({ title, desc, img, level, link }) => {
                 </h5>
 
                 <div
-                    className={`${DETAILS_FONT_SIZE} flex flex-col text-gray-700 dark:text-gray-400`}
+                    className={`${DETAILS_FONT_SIZE} flex flex-col text-gray-700 dark:text-gray-400 text-center sm:text-start`}
                 >
                     <p>{desc.body}</p>
                     <p>{desc.teasing}</p>
