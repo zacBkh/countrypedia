@@ -117,45 +117,50 @@ const CapitalGuesser = () => {
                     </button>
                 </div>
 
-                <div className="flex gap-y-2 flex-col sm:flex-row sm:gap-y-0 items-center justify-between text-center text-sm sm:text-base">
-                    <p className="basis-1/3">
-                        {isUserCorrect === null ? (
-                            ''
-                        ) : isUserCorrect ? (
-                            <>{`✅ Correct!`}</>
-                        ) : (
-                            <>
-                                {`❌ Wrong! `}
-                                <span className={`${styleText}`}>{selectedCapital}</span>
-                                {` is the capital of `}
-                                <span className={`${styleText}`}>
-                                    {correctAnswer}
-                                </span>{' '}
-                            </>
-                        )}
-                    </p>
-                    <p className="basis-1/3 rounded-md py-2">
-                        🎯 Your score:{' '}
-                        <span className={`${styleText}`}>
-                            {score}/{countClick}
-                        </span>
-                    </p>
+                <div className="flex flex-col gap-y-8 items-center justify-between text-center text-sm sm:text-base">
+                    <div className="order-2 sm:order-1">
+                        <p className="basis-1/3">
+                            {isUserCorrect === null ? (
+                                ''
+                            ) : isUserCorrect ? (
+                                <>{`✅ Correct!`}</>
+                            ) : (
+                                <>
+                                    {`❌ Wrong! `}
+                                    <span className={`${styleText}`}>
+                                        {selectedCapital}
+                                    </span>
+                                    {` is the capital of `}
+                                    <span className={`${styleText}`}>
+                                        {correctAnswer}
+                                    </span>{' '}
+                                </>
+                            )}
+                        </p>
+                        <p className="basis-1/3 rounded-md py-2">
+                            🎯 Your score:{' '}
+                            <span className={`${styleText}`}>
+                                {score}/{countClick}
+                            </span>
+                        </p>
 
-                    <p className="basis-1/3">
-                        Feeling lost?{' '}
-                        <button
-                            onClick={openModal}
-                            className={`${styleText} hover:underline hover:!bg-transparent active:transform-none"`}
-                        >
-                            See instructions or change level
-                        </button>
-                    </p>
+                        <p className="basis-1/3">
+                            Feeling lost?{' '}
+                            <button
+                                onClick={openModal}
+                                className={`${styleText} hover:underline hover:!bg-transparent active:transform-none"`}
+                            >
+                                See instructions or change level
+                            </button>
+                        </p>
+                    </div>
+
+                    <CapitalGuesserOptions
+                        onSelectCapital={selectCapitalHandler}
+                        arrayOfRandomCountries={fetchedCountries}
+                    />
                 </div>
             </div>
-            <CapitalGuesserOptions
-                onSelectCapital={selectCapitalHandler}
-                arrayOfRandomCountries={fetchedCountries}
-            />
         </div>
     )
 }

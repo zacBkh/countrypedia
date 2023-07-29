@@ -20,7 +20,7 @@ const CapitalGuesserOptions: FC<CapitalGuesserOptionsProps> = ({
     const newResortedArray = tempArray.sort(() => Math.random() - 0.5)
     return (
         <>
-            <div className="mt-8 lg:mt-14 grid grid-cols-2 grid-rows-2 gap-4 w-fit mx-auto text-center">
+            <div className="grid grid-cols-2 grid-rows-2 gap-4 w-fit mx-auto text-center order-1 sm:order-2">
                 {newResortedArray?.map((cty, index) => (
                     <RadioButton
                         onClickOption={clickRadioHandler}
