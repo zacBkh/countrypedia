@@ -20,18 +20,24 @@ interface GameCardProps {
     img: any
     level: string
     link: string
+    objectCover?: boolean
 }
 
-const GameCard: FC<GameCardProps> = ({ title, desc, img, level, link }) => {
+const GameCard: FC<GameCardProps> = ({ title, desc, img, level, link, objectCover }) => {
     const displaySuspensionPoints =
         'text-ellipsis whitespace-nowrap overflow-hidden text-start'
 
     return (
         <div
-            className={`w-[300px] h-[320px] md:w-[350px] md:h-[402px] bg-[#F7F7F9] border border-[#d9dbe3] dark:border-gray-600 rounded-lg dark:shadow shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
+            className={`w-[320px] h-[320px] md:w-[420px] md:h-[402px] bg-[#F7F7F9] border border-[#d9dbe3] dark:border-gray-600 rounded-lg dark:shadow shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
         >
             <div className="w-full h-36 md:h-48 relative">
-                <Image fill className="object-cover" src={img} alt={'This is an alt'} />
+                <Image
+                    fill
+                    className={objectCover ? 'object-cover' : ''}
+                    src={img}
+                    alt={'Preview of the game'}
+                />
             </div>
 
             <div className="py-2 px-3 sm:px-4 flex flex-col gap-y-4">
