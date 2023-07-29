@@ -18,7 +18,18 @@ import Spinner from '@/components/ui/spinner'
 import RulesCapitalGuesserModal from '@/components/ui/modals/rules-capital-guesser-modal'
 
 import CapitalGuesserOptions from '@/components/play/options-capital-guesser'
-import { sleep } from '@/utils/sleep'
+
+import {
+    ScoreDisplayer,
+    HelpMessage,
+    FeedbackUserAnswerCapitalGuesser,
+} from '@/components/play/games-dashboard-ui'
+
+export interface FeedbackUserAnswerTypes {
+    isUserCorrect: boolean | null
+    selectedCapital: string
+    correctAnswer: string | undefined
+}
 
 const CapitalGuesser = () => {
     const {
@@ -31,8 +42,12 @@ const CapitalGuesser = () => {
     const [score, setScore] = useState(0)
 
     const [selectedCapital, setSelectedCapital] = useState('')
-    const [isUserCorrect, setIsUserCorrect] = useState<boolean | null>(null)
-    const [correctAnswer, setCorrectAnswer] = useState<string | undefined>('')
+
+    const [isUserCorrect, setIsUserCorrect] =
+        useState<FeedbackUserAnswerTypes['isUserCorrect']>(null)
+
+    const [correctAnswer, setCorrectAnswer] =
+        useState<FeedbackUserAnswerTypes['correctAnswer']>('')
 
     const fetcher = async () => {
         const newCountry = await getSeveralRandomCountries(
@@ -119,40 +134,15 @@ const CapitalGuesser = () => {
 
                 <div className="flex flex-col gap-y-8 items-center justify-between text-center text-sm sm:text-base">
                     <div className="order-2 sm:order-1">
-                        <p className="basis-1/3">
-                            {isUserCorrect === null ? (
-                                ''
-                            ) : isUserCorrect ? (
-                                <>{`✅ Correct!`}</>
-                            ) : (
-                                <>
-                                    {`❌ Wrong! `}
-                                    <span className={`${styleText}`}>
-                                        {selectedCapital}
-                                    </span>
-                                    {` is the capital of `}
-                                    <span className={`${styleText}`}>
-                                        {correctAnswer}
-                                    </span>{' '}
-                                </>
-                            )}
-                        </p>
-                        <p className="basis-1/3 rounded-md py-2">
-                            🎯 Your score:{' '}
-                            <span className={`${styleText}`}>
-                                {score}/{countClick}
-                            </span>
-                        </p>
+                        <FeedbackUserAnswerCapitalGuesser
+                            isUserCorrect={isUserCorrect}
+                            selectedCapital={selectedCapital}
+                            correctAnswer={correctAnswer}
+                        />
 
-                        <p className="basis-1/3">
-                            Feeling lost?{' '}
-                            <button
-                                onClick={openModal}
-                                className={`${styleText} hover:underline hover:!bg-transparent active:transform-none"`}
-                            >
-                                See instructions or change level
-                            </button>
-                        </p>
+                        <ScoreDisplayer score={score} countClick={countClick} />
+
+                        <HelpMessage openModal={openModal} />
                     </div>
 
                     <CapitalGuesserOptions

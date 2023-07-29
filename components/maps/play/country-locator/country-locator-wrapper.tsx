@@ -19,6 +19,8 @@ import Spinner from '@/components/ui/spinner'
 
 import RulesCountryLocatorModal from '@/components/ui/modals/rules-country-locator-modal'
 
+import { ScoreDisplayer, HelpMessage } from '@/components/play/games-dashboard-ui'
+
 interface ClickedCountryTypes {
     code: string
     name: string
@@ -37,6 +39,8 @@ const CountryLocatorWrapper = () => {
     })
 
     const [userGameData, setUserGameData] = useState({ score: 0, countClick: 0 })
+
+    const { score, countClick } = userGameData
 
     const [isUserCorrect, setIsUserCorrect] = useState<boolean | null>(null)
 
@@ -124,19 +128,9 @@ const CountryLocatorWrapper = () => {
                             </>
                         )}
                     </p>
-                    <p className="basis-1/3">
-                        🎯 Your score: {userGameData.score}/{userGameData.countClick}
-                    </p>
+                    <ScoreDisplayer score={score} countClick={countClick} />
 
-                    <p className="basis-1/3">
-                        Feeling lost?{' '}
-                        <button
-                            onClick={openModal}
-                            className="text-[#087da4] dark:text-[#149eca] font-semibold hover:underline hover:!bg-transparent text-base active:transform-none"
-                        >
-                            See instructions or change level
-                        </button>
-                    </p>
+                    <HelpMessage openModal={openModal} />
                 </div>
             </div>
             <CountryLocatorMap onCtySelection={userSelectCountryHandler} />

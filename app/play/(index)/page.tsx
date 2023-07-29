@@ -8,7 +8,7 @@ import TestPic from '../../../public/test.jpg'
 const PlayPage = async () => {
     return (
         <>
-            <div className="mt-6 flex items-center flex-wrap gap-2">
+            <div className="flex items-center flex-wrap gap-2">
                 <GameCard
                     title="Country Locator 📍"
                     desc={{
