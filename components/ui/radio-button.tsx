@@ -2,7 +2,7 @@
 
 import { FC } from 'react'
 
-import { ChangeEventHandler } from 'react'
+import { KeyboardEvent } from 'react'
 
 interface RadioButtonProps {
     cca3: string
@@ -12,9 +12,17 @@ interface RadioButtonProps {
 }
 
 const RadioButton: FC<RadioButtonProps> = ({ cca3, capital, name, onClickOption }) => {
+    const handleKeyPress = (e: KeyboardEvent<HTMLLabelElement>) => {
+        if (e.key === 'Enter') {
+            onClickOption(capital)
+        }
+    }
     return (
         <>
             <label
+                onKeyDown={handleKeyPress}
+                tabIndex={0}
+                role="button"
                 className="bg-[#f3f4f8] hover:bg-[#eaebf0] dark:bg-[#333A45] dark:hover:bg-[#333a45b2] cursor-pointer w-[35vw] py-4 rounded-md"
                 htmlFor={cca3}
             >
