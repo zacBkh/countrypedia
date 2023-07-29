@@ -11,9 +11,14 @@ import { NAV_LINKS } from '@/constants/urls'
 interface NavLinksProps {
     isHamburgerMenu?: boolean
     isHamburgerMenuOpen?: boolean
+    onHamburgerMenuClose: any
 }
 
-const NavLinks: FC<NavLinksProps> = ({ isHamburgerMenu, isHamburgerMenuOpen }) => {
+const NavLinks: FC<NavLinksProps> = ({
+    isHamburgerMenu,
+    isHamburgerMenuOpen,
+    onHamburgerMenuClose,
+}) => {
     const pathname = usePathname()
 
     useEffect(() => {
@@ -26,18 +31,24 @@ const NavLinks: FC<NavLinksProps> = ({ isHamburgerMenu, isHamburgerMenuOpen }) =
         }
     }, [isHamburgerMenuOpen])
 
+    const linkClickedHandler = () => {
+        console.log('8', 8)
+        onHamburgerMenuClose()
+    }
+
     return (
         <div className="h-full">
             <ul
                 className={`${
                     isHamburgerMenu
                         ? 'flex flex-col items-center justify-center md:hidden h-full gap-y-4 text-lg'
-                        : 'hidden md:flex '
+                        : 'hidden md:flex'
                 } gap-x-6`}
             >
                 {NAV_LINKS.map(link => (
                     <li key={link.id}>
                         <Link
+                            onClick={linkClickedHandler}
                             className={`${pathname === link.link ? 'activeLink' : ''}
                             btnLike py-[6px] px-[18px] rounded-full`}
                             href={link.link}
