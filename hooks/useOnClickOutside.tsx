@@ -1,4 +1,4 @@
-import { MouseEventHandler, RefObject, useEffect } from 'react'
+import { RefObject, useEffect } from 'react'
 
 // Takes the ref pointing to the div we want to watch clickOutside for and the handler
 

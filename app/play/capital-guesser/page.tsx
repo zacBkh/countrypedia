@@ -147,7 +147,7 @@ const CapitalGuesser = () => {
                             onClick={openModal}
                             className={`${styleText} hover:underline hover:!bg-transparent active:transform-none"`}
                         >
-                            See instructions or change difficulty
+                            See instructions or change level
                         </button>
                     </p>
                 </div>

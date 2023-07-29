@@ -11,7 +11,7 @@ import { NAV_LINKS } from '@/constants/urls'
 interface NavLinksProps {
     isHamburgerMenu?: boolean
     isHamburgerMenuOpen?: boolean
-    onHamburgerMenuClose: any
+    onHamburgerMenuClose?: any
 }
 
 const NavLinks: FC<NavLinksProps> = ({

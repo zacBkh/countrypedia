@@ -1,12 +1,9 @@
 'use client'
 
-import { FC, useState, useMemo, useCallback } from 'react'
+import { FC, useState, useMemo, useCallback, useEffect } from 'react'
 
-import Map, { Source, Layer, ViewStateChangeEvent } from 'react-map-gl'
+import Map, { Source, Layer } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-
-import { RESPONSIVE_MAP_SIZE } from '@/constants/map-styles'
-const { countryLocatorMap } = RESPONSIVE_MAP_SIZE
 
 import { useTheme } from 'next-themes'
 
@@ -66,47 +63,65 @@ const CountryLocatorMap: FC<CountryLocatorMapProps> = ({ onCtySelection }) => {
 
     const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 0
 
-    return (
-        <div className={`${countryLocatorMap} relative w-full my-2`}>
-            <Map
-                onDragStart={handleDragStart}
-                onDragEnd={handleDragEnd}
-                cursor={hoverInfo ? 'pointer' : 'auto'}
-                onMouseMove={hoverMapHandler}
-                onMouseLeave={leaveMapHandler}
-                onMouseUp={clickMapHandler}
-                renderWorldCopies={false}
-                cooperativeGestures={viewportWidth < 768 ? false : true}
-                initialViewState={{
-                    longitude: 0,
-                    latitude: 66.919,
-                    zoom: 1,
-                }}
-                mapStyle={theme === 'dark' ? darkMapStyle : lightMapStyle}
-                mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-                interactiveLayerIds={['countries-fill']}
-                doubleClickZoom={false}
-                attributionControl={false}
-                dragRotate={false}
-            >
-                <Source type="vector" url="mapbox://mapbox.country-boundaries-v1">
-                    <Layer
-                        {...countriesLayer}
-                        beforeId="waterway-label"
-                        paint={{
-                            'fill-outline-color':
-                                theme === 'dark' ? '#666666' : '#EBECF0',
-                            'fill-color': theme === 'dark' ? '#363636' : '#FDFDFD',
-                        }}
-                    />
+    // Calculate navbar && above map height & set map height to fill viewport
+    const [mapHeight, setMapHeight] = useState('')
+    useEffect(() => {
+        const heightDashboard = document.querySelector(
+            '#dashboard-country-locator',
+        )?.clientHeight
 
-                    <Layer
-                        {...highlightedCountryLayerHover}
-                        beforeId="waterway-label"
-                        filter={filterHoveredCty}
-                    />
-                </Source>
-            </Map>
+        const heightNavbar = document.querySelector('#navbar')?.clientHeight
+
+        const viewportHeight = window.innerHeight
+
+        const mapHeight = viewportHeight - (heightDashboard! + heightNavbar!) - 5
+
+        setMapHeight(`${mapHeight}px`)
+    }, [])
+
+    return (
+        <div style={{ height: mapHeight }} className={`relative w-full`}>
+            {mapHeight !== '' && (
+                <Map
+                    onDragStart={handleDragStart}
+                    onDragEnd={handleDragEnd}
+                    cursor={hoverInfo ? 'pointer' : 'auto'}
+                    onMouseMove={hoverMapHandler}
+                    onMouseLeave={leaveMapHandler}
+                    onMouseUp={clickMapHandler}
+                    renderWorldCopies={false}
+                    cooperativeGestures={viewportWidth < 768 ? false : true}
+                    initialViewState={{
+                        longitude: 0,
+                        latitude: 66.919,
+                        zoom: 1,
+                    }}
+                    mapStyle={theme === 'dark' ? darkMapStyle : lightMapStyle}
+                    mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
+                    interactiveLayerIds={['countries-fill']}
+                    doubleClickZoom={false}
+                    attributionControl={false}
+                    dragRotate={false}
+                >
+                    <Source type="vector" url="mapbox://mapbox.country-boundaries-v1">
+                        <Layer
+                            {...countriesLayer}
+                            beforeId="waterway-label"
+                            paint={{
+                                'fill-outline-color':
+                                    theme === 'dark' ? '#666666' : '#EBECF0',
+                                'fill-color': theme === 'dark' ? '#363636' : '#FDFDFD',
+                            }}
+                        />
+
+                        <Layer
+                            {...highlightedCountryLayerHover}
+                            beforeId="waterway-label"
+                            filter={filterHoveredCty}
+                        />
+                    </Source>
+                </Map>
+            )}
         </div>
     )
 }

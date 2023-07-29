@@ -55,12 +55,14 @@ const MapShowCountry: FC<MapShowCountryProps> = ({ ISOCtyName, latLng }) => {
         filter: ['==', ['get', 'iso_3166_1_alpha_3'], ISOCtyName],
     } as any
 
+    const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 0
+
     return (
         <>
             <div className={`${showCountryMap} relative w-full`}>
                 <Map
                     renderWorldCopies={false}
-                    cooperativeGestures={true}
+                    cooperativeGestures={viewportWidth < 768 ? false : true}
                     initialViewState={{
                         longitude: latLng[1],
                         latitude: latLng[0],
