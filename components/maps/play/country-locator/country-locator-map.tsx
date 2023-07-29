@@ -64,6 +64,8 @@ const CountryLocatorMap: FC<CountryLocatorMapProps> = ({ onCtySelection }) => {
         setIsDragging(false)
     }
 
+    const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 0
+
     return (
         <div className={`${countryLocatorMap} relative w-full my-2`}>
             <Map
@@ -74,7 +76,7 @@ const CountryLocatorMap: FC<CountryLocatorMapProps> = ({ onCtySelection }) => {
                 onMouseLeave={leaveMapHandler}
                 onMouseUp={clickMapHandler}
                 renderWorldCopies={false}
-                cooperativeGestures={true}
+                cooperativeGestures={viewportWidth < 768 ? false : true}
                 initialViewState={{
                     longitude: 0,
                     latitude: 66.919,
