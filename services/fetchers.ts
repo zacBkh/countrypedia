@@ -1,5 +1,11 @@
 import { FetchLinks } from '@/constants/urls'
-const { ALL_COUNTRIES, ONE_COUNTRY_BASE, ALL_ISO, ALL_CAPITAL } = FetchLinks
+const {
+    ALL_COUNTRIES,
+    ONE_COUNTRY_BASE,
+    ALL_ISO,
+    ALL_CAPITAL,
+    ALL_COUNTRIES_SEARCH_BAR,
+} = FetchLinks
 
 import { EASY_COUNTRIES } from '@/utils/difficulty-countries'
 
@@ -28,8 +34,27 @@ export const getAllCountries = async (): Promise<getAllCountriesProps[]> => {
     }
 }
 
-// Get one country
+// Get all countries with limited properties
+export interface getAllCountriesSearchBarProps {
+    name: { common: string; official: string; nativeName: object }
+    flags: { png: string; svg: string; alt: string }
+    cca3: string
+    region: string
+}
 
+export const getAllCountriesSearchBar = async (): Promise<
+    getAllCountriesSearchBarProps[]
+> => {
+    try {
+        const res = await fetch(ALL_COUNTRIES_SEARCH_BAR)
+        return res.json()
+    } catch (error) {
+        console.log('error [6]', error)
+        throw error
+    }
+}
+
+// Get one country
 export interface GetOneCountryProps extends getAllCountriesProps {
     independent: boolean
     unMember: boolean

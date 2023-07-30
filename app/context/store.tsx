@@ -21,6 +21,8 @@ interface GlobalContextProps {
     setSearchQuery: Dispatch<SetStateAction<string>>
     isHamburgerMenuOpen: boolean
     setIsHamburgerMenuOpen: Dispatch<SetStateAction<boolean>>
+    isMobileSearchBarActive: boolean
+    setIsMobileSearchBarActive: Dispatch<SetStateAction<boolean>>
     modalsCtx: {
         countryLocatorRules: {
             isActive: boolean
@@ -41,25 +43,36 @@ export const GlobalContext = createContext<GlobalContextProps>({
     searchQuery: '',
     setSearchQuery: (): string => '',
     isHamburgerMenuOpen: false,
-    setIsHamburgerMenuOpen: (): string => '',
+    setIsHamburgerMenuOpen: (prev): boolean => !prev,
     modalsCtx: {} as GlobalContextProps['modalsCtx'],
+
+    isMobileSearchBarActive: false,
+    setIsMobileSearchBarActive: (prev): boolean => !prev,
 })
 
 // Glboal context provider component
+
 export const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
     const [ctyLocatorModalIsOpen, setCtyLocatorModalIsOpen] = useState(true)
     const [capitalGuesserModalIsOpen, setCapitalGuesserModalIsOpen] = useState(true)
 
+    // Difficulty levels games
     const [difficultyLvlCtyLocator, setDifficultyLvlCtyLocator] = useState<DifficultyLvl>(
         DifficultyLvl.EASY,
     )
     const [difficultyLvlCapitalGuesser, setDifficultyLvlCapitalGuesser] =
         useState<DifficultyLvl>(DifficultyLvl.EASY)
 
+    // Search bar
     const [searchQuery, setSearchQuery] = useState('')
 
+    // Hamburger menu
     const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false)
 
+    // is Search bar on mobile active
+    const [isMobileSearchBarActive, setIsMobileSearchBarActive] = useState(false)
+
+    // Modals content
     const modalsCtx = {
         countryLocatorRules: {
             isActive: ctyLocatorModalIsOpen,
@@ -92,6 +105,8 @@ export const GlobalContextProvider = ({ children }: { children: ReactNode }) => 
                 isHamburgerMenuOpen,
                 setIsHamburgerMenuOpen,
                 modalsCtx,
+                isMobileSearchBarActive,
+                setIsMobileSearchBarActive,
             }}
         >
             {children}

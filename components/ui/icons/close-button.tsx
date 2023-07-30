@@ -1,20 +1,21 @@
 interface CloseButtonProps {
-    onDeleteSearch: () => void
+    onButtonClick: () => void
+    moreCSSSvg?: string
 }
 
-const CloseButton: React.FC<CloseButtonProps> = ({ onDeleteSearch }) => {
+const CloseButton: React.FC<CloseButtonProps> = ({ onButtonClick, moreCSSSvg }) => {
     return (
         <button
-            onClick={onDeleteSearch}
+            onClick={onButtonClick}
             className="text-[#99A1B3] rounded-full hover:!bg-transparent active:transform-none"
             title="Delete searched content"
         >
             <span className="sr-only">Delete search</span>
 
             <svg
-                className={`mr-3 align-middle text-[#99A1B3] shrink-0`}
-                width="16px"
-                height="16px"
+                className={`${moreCSSSvg}`}
+                width="18px"
+                height="18px"
                 viewBox="0 0 20 20"
             >
                 <path
