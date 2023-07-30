@@ -46,6 +46,7 @@ const OverlaySearchBarMobile: FC<OverlaySearchBarMobileProps> = ({ hello }) => {
 
     const closeHandler = () => {
         setIsMobileSearchBarActive(false)
+        setSearchQuery('')
     }
 
     const filteredCountries = fetchedCountries?.filter(country =>
