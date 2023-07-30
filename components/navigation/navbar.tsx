@@ -12,11 +12,13 @@ import NavLinks from './nav-links'
 import HamburgerIcon from './hamburger-icon'
 import HamburgerMenu from './hamburger-menu'
 
+import ClickableMagnifyingGlass from '../ui/icons/clickable-magnifying-glass'
+
 const Navbar = () => {
     return (
         <div
             id="navbar"
-            className="sticky top-0 z-[9999999] bg-white dark:bg-[#232730] sm:transparent-navbar"
+            className="sticky top-0 z-[999999] bg-white dark:bg-[#232730] sm:transparent-navbar"
         >
             <header className="shadow-lg dark:shadow-slate-50/5 shadow-slate-950/10 sticky top-0 z-[999] w-full text-lg !text-[#404756] dark:!text-[#EBECF0]">
                 <div className="flex gap-x-6 justify-between items-center py-2 px-4">
@@ -46,6 +48,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="flex justify-between items-center gap-x-2">
+                        <ClickableMagnifyingGlass />
                         <ThemeSwitcher />
                         <HamburgerIcon />
                     </div>

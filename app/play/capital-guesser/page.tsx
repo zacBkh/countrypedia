@@ -106,7 +106,6 @@ const CapitalGuesser = () => {
         }
     }
 
-    const styleText = 'text-[#087da4] dark:text-[#149eca] font-bold'
     return (
         <div className="py-6 p-1 sm:p-6">
             {capitalGuesserRules.isActive ? <RulesCapitalGuesserModal /> : ''}

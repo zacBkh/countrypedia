@@ -12,8 +12,6 @@ import { useGlobalContext } from '@/app/context/store'
 
 import { RESPONSIVE_PADDING } from '@/constants/responsive-padding'
 
-import Loading from '@/app/(homepage)/loading'
-
 interface CountriesProps {
     allCountries: getAllCountriesProps[]
 }

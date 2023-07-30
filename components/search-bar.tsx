@@ -11,10 +11,10 @@ import { useGlobalContext } from '@/app/context/store'
 import useOnClickOutside from '@/hooks/useOnClickOutside'
 
 interface SearchBarProps {
-    hello?: any
+    isMobileMode?: boolean
 }
 
-const SearchBar: FC<SearchBarProps> = ({}) => {
+const SearchBar: FC<SearchBarProps> = ({ isMobileMode }) => {
     const [isSuggestionVisible, setIsSuggestionVisible] = useState(false)
 
     const searchBarRef = useRef<HTMLInputElement>(null)
@@ -66,9 +66,13 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         <div className="relative flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
             <div className="z-50 absolute left-[3%] 2xl:left-[14px] top-auto flex justify-center items-center">
                 {searchQuery ? (
-                    <CloseButton onDeleteSearch={deleteSearchHandler} />
+                    <CloseButton onButtonClick={deleteSearchHandler} />
                 ) : (
-                    <MagnifyingGlass />
+                    <MagnifyingGlass
+                        moreCSSSvg={`${
+                            isMobileMode ? 'ml-2' : ''
+                        } mr-3 align-middle text-[#99A1B3] shrink-0`}
+                    />
                 )}
             </div>
 
@@ -79,20 +83,31 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                 placeholder="Search any country"
                 className="p-2 pl-10 flex 2xl:mx-0 relative pr-1 py-1 h-10 outline-none focus:outline-react-blue-txt-light&dark items-center text-left text-gray-30 rounded-full align-middle text-base bg-[#EBECF0] dark:bg-[#333944] !w-full"
             />
+            {!isMobileMode ? (
+                <div className="z-50 absolute flex items-center right-[2%] top-auto">
+                    {currentOS === 'Mac' ? (
+                        <KeyBoardStroke
+                            moreCSS="w-5 h-5 p-2"
+                            data_platform="mac"
+                            text="⌘"
+                        />
+                    ) : (
+                        <KeyBoardStroke
+                            moreCSS="w-10 h-5"
+                            data_platform="win"
+                            text="Ctrl"
+                        />
+                    )}
+                    <KeyBoardStroke moreCSS="w-5 h-5" text="K" />
+                </div>
+            ) : (
+                ''
+            )}
 
-            <div className="z-50 absolute flex items-center right-[2%] top-auto">
-                {currentOS === 'Mac' ? (
-                    <KeyBoardStroke moreCSS="w-5 h-5 p-2" data_platform="mac" text="⌘" />
-                ) : (
-                    <KeyBoardStroke moreCSS="w-10 h-5" data_platform="win" text="Ctrl" />
-                )}
-                <KeyBoardStroke moreCSS="w-5 h-5" text="K" />
-            </div>
-
-            {isSuggestionVisible ? (
+            {isSuggestionVisible && !isMobileMode ? (
                 <div
                     ref={suggestedPopUp}
-                    className="rounded-md w-full max-h-52 absolute top-full z-20 h-fit shadow-md overflow-hidden overflow-y-auto"
+                    className="rounded-md w-full max-h-52 absolute top-[130%] z-20 h-fit shadow-md overflow-hidden overflow-y-auto"
                 >
                     <p className="resultSearchBar pl-2 py-2">
                         No country matches your query... 😢

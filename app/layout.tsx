@@ -4,6 +4,7 @@ import { Nunito, Inter, Source_Code_Pro } from 'next/font/google'
 
 import Navbar from '@/components/navigation/navbar'
 import Overlay from '@/components/ui/overlay'
+import OverlaySearchBarMobile from '@/components/overlay-searchbar-mobile'
 
 import ThemeProviderWrap from './theme-provider'
 
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body>
                 <ThemeProviderWrap>
                     <GlobalContextProvider>
+                        <OverlaySearchBarMobile />
                         <Navbar />
                         <Overlay />
                         <main>{children}</main>
