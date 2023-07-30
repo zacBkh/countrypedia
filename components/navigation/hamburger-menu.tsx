@@ -4,15 +4,16 @@ import { useGlobalContext } from '@/app/context/store'
 
 import NavLinks from './nav-links'
 
+import sleep from '@/utils/sleep'
+
 const HamburgerMenu = () => {
     const { isHamburgerMenuOpen, setIsHamburgerMenuOpen } = useGlobalContext()
 
     if (!isHamburgerMenuOpen) return
 
     const closeHamburgerMenuHandler = () => {
-        setTimeout(() => {
-            setIsHamburgerMenuOpen(false)
-        }, 350)
+        sleep(150)
+        setIsHamburgerMenuOpen(false)
     }
     return (
         <>

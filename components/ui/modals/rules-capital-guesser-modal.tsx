@@ -15,7 +15,7 @@ import Divider from '../divider'
 
 import SWR_KEYS from '@/constants/SWR-keys'
 
-import { sleep } from '@/utils/sleep'
+import sleep from '@/utils/sleep'
 
 const RulesCapitalGuesserModal = ({}) => {
     const { mutate } = useSWRConfig()
