@@ -92,6 +92,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                         textSm="More"
                         isNextLink
                         link={`/${name.common}`}
+                        moreStyle={'!text-sm'}
                     />
 
                     <Button
@@ -103,6 +104,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                         link={maps.googleMaps}
                         textSm="Maps"
                         text="See on Maps"
+                        moreStyle={'!text-sm'}
                     />
                 </div>
             </div>
