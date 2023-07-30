@@ -59,7 +59,7 @@ const OverlaySearchBarMobile: FC<OverlaySearchBarMobileProps> = ({ hello }) => {
 
     return (
         <>
-            <div className="flex flex-col gap-y-6 px-6 py-3 w-screen min-h-screen bg-[#23272F] absolute z-[9999999]">
+            <div className="flex flex-col gap-y-6 px-5 py-3 w-screen min-h-screen bg-[#23272F] absolute z-[9999999]">
                 <div className="h-fit flex items-center gap-x-9">
                     <SearchBar isMobileMode />
                     <button
@@ -70,17 +70,20 @@ const OverlaySearchBarMobile: FC<OverlaySearchBarMobileProps> = ({ hello }) => {
                     </button>
                 </div>
 
-                {/* DO SOMETHING WITH LAODING HERE */}
-                {fetchedCountries &&
-                    activeCountries &&
-                    activeCountries.map(cty => (
-                        <SuggestionMobileSearchBar
-                            key={cty.cca3}
-                            name={cty.name}
-                            flags={cty.flags}
-                            region={cty.region}
-                        />
-                    ))}
+                <div className="flex flex-col gap-y-4">
+                    {/* DO SOMETHING WITH LAODING HERE */}
+                    {fetchedCountries &&
+                        activeCountries &&
+                        activeCountries.map(cty => (
+                            <SuggestionMobileSearchBar
+                                onClickCountry={closeHandler}
+                                key={cty.cca3}
+                                name={cty.name}
+                                flags={cty.flags}
+                                region={cty.region}
+                            />
+                        ))}
+                </div>
             </div>
         </>
     )

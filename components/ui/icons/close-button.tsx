@@ -1,8 +1,9 @@
 interface CloseButtonProps {
     onButtonClick: () => void
+    moreCSSSvg?: string
 }
 
-const CloseButton: React.FC<CloseButtonProps> = ({ onButtonClick }) => {
+const CloseButton: React.FC<CloseButtonProps> = ({ onButtonClick, moreCSSSvg }) => {
     return (
         <button
             onClick={onButtonClick}
@@ -12,7 +13,7 @@ const CloseButton: React.FC<CloseButtonProps> = ({ onButtonClick }) => {
             <span className="sr-only">Delete search</span>
 
             <svg
-                className={`mr-3 align-middle text-[#99A1B3] shrink-0`}
+                className={`${moreCSSSvg}`}
                 width="18px"
                 height="18px"
                 viewBox="0 0 20 20"

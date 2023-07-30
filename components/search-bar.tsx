@@ -66,7 +66,10 @@ const SearchBar: FC<SearchBarProps> = ({ isMobileMode }) => {
         <div className="relative flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
             <div className="z-50 absolute left-[3%] 2xl:left-[14px] top-auto flex justify-center items-center">
                 {searchQuery ? (
-                    <CloseButton onButtonClick={deleteSearchHandler} />
+                    <CloseButton
+                        moreCSSSvg="mr-3 align-middle text-[#99A1B3] shrink-0"
+                        onButtonClick={deleteSearchHandler}
+                    />
                 ) : (
                     <MagnifyingGlass
                         moreCSSSvg={`${
