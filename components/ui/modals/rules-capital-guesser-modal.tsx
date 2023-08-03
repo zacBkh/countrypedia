@@ -49,7 +49,7 @@ const RulesCapitalGuesserModal = ({}) => {
 
     return (
         <>
-            <div
+            <dialog
                 close-modal="true"
                 onClick={shouldCloseModal}
                 className="transition-modal z-[99999] overflow-hidden text-form-color centerModalWrapper overlay"
@@ -113,7 +113,7 @@ const RulesCapitalGuesserModal = ({}) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </dialog>
         </>
     )
 }

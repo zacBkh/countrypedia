@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { BiRefresh } from 'react-icons/bi'
 
@@ -36,6 +36,13 @@ const CapitalGuesser = () => {
         modalsCtx: { capitalGuesserRules },
     } = useGlobalContext()
 
+    useEffect(() => {
+        const isModalActive = capitalGuesserRules?.isActive
+        if (capitalGuesserRules && !isModalActive) {
+            capitalGuesserRules.toggleModalState()
+        }
+    }, [])
+
     const { mutate } = useSWRConfig()
 
     const [countClick, setCountClick] = useState(0)
@@ -51,7 +58,7 @@ const CapitalGuesser = () => {
 
     const fetcher = async () => {
         const newCountry = await getSeveralRandomCountries(
-            capitalGuesserRules.difficultyLevel,
+            capitalGuesserRules?.difficultyLevel,
             4,
         )
         return newCountry
@@ -108,14 +115,14 @@ const CapitalGuesser = () => {
 
     return (
         <div className="py-6 p-1 sm:p-6">
-            {capitalGuesserRules.isActive ? <RulesCapitalGuesserModal /> : ''}
+            {capitalGuesserRules?.isActive ? <RulesCapitalGuesserModal /> : ''}
             <div className="2xl:p-5 flex flex-col gap-y-6 select-none">
                 <div className="flex justify-center items-center gap-x-2">
                     <h1
                         title="That is the country you need to locate on the map."
                         className={`flex justify-center items-center  min-w-[140px] min-h-[44px] rounded-full w-fit px-5 py-2 bg-[#0D6D8C] font-bold text-react-txt-dark text-center ${TITLE_SEC_FONT_SIZE}`}
                     >
-                        {isLoading || capitalGuesserRules.isActive ? (
+                        {isLoading || capitalGuesserRules?.isActive ? (
                             <Spinner moreCSS="border-t-[#333A45]" />
                         ) : (
                             fetchedCountries[0].name.common
