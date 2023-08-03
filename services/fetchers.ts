@@ -12,7 +12,7 @@ import { EASY_COUNTRIES } from '@/utils/difficulty-countries'
 import { DifficultyLvl } from '@/app/context/store'
 
 // Get all countries
-export interface getAllCountriesProps {
+export interface GetAllCountriesProps {
     name: { common: string; official: string; nativeName: object }
     flags: { png: string; svg: string; alt: string }
     coatOfArms: { png: string; svg: string }
@@ -24,7 +24,7 @@ export interface getAllCountriesProps {
     cca2: string
 }
 
-export const getAllCountries = async (): Promise<getAllCountriesProps[]> => {
+export const getAllCountries = async (): Promise<GetAllCountriesProps[]> => {
     try {
         const res = await fetch(ALL_COUNTRIES)
         return res.json()
@@ -55,7 +55,7 @@ export const getAllCountriesSearchBar = async (): Promise<
 }
 
 // Get one country
-export interface GetOneCountryProps extends getAllCountriesProps {
+export interface GetOneCountryProps extends GetAllCountriesProps {
     independent: boolean
     unMember: boolean
     currencies: { string: { name: string; symbol: string } }

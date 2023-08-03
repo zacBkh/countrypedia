@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 import { FC } from 'react'
-import { getAllCountriesProps } from '@/services/fetchers'
+import { GetAllCountriesProps } from '@/services/fetchers'
 
 import { BiSolidCity, BiWorld, BiUserVoice } from 'react-icons/bi'
 import { SiGooglemaps } from 'react-icons/si'
@@ -12,7 +12,7 @@ import Button from './ui/buttons'
 import { TITLE_FONT_SIZE, DETAILS_FONT_SIZE } from '@/constants/responsive-fonts'
 
 interface CountryCardProps {
-    details: getAllCountriesProps
+    details: GetAllCountriesProps
 }
 
 const CountryCard: FC<CountryCardProps> = ({ details }) => {
@@ -23,6 +23,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
 
     return (
         <div
+            data-testid="countryCard"
             className={`w-[300px] md:w-[350px] bg-[#F7F7F9] border border-[#d9dbe3] dark:border-gray-600 rounded-lg shadow dark:bg-[#16181D] overflow-hidden mx-auto`}
         >
             <div className="w-full h-36 md:h-48 relative">
