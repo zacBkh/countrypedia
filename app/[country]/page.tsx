@@ -9,11 +9,13 @@ import CountryDetailsDisplayer from '@/components/show-country/country-details-d
 
 import { SUPER_TITLE_FONT_SIZE } from '@/constants/responsive-fonts'
 
+import { slugCtyName, unSlugCtyName } from '@/utils/slug-url'
+
 export async function generateStaticParams() {
     const allCountries = await getAllCountries()
 
     return allCountries.map(cty => ({
-        country: cty.name.common,
+        country: slugCtyName(cty.name.common),
     }))
 }
 
@@ -24,7 +26,7 @@ interface ShowCountryProps {
 const ShowCountry: FC<ShowCountryProps> = async ({ params }) => {
     const { country } = params
 
-    const showCountry = await getOneCountry(country)
+    const showCountry = await getOneCountry(unSlugCtyName(country))
     const {
         cca3,
 

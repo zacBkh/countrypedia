@@ -11,6 +11,8 @@ import Button from './ui/buttons'
 
 import { TITLE_FONT_SIZE, DETAILS_FONT_SIZE } from '@/constants/responsive-fonts'
 
+import { slugCtyName } from '@/utils/slug-url'
+
 interface CountryCardProps {
     details: GetAllCountriesProps
 }
@@ -92,7 +94,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                         text="Read more"
                         textSm="More"
                         isNextLink
-                        link={`/${name.common}`}
+                        link={`/${slugCtyName(name.common)}`}
                         moreStyle={'!text-sm'}
                     />
 
