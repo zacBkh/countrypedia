@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 import { FC } from 'react'
-import { getAllCountriesProps } from '@/services/fetchers'
+import { GetAllCountriesProps } from '@/services/fetchers'
 
 import { BiSolidCity, BiWorld, BiUserVoice } from 'react-icons/bi'
 import { SiGooglemaps } from 'react-icons/si'
@@ -11,18 +11,21 @@ import Button from './ui/buttons'
 
 import { TITLE_FONT_SIZE, DETAILS_FONT_SIZE } from '@/constants/responsive-fonts'
 
+import { slugCtyName } from '@/utils/slug-url'
+
 interface CountryCardProps {
-    details: getAllCountriesProps
+    details: GetAllCountriesProps
 }
 
 const CountryCard: FC<CountryCardProps> = ({ details }) => {
-    const { name, flags, capital, region, languages, maps, coatOfArms } = details
+    const { name, cca3, flags, capital, region, languages, maps, coatOfArms } = details
 
     const displaySuspensionPoints =
         'text-ellipsis whitespace-nowrap overflow-hidden text-start'
 
     return (
         <div
+            data-testid="countryCard"
             className={`w-[300px] md:w-[350px] bg-[#F7F7F9] border border-[#d9dbe3] dark:border-gray-600 rounded-lg shadow dark:bg-[#16181D] overflow-hidden mx-auto`}
         >
             <div className="w-full h-36 md:h-48 relative">
@@ -43,7 +46,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                                 height={40}
                                 quality={50}
                                 className="object-contain"
-                                src={coatOfArms.png}
+                                src={coatOfArms.png ?? null}
                                 alt={`Coat of arms of ${name.common}`}
                             />
                         ) : (
@@ -91,7 +94,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                         text="Read more"
                         textSm="More"
                         isNextLink
-                        link={`/${name.common}`}
+                        link={`/${slugCtyName(name.common)}_${cca3.toLowerCase()}`}
                         moreStyle={'!text-sm'}
                     />
 

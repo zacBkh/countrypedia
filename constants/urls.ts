@@ -1,7 +1,7 @@
 export enum FetchLinks {
     ALL_COUNTRIES = 'https://restcountries.com/v3.1/all?fields=name,flags,region,languages,capital,maps,cca3,cca2,coatOfArms',
     ALL_COUNTRIES_SEARCH_BAR = 'https://restcountries.com/v3.1/all?fields=name,flags,cca3,region',
-    ONE_COUNTRY_BASE = 'https://restcountries.com/v3.1/name',
+    ONE_COUNTRY_BASE = 'https://restcountries.com/v3.1/alpha',
     ALL_ISO = 'https://restcountries.com/v3.1/all?fields=cca2,cca3,name',
     ALL_CAPITAL = 'https://restcountries.com/v3.1/all?fields=cca3,name,capital',
 }

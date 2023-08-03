@@ -1,14 +1,6 @@
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { FC } from 'react'
-import { getAllCountriesProps } from '@/services/fetchers'
-
-import { StaticImageData } from 'next/image'
-
-// import { BiSolidCity, BiWorld, BiUserVoice } from 'react-icons/bi'
-// import { SiGooglemaps } from 'react-icons/si'
-// import { FiArrowRight } from 'react-icons/fi'
 
 import Button from '../ui/buttons'
 

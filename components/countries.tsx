@@ -3,7 +3,7 @@
 import { useState, FC } from 'react'
 import CountryCard from './country-card'
 
-import { getAllCountriesProps } from '@/services/fetchers'
+import { GetAllCountriesProps } from '@/services/fetchers'
 import { FiArrowRight } from 'react-icons/fi'
 
 import Button from './ui/buttons'
@@ -13,7 +13,7 @@ import { useGlobalContext } from '@/app/context/store'
 import { RESPONSIVE_PADDING } from '@/constants/responsive-padding'
 
 interface CountriesProps {
-    allCountries: getAllCountriesProps[]
+    allCountries: GetAllCountriesProps[]
 }
 
 const Countries: FC<CountriesProps> = ({ allCountries }) => {

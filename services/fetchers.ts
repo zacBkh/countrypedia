@@ -12,7 +12,7 @@ import { EASY_COUNTRIES } from '@/utils/difficulty-countries'
 import { DifficultyLvl } from '@/app/context/store'
 
 // Get all countries
-export interface getAllCountriesProps {
+export interface GetAllCountriesProps {
     name: { common: string; official: string; nativeName: object }
     flags: { png: string; svg: string; alt: string }
     coatOfArms: { png: string; svg: string }
@@ -24,7 +24,7 @@ export interface getAllCountriesProps {
     cca2: string
 }
 
-export const getAllCountries = async (): Promise<getAllCountriesProps[]> => {
+export const getAllCountries = async (): Promise<GetAllCountriesProps[]> => {
     try {
         const res = await fetch(ALL_COUNTRIES)
         return res.json()
@@ -55,7 +55,7 @@ export const getAllCountriesSearchBar = async (): Promise<
 }
 
 // Get one country
-export interface GetOneCountryProps extends getAllCountriesProps {
+export interface GetOneCountryProps extends GetAllCountriesProps {
     independent: boolean
     unMember: boolean
     currencies: { string: { name: string; symbol: string } }
@@ -67,11 +67,10 @@ export interface GetOneCountryProps extends getAllCountriesProps {
     startOfWeek: string
 }
 
-export const getOneCountry = async (
-    countryName: string,
-): Promise<GetOneCountryProps[]> => {
+export const getOneCountry = async (code: string): Promise<GetOneCountryProps[]> => {
     try {
-        const res = await fetch(`${ONE_COUNTRY_BASE}/${countryName}`)
+        const res = await fetch(`${ONE_COUNTRY_BASE}/${code}`)
+        console.log('`${ONE_COUNTRY_BASE}/${code}`', `${ONE_COUNTRY_BASE}/${code}`)
         return res.json()
     } catch (error) {
         console.log('error [2]', error)
