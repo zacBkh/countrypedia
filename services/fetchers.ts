@@ -67,11 +67,10 @@ export interface GetOneCountryProps extends GetAllCountriesProps {
     startOfWeek: string
 }
 
-export const getOneCountry = async (
-    countryName: string,
-): Promise<GetOneCountryProps[]> => {
+export const getOneCountry = async (code: string): Promise<GetOneCountryProps[]> => {
     try {
-        const res = await fetch(`${ONE_COUNTRY_BASE}/${countryName}`)
+        const res = await fetch(`${ONE_COUNTRY_BASE}/${code}`)
+        console.log('`${ONE_COUNTRY_BASE}/${code}`', `${ONE_COUNTRY_BASE}/${code}`)
         return res.json()
     } catch (error) {
         console.log('error [2]', error)

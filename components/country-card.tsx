@@ -18,7 +18,7 @@ interface CountryCardProps {
 }
 
 const CountryCard: FC<CountryCardProps> = ({ details }) => {
-    const { name, flags, capital, region, languages, maps, coatOfArms } = details
+    const { name, cca3, flags, capital, region, languages, maps, coatOfArms } = details
 
     const displaySuspensionPoints =
         'text-ellipsis whitespace-nowrap overflow-hidden text-start'
@@ -46,7 +46,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                                 height={40}
                                 quality={50}
                                 className="object-contain"
-                                src={coatOfArms.png}
+                                src={coatOfArms.png ?? null}
                                 alt={`Coat of arms of ${name.common}`}
                             />
                         ) : (
@@ -94,7 +94,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                         text="Read more"
                         textSm="More"
                         isNextLink
-                        link={`/${slugCtyName(name.common)}`}
+                        link={`/${slugCtyName(name.common)}_${cca3.toLowerCase()}`}
                         moreStyle={'!text-sm'}
                     />
 

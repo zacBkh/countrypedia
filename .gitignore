@@ -8,10 +8,12 @@
 # testing
 /coverage
 __tests__/
+jest.config.ts
 
 # next.js
 /.next/
 /out/
+
 
 # production
 /build
