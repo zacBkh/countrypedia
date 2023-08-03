@@ -10,8 +10,10 @@ import { getAllCountriesSearchBarProps } from '@/services/fetchers'
 
 import { MouseEventHandler } from 'react'
 
+import { slugCtyName } from '@/utils/slug-url'
+
 interface SuggestionMobileSearchBarProps
-    extends Pick<getAllCountriesSearchBarProps, 'name' | 'flags' | 'region'> {
+    extends Pick<getAllCountriesSearchBarProps, 'name' | 'flags' | 'region' | 'cca3'> {
     onClickCountry: MouseEventHandler<HTMLAnchorElement>
 }
 
@@ -23,12 +25,16 @@ const SuggestionMobileSearchBar: FC<SuggestionMobileSearchBarProps> = ({
     name,
     flags,
     region,
+    cca3,
     onClickCountry,
 }) => {
     return (
         <ul>
             <li className="resultSearchBar rounded-lg">
-                <Link onClick={onClickCountry} href={`/${name.common}`}>
+                <Link
+                    onClick={onClickCountry}
+                    href={`/${slugCtyName(name.common)}_${cca3.toLowerCase()}`}
+                >
                     <div className="py-1 px-2 flex justify-between items-center">
                         <div className="flex justify-between gap-x-2 items-center">
                             <Image

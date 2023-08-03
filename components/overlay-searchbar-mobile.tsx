@@ -77,8 +77,9 @@ const OverlaySearchBarMobile: FC<OverlaySearchBarMobileProps> = ({ hello }) => {
                         activeCountries &&
                         activeCountries.map(cty => (
                             <SuggestionMobileSearchBar
-                                onClickCountry={closeHandler}
                                 key={cty.cca3}
+                                cca3={cty.cca3}
+                                onClickCountry={closeHandler}
                                 name={cty.name}
                                 flags={cty.flags}
                                 region={cty.region}
