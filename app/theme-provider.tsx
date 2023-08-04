@@ -16,7 +16,11 @@ const ThemeProviderWrap: FC<{ children: ReactNode }> = ({ children }) => {
         return <>{children}</>
     }
 
-    return <ThemeProvider attribute="class">{children}</ThemeProvider>
+    return (
+        <ThemeProvider defaultTheme="dark" attribute="class">
+            {children}
+        </ThemeProvider>
+    )
 }
 
 export default ThemeProviderWrap
