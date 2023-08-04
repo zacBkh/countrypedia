@@ -21,7 +21,7 @@ const GameCard: FC<GameCardProps> = ({ title, desc, img, level, link, objectCove
 
     return (
         <div
-            className={`w-[320px] h-[320px] md:w-[420px] md:h-[402px] bg-[#F7F7F9] border border-[#d9dbe3] dark:border-gray-600 rounded-lg dark:shadow shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
+            className={`w-[320px] h-[320px] md:w-[420px] md:h-[402px] bg-[#F7F7F9] border shadow dark:shadow-none rounded-lg  shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
         >
             <div className="w-full h-36 md:h-48 relative">
                 <Image
@@ -44,33 +44,6 @@ const GameCard: FC<GameCardProps> = ({ title, desc, img, level, link, objectCove
                 >
                     <p>{desc.body}</p>
                     <p>{desc.teasing}</p>
-                    {/* {capital[0] ? (
-                        <div className="flex justify-center items-center gap-x-1 sm:gap-x-2 min-w-[33%]">
-                            <BiSolidCity className="min-w-[16px] min-h-[16px]" />
-                            <p className={displaySuspensionPoints}> {capital[0]}</p>
-                        </div>
-                    ) : (
-                        ''
-                    )}
-                    {region ? (
-                        <div className="flex justify-center items-center gap-x-1 sm:gap-x-2 min-w-[33%]">
-                            <BiWorld className="min-w-[16px] min-h-[16px]" />
-                            <p className={displaySuspensionPoints}>{region}</p>
-                        </div>
-                    ) : (
-                        ''
-                    )}
-
-                    {Object.values(languages)[0] ? (
-                        <div className="flex justify-center items-center gap-x-1 sm:gap-x-2 min-w-[33%]">
-                            <BiUserVoice className="min-w-[16px] min-h-[16px]" />
-                            <p className={displaySuspensionPoints}>
-                                {Object.values(languages)[0]}
-                            </p>
-                        </div>
-                    ) : (
-                        ''
-                    )} */}
                 </div>
                 <div className="flex justify-center gap-x-8">
                     <Button
