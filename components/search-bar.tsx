@@ -78,6 +78,7 @@ const SearchBar: FC<SearchBarProps> = ({ isMobileMode }) => {
 
     const deleteSearchHandler = () => {
         setSearchQuery('')
+        searchBarRef.current?.focus()
         setIsSuggestionVisible(false)
     }
 
@@ -100,14 +101,14 @@ const SearchBar: FC<SearchBarProps> = ({ isMobileMode }) => {
             <div className="z-50 absolute left-[3%] 2xl:left-[14px] top-auto flex justify-center items-center">
                 {searchQuery ? (
                     <CloseButton
-                        moreCSSSvg="mr-3 align-middle text-[#99A1B3] shrink-0"
+                        moreCSSSvg="mr-3 align-middle text-[#99A1B3] shrink-0 w-[18px]"
                         onButtonClick={deleteSearchHandler}
                     />
                 ) : (
                     <MagnifyingGlass
                         moreCSSSvg={`${
                             isMobileMode ? 'ml-2' : ''
-                        } mr-3 align-middle text-[#99A1B3] shrink-0`}
+                        } mr-3 align-middle text-[#99A1B3] shrink-0 w-[18px]`}
                     />
                 )}
             </div>
@@ -142,7 +143,7 @@ const SearchBar: FC<SearchBarProps> = ({ isMobileMode }) => {
             )}
 
             {isSuggestionVisible && !isMobileMode && pathname !== '/' ? (
-                <div className="rounded-md w-full max-h-72 absolute top-[130%] z-20 h-fit shadow-md overflow-hidden overflow-y-auto">
+                <div className="rounded-md w-full max-h-72 2xl:max-h-96 absolute top-[130%] z-20 h-fit shadow-md overflow-hidden overflow-y-auto">
                     {fetchedCountries &&
                         activeCountries &&
                         activeCountries.map(cty => (

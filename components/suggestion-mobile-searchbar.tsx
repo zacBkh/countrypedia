@@ -30,12 +30,12 @@ const SuggestionMobileSearchBar: FC<SuggestionMobileSearchBarProps> = ({
 }) => {
     return (
         <ul>
-            <li className="resultSearchBar rounded-lg">
+            <li className="resultSearchBar px-2 py-1 2xl:px-3 2xl:py-2 rounded-lg">
                 <Link
                     onClick={onClickCountry}
                     href={`/${slugCtyName(name.common)}_${cca3.toLowerCase()}`}
                 >
-                    <div className="py-1 px-2 flex justify-between items-center">
+                    <div className="flex justify-between items-center">
                         <div className="flex justify-between gap-x-2 items-center">
                             <Image
                                 width={50}
@@ -45,7 +45,7 @@ const SuggestionMobileSearchBar: FC<SuggestionMobileSearchBarProps> = ({
                                 alt={flags.alt}
                             />
                             <div className="flex flex-col">
-                                <p className="font-semibold">{name.common}</p>
+                                <p className="font-semibold text-base">{name.common}</p>
                                 <p className="text-sm italic">{region}</p>
                             </div>
                         </div>
