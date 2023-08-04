@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, FC } from 'react'
+import { FC } from 'react'
 
 import SearchBar from './search-bar'
 
@@ -18,6 +18,11 @@ interface OverlaySearchBarMobileProps {
     hello?: any
 }
 
+export const fetcherGetCtysSearchBar = async () => {
+    const allCountries = await getAllCountriesSearchBar()
+    return allCountries
+}
+
 const OverlaySearchBarMobile: FC<OverlaySearchBarMobileProps> = ({ hello }) => {
     const { isMobileSearchBarActive, setIsMobileSearchBarActive } = useGlobalContext()
 
@@ -33,16 +38,11 @@ const OverlaySearchBarMobile: FC<OverlaySearchBarMobileProps> = ({ hello }) => {
     //     }
     // }, [isMobileSearchBarActive])
 
-    const fetcher = async () => {
-        const allCountries = await getAllCountriesSearchBar()
-        return allCountries
-    }
-
     const {
         data: fetchedCountries,
         error,
         isLoading,
-    } = useSWRImmutable(SWR_KEYS.GET_ALL_COUNTRIES_SEARCHBAR, fetcher)
+    } = useSWRImmutable(SWR_KEYS.GET_ALL_COUNTRIES_SEARCHBAR, fetcherGetCtysSearchBar)
 
     const closeHandler = () => {
         setIsMobileSearchBarActive(false)
@@ -77,8 +77,9 @@ const OverlaySearchBarMobile: FC<OverlaySearchBarMobileProps> = ({ hello }) => {
                         activeCountries &&
                         activeCountries.map(cty => (
                             <SuggestionMobileSearchBar
-                                onClickCountry={closeHandler}
                                 key={cty.cca3}
+                                cca3={cty.cca3}
+                                onClickCountry={closeHandler}
                                 name={cty.name}
                                 flags={cty.flags}
                                 region={cty.region}

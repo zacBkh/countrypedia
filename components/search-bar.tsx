@@ -1,5 +1,9 @@
 'use client'
 
+import useSWRImmutable from 'swr/immutable'
+
+import { usePathname } from 'next/navigation'
+
 import { FC, useEffect, useRef, useState } from 'react'
 
 import KeyBoardStroke from './ui/icons/os-icons'
@@ -9,6 +13,12 @@ import CloseButton from './ui/icons/close-button'
 import { useGlobalContext } from '@/app/context/store'
 
 import useOnClickOutside from '@/hooks/useOnClickOutside'
+
+import SWR_KEYS from '@/constants/SWR-keys'
+
+import SuggestionMobileSearchBar from './suggestion-mobile-searchbar'
+
+import { fetcherGetCtysSearchBar } from './overlay-searchbar-mobile'
 
 interface SearchBarProps {
     isMobileMode?: boolean
@@ -21,6 +31,16 @@ const SearchBar: FC<SearchBarProps> = ({ isMobileMode }) => {
 
     const { searchQuery, setSearchQuery } = useGlobalContext()
 
+    const {
+        data: fetchedCountries,
+        error,
+        isLoading,
+    } = useSWRImmutable(SWR_KEYS.GET_ALL_COUNTRIES_SEARCHBAR, fetcherGetCtysSearchBar)
+
+    const filteredCountries = fetchedCountries?.filter(country =>
+        country.name.common.toLowerCase().includes(searchQuery.toLowerCase()),
+    )
+
     const searchHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const search = evt.target.value
         setSearchQuery(search) // send to global context
@@ -30,6 +50,9 @@ const SearchBar: FC<SearchBarProps> = ({ isMobileMode }) => {
             setIsSuggestionVisible(false)
         }
     }
+
+    // Display filtered countries if filter, otherwise display all
+    const activeCountries = searchQuery ? filteredCountries : fetchedCountries
 
     const [currentOS, setCurrentOS] = useState('Windows')
 
@@ -62,8 +85,18 @@ const SearchBar: FC<SearchBarProps> = ({ isMobileMode }) => {
 
     useOnClickOutside(suggestedPopUp, () => setIsSuggestionVisible(false))
 
+    const pathname = usePathname()
+
+    const closeHandler = () => {
+        setIsSuggestionVisible(false)
+        setSearchQuery('')
+    }
+
     return (
-        <div className="relative flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
+        <div
+            ref={suggestedPopUp}
+            className="relative flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center"
+        >
             <div className="z-50 absolute left-[3%] 2xl:left-[14px] top-auto flex justify-center items-center">
                 {searchQuery ? (
                     <CloseButton
@@ -80,6 +113,7 @@ const SearchBar: FC<SearchBarProps> = ({ isMobileMode }) => {
             </div>
 
             <input
+                onFocus={() => setIsSuggestionVisible(true)}
                 ref={searchBarRef}
                 onChange={searchHandler}
                 value={searchQuery}
@@ -107,20 +141,20 @@ const SearchBar: FC<SearchBarProps> = ({ isMobileMode }) => {
                 ''
             )}
 
-            {isSuggestionVisible && !isMobileMode ? (
-                <div
-                    ref={suggestedPopUp}
-                    className="rounded-md w-full max-h-52 absolute top-[130%] z-20 h-fit shadow-md overflow-hidden overflow-y-auto"
-                >
-                    <p className="resultSearchBar pl-2 py-2">
-                        No country matches your query... 😢
-                    </p>
-                    <p className="resultSearchBar pl-2 py-2">
-                        No country matches your query... 😢
-                    </p>
-                    <p className="resultSearchBar pl-2 py-2">
-                        No country matches your query... 😢
-                    </p>
+            {isSuggestionVisible && !isMobileMode && pathname !== '/' ? (
+                <div className="rounded-md w-full max-h-72 absolute top-[130%] z-20 h-fit shadow-md overflow-hidden overflow-y-auto">
+                    {fetchedCountries &&
+                        activeCountries &&
+                        activeCountries.map(cty => (
+                            <SuggestionMobileSearchBar
+                                key={cty.cca3}
+                                cca3={cty.cca3}
+                                onClickCountry={closeHandler}
+                                name={cty.name}
+                                flags={cty.flags}
+                                region={cty.region}
+                            />
+                        ))}
                 </div>
             ) : (
                 ''
