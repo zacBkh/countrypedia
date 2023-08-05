@@ -6,12 +6,6 @@ const { HOME, PLAY } = APP_LINKS
 
 const NotFound404 = () => {
     return (
-        // <div>
-        //     <h2>Not Found</h2>
-        //     <p>Could not find requested resource</p>
-        //     <Link href="/">Return Home</Link>
-        // </div>
-
         <div className="text-center h-[80vh] flex flex-col justify-center">
             <p className="text-base font-semibold">404</p>
             <h1 className="mt-4 text-3xl font-bold tracking-tight  sm:text-5xl">

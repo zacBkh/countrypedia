@@ -60,8 +60,8 @@ const Carousel: FC<CarouselProps> = ({ mediaObj }) => {
         return 'next'
     }
 
-    const width = 'w-[65vw] sm:w-[22vw]'
-    const height = 'h-[86vw] sm:h-[29vw]'
+    const width = 'w-[71.5vw] sm:w-[22vw]'
+    const height = 'h-[94.6vw] sm:h-[29vw]'
     return (
         <>
             <div className={`${width} overflow-hidden`}>
