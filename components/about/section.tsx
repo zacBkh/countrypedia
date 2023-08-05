@@ -44,7 +44,7 @@ const AboutSection: FC<AboutSectionProps> = ({
             </div>
 
             <div className={`sm:max-w-[50%]`}>
-                <h2 className={`font-semibold mb-4 ${TITLE_SEC_FONT_SIZE} xl:text-2xl`}>
+                <h2 className={`font-bold mb-4 ${TITLE_SEC_FONT_SIZE} xl:text-2xl`}>
                     {title}
                 </h2>
                 <div className="2xl:text-lg">

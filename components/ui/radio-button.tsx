@@ -23,7 +23,7 @@ const RadioButton: FC<RadioButtonProps> = ({ cca3, capital, name, onClickOption 
                 onKeyDown={handleKeyPress}
                 tabIndex={0}
                 role="button"
-                className="bg-[#f3f4f8] hover:bg-[#eaebf0] dark:bg-[#333A45] dark:hover:bg-[#333a45b2] cursor-pointer w-[35vw] py-4 rounded-md"
+                className="bg-[#f3f4f8] hover:bg-[#eaebf0] dark:bg-[#333A45] dark:hover:bg-[#333a45b2] cursor-pointer w-[35vw] py-3 sm:py-4 rounded-md sm:text-lg"
                 htmlFor={cca3}
             >
                 <input

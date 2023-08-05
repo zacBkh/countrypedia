@@ -25,7 +25,7 @@ const PlayPage = async () => {
                     objectCover
                     title="Capitals Quiz 😱"
                     desc={{
-                        body: "Pick the right countries' capitals.in a limited time.",
+                        body: "Pick the right countries' capitals, from easy to hard!",
                         teasing: 'How many of them do you know? 🤓',
                     }}
                     img={ScreenshotCapitalGuesser}
