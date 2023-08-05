@@ -1,15 +1,10 @@
-import CountryCardSkeleton from '@/components/ui/skeletons/country-card-skeleton'
+import Spinner from '@/components/ui/spinner'
+
 const Loading = () => {
-    // let qtySkeletons = []
-    // for (let step = 0; step < 15; step++) {
-    //     qtySkeletons.push(1)
-    // }
     return (
-        <div className="flex flex-wrap justify-between items-center gap-4">
-            <p>LOADING FROM [COUNTRY]</p>
-            {/* {qtySkeletons.map((i, index) => (
-                <CountryCardSkeleton key={index} />
-            ))} */}
+        <div className="flex flex-wrap justify-center items-center gap-4 h-screen sm:h-[40vw]">
+            <p className="text-xl font-semibold">Loading your country...</p>
+            <Spinner moreCSS="border-t-react-blue-txt-light&dark !w-10 !h-10" />
         </div>
     )
 }
