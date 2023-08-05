@@ -12,7 +12,7 @@
 <h2 align="center">🌎 Learn about the world's countries and test your knowledge with CountryPedia 🌎</h2>
 
   <p align="center">
-    <a href="https://countrypedia-zacbkh.vercel.app/">Visit SpotFinder</a> •
+    <a href="https://countrypedia-zacbkh.vercel.app/">Visit CountryPedia</a> •
     <a href="mailto:contact@country-pedia.com">contact@country-pedia.com</a>
   </p>
 </div>
@@ -32,7 +32,11 @@
 
 ## 🤔 Why CountryPedia?
 
+<div align="center">
+
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
+
+</div>
 
 My sister is a teacher... 👩🏻‍🏫 <br />
 One day she came to me complaining there is no good website where you can learn and test your knowledge about the world's countries 😭 <br />
@@ -64,7 +68,7 @@ So guess what I did? <br />
 
 ## 👨🏼‍💻 Tech Stack
 
-🚀 Some of the amazing technologies powering SpotFinder 👇🏼
+🚀 The tech powering CountryPedia 👇🏼
 
 [![Next][Next.js]][Next-url]
 [![Node][Node.js]][Node-url]
