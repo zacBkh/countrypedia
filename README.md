@@ -88,7 +88,7 @@ So guess what I did? <br />
 ✅ Add a responsive image carousel on the /about page <br />
 ⏳ Add a sorting function on /home page to sort countries by population, land area... <br />
 ⏳ Internationalization to support French & English <br />
-⏳ Add a "Add to favourite" feature working with Local Storage
+⏳ Create an "Add to favourite" feature working with Local Storage
 
 You are a teacher and want to use this project? [Reach out to me](https://twitter.com/zacFullStack) and let's talk about it 💬
 
