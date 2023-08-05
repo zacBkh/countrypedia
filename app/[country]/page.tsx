@@ -1,5 +1,7 @@
 import { FC } from 'react'
 
+import { notFound } from 'next/navigation'
+
 import { getOneCountry, getAllCountries } from '@/services/fetchers'
 
 import Carousel from '@/components/show-country/carousel'
@@ -27,30 +29,11 @@ const ShowCountry: FC<ShowCountryProps> = async ({ params }) => {
     const { country } = params
 
     const showCountry = await getOneCountry(removeSlug(country))
-    const {
-        cca3,
-        coatOfArms,
-        flags,
+    if (!showCountry.length) {
+        return notFound()
+    }
 
-        name,
-        capital,
-        area: size,
-
-        languages,
-        population,
-        demonyms,
-
-        startOfWeek,
-        currencies,
-
-        independent,
-        unMember,
-
-        region,
-        subregion,
-        latlng,
-        maps,
-    } = showCountry[0]
+    const { cca3, coatOfArms, flags, name, area: size, latlng } = showCountry[0]
     return (
         <div className="mb-28">
             <h1 className={`${SUPER_TITLE_FONT_SIZE} py-2 md:py-3 2xl:py-5 text-center`}>

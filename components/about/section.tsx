@@ -5,17 +5,10 @@ import Image from 'next/image'
 import { TITLE_SEC_FONT_SIZE } from '@/constants/responsive-fonts'
 
 export interface MediaObjType {
-    mediaObj: { name: string; media: any }[]
+    mediaObj: { media: any; legendPic: string; alt: string }[]
 }
 
 interface AboutSectionProps {
-    img1: any
-    desc1: string
-
-    img2: any
-    desc2: string
-
-    alt: string
     title: string
     text1: string
     text2: string
@@ -27,18 +20,14 @@ interface AboutSectionProps {
 }
 
 const AboutSection: FC<AboutSectionProps> = ({
-    img1,
-    desc1,
-    img2,
-    desc2,
+    mediaObj,
+
     title,
     text1,
     text2,
     text3,
     imgOnTheRight,
     moreCSS,
-    alt,
-    mediaObj,
 }) => {
     return (
         <div
@@ -51,17 +40,11 @@ const AboutSection: FC<AboutSectionProps> = ({
                     imgOnTheRight ? 'order-2' : ''
                 } w-[65vw] sm:w-[22vw] flex flex-col items-center gap-y-2`}
             >
-                <Carousel
-                    mediaObj={mediaObj}
-                    desc1={desc1}
-                    img1={img1}
-                    desc2={desc2}
-                    img2={img2}
-                />
+                <Carousel mediaObj={mediaObj} />
             </div>
 
             <div className={`sm:max-w-[50%]`}>
-                <h2 className={`font-semibold mb-4 ${TITLE_SEC_FONT_SIZE} 2xl:text-2xl`}>
+                <h2 className={`font-semibold mb-4 ${TITLE_SEC_FONT_SIZE} xl:text-2xl`}>
                     {title}
                 </h2>
                 <div className="2xl:text-lg">
