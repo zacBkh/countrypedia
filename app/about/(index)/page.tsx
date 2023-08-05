@@ -64,7 +64,7 @@ const AboutPage = ({}) => {
                     imgOnTheRight
                     mediaObj={mediaObjSec2}
                     title="Why CountryPedia? 🤓"
-                    text1="My sister is a teacher. She one day came to me complaining there is no good website you can learn and test your knowledge about the world's countries 😱"
+                    text1="My sister is a teacher. She one day came to me complaining there is no good website where you can learn and test your knowledge about the world's countries 😱"
                     text2="So guess what I did? I asked her exact needs and created it! 😎"
                     text3="Today, the 12 classes at her school are using CountryPedia and I am very proud of that. I keep updating the app to introduce features requested by other teachers."
                 />
