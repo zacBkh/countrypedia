@@ -6,7 +6,7 @@
 <br />
 <div id="readmetop" align="center">
   <a href="https://countrypedia-zacbkh.vercel.app/">
-    <img src="public/countrypedia-logo.png" alt="CountryPedia logo" width="280" height="144">
+    <img src="public/countrypedia-logo.png" alt="CountryPedia logo" width="124" height="124">
   </a>
 
 <h2 align="center">🌎 Learn about the world's countries and test your knowledge with CountryPedia 🌎</h2>
@@ -21,7 +21,7 @@
 
 <div align="center">
 
-**[WHY COUNTRY PEDIA? 🤔](#-why-countrypedia) •
+**[WHY COUNTRYPEDIA? 🤔](#-why-countrypedia) •
 [MAIN FEATURES ⚙️](#%EF%B8%8F-main-features) •
 [TECH STACK 👨🏼‍💻](#-tech-stack) •
 [ROADMAP 🔮](#roadmap-)**
@@ -42,7 +42,7 @@ My sister is a teacher... 👩🏻‍🏫 <br />
 One day she came to me complaining there is no good website where you can learn and test your knowledge about the world's countries 😭 <br />
 
 So guess what I did? <br />
-**I asked her exact needs and created it!** 😎
+**I asked her exact needs and created it!** 💪🏼
 
 <div align="right">
 
@@ -71,6 +71,7 @@ So guess what I did? <br />
 🚀 The tech powering CountryPedia 👇🏼
 
 [![Next][Next.js]][Next-url]
+[![Typescript][typescript]][typescript-url]
 [![Node][Node.js]][Node-url]
 [![Mapbox][Mapbox]][Mapbox-url]
 [![Tailwind][Tailwind]][Tailwind-url]
@@ -119,6 +120,8 @@ Zacharie Dupain - [Twitter](https://twitter.com/zacFullStack) - [Instagram](http
 
 <!--  -->
 
+<!--  -->
+
 [insta-shield]: https://img.shields.io/badge/-Instagram-black.svg?style=for-the-badge&logo=Instagram&colorB=E4405F&logoColor=FFFFFF
 [insta-url]: https://www.instagram.com/what_a_shoot
 
@@ -131,6 +134,11 @@ Zacharie Dupain - [Twitter](https://twitter.com/zacFullStack) - [Instagram](http
 
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
+
+<!--  -->
+
+[typescript]: https://img.shields.io/badge/-typescript-black.svg?style=for-the-badge&logo=typescript&colorB=2F74C0&logoColor=white
+[typescript-url]: https://www.typescriptlang.org/
 
 <!--  -->
 
