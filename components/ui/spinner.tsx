@@ -9,7 +9,7 @@ interface SpinnerProps {
 const Spinner: FC<SpinnerProps> = ({ moreCSS }) => {
     return (
         <div
-            className={`${moreCSS} bg-white-700 inline-block w-5 h-5 border-[2px] rounded-[50%] animate-spin ease-in-out`}
+            className={`${moreCSS} bg-white-700 inline-block w-5 h-5 border-2 rounded-[50%] animate-spin ease-in-out`}
         ></div>
     )
 }

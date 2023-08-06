@@ -16,7 +16,7 @@ export default function AboutLayout({ children }: { children: React.ReactNode })
         'group-hover:!text-[#087EA4] text-[#23272F] dark:text-white text-base sm:text-xl'
 
     return (
-        <div className="flex flex-col items-center sm:items-start pb-4 sm:pb-6 px-8 sm:px-12 relative overflow-auto min-h-screen z-[80]">
+        <div className="flex flex-col items-center sm:items-start pb-4 sm:pb-6 px-8 sm:px-12 relative overflow-auto min-h-screen z-[150]">
             <div className="bg-white dark:bg-[#232730] fixed z-10 w-full flex justify-center gap-x-2 items-center py-2">
                 <h1 className={`${TITLE_FONT_SIZE} font-bold`}>
                     About Me, <span className="text-react-blue-txt-light&dark">Zach</span>

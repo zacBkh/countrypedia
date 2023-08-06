@@ -79,7 +79,11 @@ const CapitalGuesser = () => {
     }
 
     if (isLoading || !fetchedCountries) {
-        return <div>Loading...</div>
+        return (
+            <div className="flex w-full justify-center items-center h-[80vh]">
+                <Spinner moreCSS="border-t-[#087EA4] !w-10 !h-10 !border-4" />
+            </div>
+        )
     }
 
     const reFetchRequestHandler = async () => {
