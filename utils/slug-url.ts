@@ -1,5 +1,5 @@
 import { GetAllCountriesProps } from '@/services/fetchers'
-import capitalize from './capitalize'
+import { capitalizeWithDash } from './capitalize'
 // Will add '-' to country names
 export const slugCtyName = (ctyName: GetAllCountriesProps['name']['common']) => {
     const sluggedCtyName = ctyName.toLowerCase().replaceAll(' ', '-')
@@ -8,8 +8,8 @@ export const slugCtyName = (ctyName: GetAllCountriesProps['name']['common']) => 
 
 // Will take 'peru_per' and return 'Peru'
 export const unSlugCtyName = (ctyName: string) => {
-    const unSluggedCtyName = ctyName.replace(/_.*/, '').toUpperCase()
-    const capitalizedUnSluggedCtyName = capitalize(unSluggedCtyName)
+    const unSluggedCtyName = ctyName.replace(/_.*/, '')
+    const capitalizedUnSluggedCtyName = capitalizeWithDash(unSluggedCtyName)
     return capitalizedUnSluggedCtyName
 }
 

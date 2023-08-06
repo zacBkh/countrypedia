@@ -7,6 +7,7 @@ interface ParamsProps {
 export async function generateMetadata({ params }: { params: ParamsProps }) {
     const { country } = params
     const countryDisplay = unSlugCtyName(country)
+    console.log('countryDisplay', countryDisplay)
 
     return {
         title: `${countryDisplay} | CountryPedia`,
