@@ -25,6 +25,8 @@ import {
     FeedbackUserAnswerCapitalGuesser,
 } from '@/components/play/games-dashboard-ui'
 
+import ConfettiWrapper from '@/components/ui/confetti-wrapper'
+
 export interface FeedbackUserAnswerTypes {
     isUserCorrect: boolean | null
     selectedCapital: string
@@ -118,7 +120,7 @@ const CapitalGuesser = () => {
     }
 
     return (
-        <div className="py-6 p-1 sm:p-6">
+        <div className="h-[40vh] sm:h-[70vh] flex justify-center items-center">
             {capitalGuesserRules?.isActive ? <RulesCapitalGuesserModal /> : ''}
             <div className="2xl:p-5 flex flex-col gap-y-6 select-none">
                 <div className="flex justify-center items-center gap-x-2">
@@ -161,6 +163,8 @@ const CapitalGuesser = () => {
                     />
                 </div>
             </div>
+
+            <ConfettiWrapper countClick={countClick} isUserCorrect={isUserCorrect} />
         </div>
     )
 }
