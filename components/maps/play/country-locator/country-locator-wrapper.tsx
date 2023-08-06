@@ -21,6 +21,8 @@ import RulesCountryLocatorModal from '@/components/ui/modals/rules-country-locat
 
 import { ScoreDisplayer, HelpMessage } from '@/components/play/games-dashboard-ui'
 
+import ConfettiWrapper from '@/components/ui/confetti-wrapper'
+
 interface ClickedCountryTypes {
     code: string
     name: string
@@ -134,6 +136,8 @@ const CountryLocatorWrapper = () => {
                 </div>
             </div>
             <CountryLocatorMap onCtySelection={userSelectCountryHandler} />
+
+            <ConfettiWrapper countClick={countClick} isUserCorrect={isUserCorrect} />
         </>
     )
 }
