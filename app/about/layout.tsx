@@ -1,6 +1,10 @@
+import SEO_KEYWORDS from '@/constants/seo-keywords'
+
 export const metadata = {
-    title: 'About Me',
-    description: 'Know more about Zach, the developer behind CountryPedia',
+    title: 'About Me | CountryPedia',
+    keywords: SEO_KEYWORDS,
+    description:
+        'Find informations about Zach, the programmer behind CountryPedia. Why did I create CountryPedia? Who am I?',
 }
 
 import Link from 'next/link'

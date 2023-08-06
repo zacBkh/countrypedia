@@ -1,6 +1,10 @@
+import SEO_KEYWORDS from '@/constants/seo-keywords'
+
 export const metadata = {
-    title: 'CountryPedia | Test your knowledge!',
-    description: 'CountryPedia',
+    title: 'Test your knowledge | CountryPedia',
+    keywords: SEO_KEYWORDS,
+    description:
+        'Test your knowledge and challenge yourself with our range of interactive quiz games! Try to locate randomly generated countries on a map, find their capitals...',
 }
 
 import { TITLE_FONT_SIZE } from '@/constants/responsive-fonts'

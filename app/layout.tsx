@@ -10,12 +10,6 @@ import ThemeProviderWrap from './theme-provider'
 
 import { GlobalContextProvider } from './context/store'
 
-export const metadata = {
-    title: 'CountryPedia',
-    description: 'Find informations about all countries with CountryPedia',
-    keywords: 'Countries, world',
-}
-
 const nunito = Nunito({
     subsets: ['latin'],
     variable: '--font-nunito',

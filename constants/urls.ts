@@ -21,14 +21,15 @@ export const NAV_LINKS = [
         link: APP_LINKS.HOME,
         id: 'Links-1',
     },
-    {
-        item: 'About',
-        link: APP_LINKS.ABOUT,
-        id: 'Links-2',
-    },
+
     {
         item: 'Play',
         link: APP_LINKS.PLAY,
         id: 'Links-3',
+    },
+    {
+        item: 'About Me',
+        link: APP_LINKS.ABOUT,
+        id: 'Links-2',
     },
 ]
