@@ -31,7 +31,14 @@ const ConfettiWrapper: FC<ConfettiWrapperProps> = ({ isUserCorrect, countClick }
 
     return (
         <>
-            <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
+            <ReactCanvasConfetti
+                particleCount={40}
+                ticks={80}
+                gravity={1.5}
+                startVelocity={55}
+                refConfetti={getInstance}
+                style={canvasStyles}
+            />
         </>
     )
 }

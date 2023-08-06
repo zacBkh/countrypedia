@@ -35,7 +35,7 @@ export const HelpMessage: FC<HelpMsgType> = ({ openModal }) => {
     const styleText = 'text-[#087da4] dark:text-[#149eca] font-bold'
 
     return (
-        <p className="basis-1/3">
+        <p className="basis-1/3 xl:text-lg">
             Feeling lost?{' '}
             <button
                 onClick={openModal}
@@ -56,7 +56,7 @@ export const ScoreDisplayer: FC<ScoreDisplayerTypes> = ({ score, countClick }) =
     const styleText = 'text-[#087da4] dark:text-[#149eca] font-bold'
 
     return (
-        <p className="basis-1/3 rounded-md py-2">
+        <p className="basis-1/3 rounded-md py-2 xl:text-lg">
             🎯 Your score:{' '}
             <span className={`${styleText}`}>
                 {score}/{countClick}

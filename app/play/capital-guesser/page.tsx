@@ -11,7 +11,7 @@ import SWR_KEYS from '@/constants/SWR-keys'
 
 import { useGlobalContext } from '@/app/context/store'
 
-import { TITLE_SEC_FONT_SIZE } from '@/constants/responsive-fonts'
+import { TITLE_FONT_SIZE } from '@/constants/responsive-fonts'
 
 import Spinner from '@/components/ui/spinner'
 
@@ -126,7 +126,7 @@ const CapitalGuesser = () => {
                 <div className="flex justify-center items-center gap-x-2">
                     <h1
                         title="That is the country you need to locate on the map."
-                        className={`flex justify-center items-center  min-w-[140px] min-h-[44px] rounded-full w-fit px-5 py-2 bg-[#0D6D8C] font-bold text-react-txt-dark text-center ${TITLE_SEC_FONT_SIZE}`}
+                        className={`flex justify-center items-center  min-w-[140px] min-h-[44px] rounded-full w-fit px-5 py-2 bg-[#0D6D8C] font-bold text-react-txt-dark text-center ${TITLE_FONT_SIZE}`}
                     >
                         {isLoading || capitalGuesserRules?.isActive ? (
                             <Spinner moreCSS="border-t-[#333A45]" />
