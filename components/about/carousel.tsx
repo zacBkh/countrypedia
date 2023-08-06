@@ -7,6 +7,8 @@ import Image from 'next/image'
 
 import { MediaObjType } from './section'
 
+import { ARROW_CAROUSEL_CSS } from '@/constants/carousel-arrow-style'
+
 interface CarouselProps {
     mediaObj: MediaObjType['mediaObj']
 }
@@ -15,9 +17,6 @@ const Carousel: FC<CarouselProps> = ({ mediaObj }) => {
     const [activeImg, setActiveImg] = useState(0)
 
     const [areArrowBtnDisabled, setareArrowBtnDisabled] = useState(false)
-
-    const arrowStyle =
-        'dark:bg-[#23272F] dark:hover:!bg-[#23272F] bg-[#E5E7EC] hover:bg-[#E5E7EC] bg-opacity-90 active:bg-opacity-100 text-sm p-2 rounded-full transition-opacity duration-[0.5s] absolute z-50 active:transform-none hover:!bg- '
 
     const switchPicHandler = (operator: '+' | '-') => {
         setareArrowBtnDisabled(true)
@@ -72,7 +71,7 @@ const Carousel: FC<CarouselProps> = ({ mediaObj }) => {
                         disabled={areArrowBtnDisabled}
                         aria-label="Previous picture"
                         onClick={() => switchPicHandler('-')}
-                        className={`cursor-pointer ${arrowStyle}
+                        className={`cursor-pointer ${ARROW_CAROUSEL_CSS}
                         ${activeImg === 0 ? 'invisible' : 'alignBtnCarrPopUpLeft'}`}
                     >
                         <IoIosArrowBack className="text-lg sm:text-base" />
@@ -97,7 +96,7 @@ const Carousel: FC<CarouselProps> = ({ mediaObj }) => {
                         disabled={areArrowBtnDisabled}
                         aria-label="Next picture"
                         onClick={() => switchPicHandler('+')}
-                        className={`cursor-pointer ${arrowStyle}
+                        className={`cursor-pointer ${ARROW_CAROUSEL_CSS}
                         ${
                             activeImg === mediaObj.length - 1
                                 ? 'invisible'

@@ -34,7 +34,7 @@ const ConfettiWrapper: FC<ConfettiWrapperProps> = ({ isUserCorrect, countClick }
             <ReactCanvasConfetti
                 particleCount={40}
                 ticks={80}
-                gravity={1.5}
+                gravity={1.6}
                 startVelocity={55}
                 refConfetti={getInstance}
                 style={canvasStyles}

@@ -7,6 +7,8 @@ import Image from 'next/image'
 
 import { TITLE_SEC_FONT_SIZE } from '@/constants/responsive-fonts'
 
+import { ARROW_CAROUSEL_CSS } from '@/constants/carousel-arrow-style'
+
 interface CarouselProps {
     countryName: string
     flag: string
@@ -20,9 +22,6 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
     ]
 
     const [activeImg, setActiveImg] = useState(0)
-
-    const arrowStyle =
-        'dark:bg-[#23272F] dark:hover:!bg-[#23272F] bg-[#E5E7EC] hover:bg-[#E5E7EC] bg-opacity-90 active:bg-opacity-100 text-sm p-1 md:p-2 rounded-full  transition-opacity duration-[0.5s] absolute z-50 active:transform-none hover:!bg- '
 
     const switchPicHandler = (operator: '+' | '-') => {
         if (operator === '+' && activeImg < mediaObject.length - 1) {
@@ -75,7 +74,7 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
                     <button
                         aria-label="Previous picture"
                         onClick={() => switchPicHandler('-')}
-                        className={`${arrowStyle}
+                        className={`${ARROW_CAROUSEL_CSS}
                         ${activeImg === 0 ? 'invisible' : 'alignBtnCarrPopUpLeft'}`}
                     >
                         <IoIosArrowBack />
@@ -101,7 +100,7 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
                     <button
                         aria-label="Next picture"
                         onClick={() => switchPicHandler('+')}
-                        className={`${arrowStyle}
+                        className={`${ARROW_CAROUSEL_CSS}
                         ${
                             activeImg === mediaObject.length - 1
                                 ? 'invisible'
