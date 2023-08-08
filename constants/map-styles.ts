@@ -13,8 +13,5 @@ export const MESSAGE_MAP_MAC = 'Use ⌘ + Scroll to zoom the map'
 
 export const RESPONSIVE_MAP_SIZE = {
     showCountryMap: 'h-[190px] md:h-[300px] 2xl:h-[400px]',
-    // countryLocatorMap: 'h-[400px] sm:h-[450px] 2xl:h-[500px]',
     countryLocatorMap: 'h-[100vh] sm:h-[450px] 2xl:h-[500px]',
 }
-
-// ${countryLocatorMap}
