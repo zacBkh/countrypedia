@@ -30,13 +30,16 @@
 
 <br />
 
-## 🤔 Why CountryPedia?
 
 <div align="center">
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+https://github.com/zacBkh/countrypedia/assets/108217390/1e616515-40b0-4180-bf6c-c98896feb8f4
 
 </div>
+
+## 🤔 Why CountryPedia?
+
+
 
 My sister is a teacher... 👩🏻‍🏫 <br />
 One day she came to me complaining there is no good website where you can learn and test your knowledge about the world's countries 😭 <br />
