@@ -33,7 +33,10 @@
 
 <div align="center">
 
-https://github.com/zacBkh/countrypedia/assets/108217390/1e616515-40b0-4180-bf6c-c98896feb8f4
+
+
+![CountryPedia - DemoGif](https://github.com/zacBkh/countrypedia/assets/108217390/1d2ae1a8-5f0b-4014-8960-76407c1ed01a)
+
 
 </div>
 
