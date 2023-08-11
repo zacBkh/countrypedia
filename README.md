@@ -5,14 +5,14 @@
 <!-- PROJECT LOGO -->
 <br />
 <div id="readmetop" align="center">
-  <a href="https://countrypedia-zacbkh.vercel.app/">
+  <a href="www.country-pedia.com">
     <img src="public/countrypedia-logo.png" alt="CountryPedia logo" width="124" height="124">
   </a>
 
 <h2 align="center">🌎 CountryPedia, learn about the world's countries 🌎</h2>
 
   <p align="center">
-    <a href="https://countrypedia-zacbkh.vercel.app/">Visit CountryPedia</a> •
+    <a href="www.country-pedia.com">Visit CountryPedia</a> •
     <a href="mailto:contact@country-pedia.com">contact@country-pedia.com</a>
   </p>
 </div>
@@ -30,19 +30,13 @@
 
 <br />
 
-
 <div align="center">
 
-
-
 ![CountryPedia - DemoGif](https://github.com/zacBkh/countrypedia/assets/108217390/1d2ae1a8-5f0b-4014-8960-76407c1ed01a)
-
 
 </div>
 
 ## 🤔 Why CountryPedia?
-
-
 
 My sister is a teacher... 👩🏻‍🏫 <br />
 One day she came to me complaining there is no good website where you can learn and test your knowledge about the world's countries 😭 <br />
