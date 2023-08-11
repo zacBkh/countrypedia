@@ -9,7 +9,7 @@
     <img src="public/countrypedia-logo.png" alt="CountryPedia logo" width="124" height="124">
   </a>
 
-<h2 align="center">🌎 Learn about the world's countries and test your knowledge with CountryPedia 🌎</h2>
+<h2 align="center">🌎 CountryPedia, learn about the world's countries 🌎</h2>
 
   <p align="center">
     <a href="https://countrypedia-zacbkh.vercel.app/">Visit CountryPedia</a> •
@@ -52,7 +52,7 @@ So guess what I did? <br />
 
 ## ⚙️ Main Features
 
-🏋🏼 Browse all the world countries and use client-side dynamic filtering
+🔍 Browse all the world countries and use client-side dynamic filtering
 
 🌏 Access to each countries' page and learn more about them
 
