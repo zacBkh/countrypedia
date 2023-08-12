@@ -5,6 +5,9 @@ export enum FetchLinks {
     ALL_ISO = 'https://restcountries.com/v3.1/all?fields=cca2,cca3,name',
     ALL_CAPITAL = 'https://restcountries.com/v3.1/all?fields=cca3,name,capital',
 }
+export enum FetchLinksOwnAPI {
+    GET_LIKE_COUNT = '/api/play',
+}
 
 export enum APP_LINKS {
     HOME = '/',

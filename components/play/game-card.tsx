@@ -6,22 +6,24 @@ import Button from '../ui/buttons'
 
 import { TITLE_FONT_SIZE, DETAILS_FONT_SIZE } from '@/constants/responsive-fonts'
 
+import { Suspense } from 'react'
+
+import IncrementLikeButtonClient from './like-displayers/button-increment-like-client'
+import LikeDisplayerGamesServer from './like-displayers/like-displayer-games-server'
+
 interface GameCardProps {
+    id: string
     title: string
     desc: { body: string; teasing: string }
     img: any
-    level: string
     link: string
     objectCover?: boolean
 }
 
-const GameCard: FC<GameCardProps> = ({ title, desc, img, level, link, objectCover }) => {
-    const displaySuspensionPoints =
-        'text-ellipsis whitespace-nowrap overflow-hidden text-start'
-
+const GameCard: FC<GameCardProps> = ({ id, title, desc, img, link, objectCover }) => {
     return (
         <div
-            className={`w-[320px] h-[320px] md:w-[420px] md:h-[402px] bg-[#F7F7F9] border shadow dark:shadow-none rounded-lg  shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
+            className={`w-[320px] h-[320px] md:w-[420px] md:h-[416PX] bg-[#F7F7F9] border shadow dark:shadow-none rounded-lg  shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
         >
             <div className="w-full h-36 md:h-48 relative">
                 <Image
@@ -32,7 +34,7 @@ const GameCard: FC<GameCardProps> = ({ title, desc, img, level, link, objectCove
                 />
             </div>
 
-            <div className="py-2 px-3 sm:px-4 flex flex-col gap-y-4">
+            <div className="py-2 px-3 sm:px-4 flex flex-col gap-y-2">
                 <h5
                     className={`${TITLE_FONT_SIZE} text-center font-bold tracking-tight text-gray-900 dark:text-white`}
                 >
@@ -45,6 +47,13 @@ const GameCard: FC<GameCardProps> = ({ title, desc, img, level, link, objectCove
                     <p>{desc.body}</p>
                     <p>{desc.teasing}</p>
                 </div>
+
+                <Suspense fallback={<p>Loading feed...</p>}>
+                    <IncrementLikeButtonClient>
+                        <LikeDisplayerGamesServer gameID={id} />
+                    </IncrementLikeButtonClient>
+                </Suspense>
+
                 <div className="flex justify-center gap-x-8">
                     <Button
                         ariaLabel={`Click to play the game`}
