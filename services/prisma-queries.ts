@@ -1,6 +1,7 @@
 import prisma from '../utils/prisma'
 
 import GameNames from '@/constants/game-names'
+
 // Create new game in records
 export const createNewGame = async () => {
     const newGame = await prisma.game.create({

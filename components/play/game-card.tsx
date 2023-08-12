@@ -8,8 +8,8 @@ import { TITLE_FONT_SIZE, DETAILS_FONT_SIZE } from '@/constants/responsive-fonts
 
 import { Suspense } from 'react'
 
-import IncrementLikeButtonClient from './like-displayers/button-increment-like-client'
-import LikeDisplayerGamesServer from './like-displayers/like-displayer-games-server'
+import LikeGameButton from './like-game-displayer/like-game-button'
+import LikeDisplayerGamesServer from './like-game-displayer/like-count-displayer'
 
 import GameNames from '@/constants/game-names'
 
@@ -51,9 +51,9 @@ const GameCard: FC<GameCardProps> = ({ id, title, desc, img, link, objectCover }
                 </div>
 
                 <Suspense fallback={<p>Loading feed...</p>}>
-                    <IncrementLikeButtonClient gameID={id}>
+                    <LikeGameButton gameID={id}>
                         <LikeDisplayerGamesServer gameID={id} />
-                    </IncrementLikeButtonClient>
+                    </LikeGameButton>
                 </Suspense>
 
                 <div className="flex justify-center gap-x-8">
