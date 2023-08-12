@@ -2,7 +2,7 @@
 
 import useSWR from 'swr'
 
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import { fetchGameFetcher } from '@/services/dynamic-fetchers'
 
@@ -25,8 +25,11 @@ const LikeDisplayerGamesServer: FC<LikeDisplayerGamesProps> = ({ gameID }) => {
         isLoading,
     } = useSWR(SWR_KEYS.FETCH_COUNT_LIKE_GAME + gameID, () => fetchGameFetcher(gameID))
 
-    const hasLikedBefore = localStorage.getItem(gameID)
-    const parsedBoolean = hasLikedBefore && JSON.parse(hasLikedBefore)
+    let parsedBoolean
+    useEffect(() => {
+        const hasLikedBefore = localStorage.getItem(gameID)
+        parsedBoolean = hasLikedBefore && JSON.parse(hasLikedBefore)
+    }, [])
 
     return (
         <>

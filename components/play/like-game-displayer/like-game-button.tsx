@@ -2,7 +2,7 @@
 
 import { useSWRConfig } from 'swr'
 
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 import { incrementLikeCountFetcher } from '@/services/dynamic-fetchers'
 
@@ -22,13 +22,15 @@ const LikeGameButton: FC<LikeDisplayerGamesProps> = ({ gameID, children }) => {
         const incrementation = await incrementLikeCountFetcher(gameID)
         mutate(SWR_KEYS.FETCH_COUNT_LIKE_GAME + gameID)
 
-        const hasLikedBefore = localStorage.getItem(gameID)
+        useEffect(() => {
+            const hasLikedBefore = localStorage.getItem(gameID)
 
-        if (hasLikedBefore === 'true') {
-            localStorage.setItem(gameID, JSON.stringify(false))
-        } else {
-            localStorage.setItem(gameID, JSON.stringify(true))
-        }
+            if (hasLikedBefore === 'true') {
+                localStorage.setItem(gameID, JSON.stringify(false))
+            } else {
+                localStorage.setItem(gameID, JSON.stringify(true))
+            }
+        }, [])
     }
 
     return (
