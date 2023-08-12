@@ -1,4 +1,4 @@
-export const SUPER_TITLE_FONT_SIZE = 'text-2xl sm:text-4xl'
+export const SUPER_TITLE_FONT_SIZE = 'text-2xl sm:text-3xl xl:text-5xl'
 export const TITLE_FONT_SIZE = 'text-xl sm:text-2xl'
 export const TITLE_SEC_FONT_SIZE = 'text-lg sm:text-xl'
 
