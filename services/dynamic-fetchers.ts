@@ -28,10 +28,14 @@ export const fetchGameFetcher = async (game: GameNames) => {
     return data
 }
 
-export const incrementLikeCountFetcher = async (game: GameNames) => {
+export const incrementLikeCountFetcher = async (
+    game: GameNames,
+    hasLikedBefore: boolean,
+) => {
     const response = await fetch(`api${APP_LINKS.PLAY}/${game}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(hasLikedBefore),
     })
     const data = await response.json()
     return data

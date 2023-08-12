@@ -30,7 +30,7 @@ export const fetchOneGameLikeCount = async (game: GameNames) => {
 }
 
 // Increment like count of a game passed in params
-export const incrementLikeCount = async (game: GameNames) => {
+export const incrementLikeCount = async (game: GameNames, hasLikedBefore: boolean) => {
     try {
         const updatedGame = await prisma.game.update({
             where: {
@@ -38,7 +38,7 @@ export const incrementLikeCount = async (game: GameNames) => {
             },
             data: {
                 likeCount: {
-                    increment: 1,
+                    increment: hasLikedBefore ? -1 : +1,
                 },
             },
         })

@@ -8,8 +8,7 @@ import { TITLE_FONT_SIZE, DETAILS_FONT_SIZE } from '@/constants/responsive-fonts
 
 import { Suspense } from 'react'
 
-import LikeGameButton from './like-game-displayer/like-game-button'
-import LikeDisplayerGamesServer from './like-game-displayer/like-count-displayer'
+import LikeDisplayerGames from './like-count-displayer'
 
 import GameNames from '@/constants/game-names'
 
@@ -25,7 +24,7 @@ interface GameCardProps {
 const GameCard: FC<GameCardProps> = ({ id, title, desc, img, link, objectCover }) => {
     return (
         <div
-            className={`w-[320px] h-[320px] md:w-[420px] md:h-[416PX] bg-[#F7F7F9] border shadow dark:shadow-none rounded-lg  shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
+            className={`w-[320px] md:w-[420px] bg-[#F7F7F9] border shadow dark:shadow-none rounded-lg  shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
         >
             <div className="w-full h-36 md:h-48 relative">
                 <Image
@@ -51,9 +50,7 @@ const GameCard: FC<GameCardProps> = ({ id, title, desc, img, link, objectCover }
                 </div>
 
                 <Suspense fallback={<p>Loading feed...</p>}>
-                    <LikeGameButton gameID={id}>
-                        <LikeDisplayerGamesServer gameID={id} />
-                    </LikeGameButton>
+                    <LikeDisplayerGames gameID={id} />
                 </Suspense>
 
                 <div className="flex justify-center gap-x-8">
