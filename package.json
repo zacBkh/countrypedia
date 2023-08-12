@@ -10,6 +10,7 @@
         "test": "jest --watch -- --verbose"
     },
     "dependencies": {
+        "@prisma/client": "^5.1.1",
         "@testing-library/user-event": "^14.4.3",
         "@types/node": "20.3.1",
         "@types/react": "18.2.14",
@@ -36,6 +37,7 @@
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^14.0.0",
         "babel-jest": "^29.6.2",
-        "jest": "^29.6.2"
+        "jest": "^29.6.2",
+        "prisma": "^5.1.1"
     }
 }

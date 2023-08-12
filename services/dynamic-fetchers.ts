@@ -1,17 +1,14 @@
-import { FetchLinksOwnAPI } from '@/constants/urls'
-const { GET_LIKE_COUNT } = FetchLinksOwnAPI
+// API route fetchers
 
-export interface GetLikeCountTypes {
-    success: boolean
-    count: { country_locator: number; capital_guesser: number }
-}
+import { APP_LINKS } from '@/constants/urls'
 
-export const getLikeCount = async (duration: number): Promise<GetLikeCountTypes> => {
-    const res = { success: true, count: { country_locator: 6, capital_guesser: 54 } }
+import GameNames from '@/constants/game-names'
 
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve(res)
-        }, duration)
+export const incrementLikeCountFetcher = async (game: GameNames) => {
+    const response = await fetch(`/api/${APP_LINKS.PLAY}/${game}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
     })
+    const data = await response.json()
+    return data
 }

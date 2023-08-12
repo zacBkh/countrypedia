@@ -2,13 +2,19 @@
 
 import { FC } from 'react'
 
+import { incrementLikeCountFetcher } from '@/services/dynamic-fetchers'
+
+import GameNames from '@/constants/game-names'
+
 interface LikeDisplayerGamesProps {
     children?: React.ReactNode
+    gameID: GameNames
 }
 
-const IncrementLikeButtonClient: FC<LikeDisplayerGamesProps> = ({ children }) => {
-    const handleIncrementLikeCount = () => {
-        console.log('You clicked on the button')
+const IncrementLikeButtonClient: FC<LikeDisplayerGamesProps> = ({ children, gameID }) => {
+    const handleIncrementLikeCount = async () => {
+        const incrementation = await incrementLikeCountFetcher(gameID)
+        console.log('incrementation', incrementation)
     }
 
     return (

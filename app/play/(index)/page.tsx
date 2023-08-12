@@ -6,12 +6,14 @@ import GameCard from '@/components/play/game-card'
 import ScreenshotCtyLocator from '../../../public/screenshot-country-locator.png'
 import ScreenshotCapitalGuesser from '../../../public/screenshot-capital-guesser-alt.png'
 
+import GameNames from '@/constants/game-names'
+
 const PlayPage = () => {
     return (
         <>
             <div className="flex items-center flex-wrap gap-y-6">
                 <GameCard
-                    id="ctyLocator"
+                    id={GameNames.COUNTRY_LOCATOR_NAME}
                     title="Country Locator 📍"
                     desc={{
                         body: 'Locate randomly generated countries on an interactive map.',
@@ -22,7 +24,7 @@ const PlayPage = () => {
                 />
 
                 <GameCard
-                    id="capitalQuiz"
+                    id={GameNames.CAPITAL_GUESSER_NAME}
                     objectCover
                     title="Capitals Quiz 😱"
                     desc={{

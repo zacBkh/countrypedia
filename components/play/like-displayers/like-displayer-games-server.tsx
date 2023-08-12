@@ -1,22 +1,27 @@
 import { FC } from 'react'
 
-import { getLikeCount } from '@/services/dynamic-fetchers'
+// import { getLikeCount } from '@/services/dynamic-fetchers'
 
 import { BsFillHeartFill } from 'react-icons/bs'
 
+import { fetchLikesCount } from '@/services/prisma-queries'
+
+import GameNames from '@/constants/game-names'
+
 interface LikeDisplayerGamesProps {
-    gameID: string
+    gameID: GameNames
 }
 
 const LikeDisplayerGamesServer: FC<LikeDisplayerGamesProps> = async ({ gameID }) => {
-    const res = await getLikeCount(2000)
-    const { country_locator, capital_guesser } = res.count
+    const likesCount = await fetchLikesCount()
+    const ctyLoc = likesCount.find(elem => elem.name === GameNames.COUNTRY_LOCATOR_NAME)
+    const capGuess = likesCount.find(elem => elem.name === GameNames.CAPITAL_GUESSER_NAME)
 
     let likeCount
-    if (gameID === 'ctyLocator') {
-        likeCount = country_locator
+    if (gameID === GameNames.COUNTRY_LOCATOR_NAME) {
+        likeCount = ctyLoc?.likeCount
     } else {
-        likeCount = capital_guesser
+        likeCount = capGuess?.likeCount
     }
 
     return (

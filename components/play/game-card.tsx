@@ -11,8 +11,10 @@ import { Suspense } from 'react'
 import IncrementLikeButtonClient from './like-displayers/button-increment-like-client'
 import LikeDisplayerGamesServer from './like-displayers/like-displayer-games-server'
 
+import GameNames from '@/constants/game-names'
+
 interface GameCardProps {
-    id: string
+    id: GameNames
     title: string
     desc: { body: string; teasing: string }
     img: any
@@ -49,7 +51,7 @@ const GameCard: FC<GameCardProps> = ({ id, title, desc, img, link, objectCover }
                 </div>
 
                 <Suspense fallback={<p>Loading feed...</p>}>
-                    <IncrementLikeButtonClient>
+                    <IncrementLikeButtonClient gameID={id}>
                         <LikeDisplayerGamesServer gameID={id} />
                     </IncrementLikeButtonClient>
                 </Suspense>
