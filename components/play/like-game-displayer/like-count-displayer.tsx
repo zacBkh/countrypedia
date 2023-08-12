@@ -1,32 +1,44 @@
+'use client'
+
+import useSWR from 'swr'
+
 import { FC } from 'react'
+
+import { fetchGameFetcher } from '@/services/dynamic-fetchers'
 
 import { BsFillHeartFill } from 'react-icons/bs'
 
 import GameNames from '@/constants/game-names'
 
-import { fetchLikesCount } from '@/services/prisma-queries'
+import Spinner from '@/components/ui/spinner'
+
+import SWR_KEYS from '@/constants/SWR-keys'
 
 interface LikeDisplayerGamesProps {
     gameID: GameNames
 }
 
-const LikeDisplayerGamesServer: FC<LikeDisplayerGamesProps> = async ({ gameID }) => {
-    const likesCount = await fetchLikesCount()
+const LikeDisplayerGamesServer: FC<LikeDisplayerGamesProps> = ({ gameID }) => {
+    const {
+        data: response,
+        error,
+        isLoading,
+    } = useSWR(SWR_KEYS.FETCH_COUNT_LIKE_GAME + gameID, () => fetchGameFetcher(gameID))
 
-    const ctyLoc = likesCount.find(elem => elem.name === GameNames.COUNTRY_LOCATOR_NAME)
-    const capGuess = likesCount.find(elem => elem.name === GameNames.CAPITAL_GUESSER_NAME)
-
-    let likeCount
-    if (gameID === GameNames.COUNTRY_LOCATOR_NAME) {
-        likeCount = ctyLoc?.likeCount
-    } else {
-        likeCount = capGuess?.likeCount
-    }
+    const hasLikedBefore = localStorage.getItem(gameID)
+    const parsedBoolean = hasLikedBefore && JSON.parse(hasLikedBefore)
 
     return (
         <>
             <div className="px-2 py-1 flex gap-x-2 items-center">
-                <BsFillHeartFill /> {likeCount}
+                <BsFillHeartFill
+                    className={`${parsedBoolean ? 'text-red-500' : 'text-white '} `}
+                />
+                {isLoading ? (
+                    <Spinner moreCSS="border-t-black" />
+                ) : (
+                    response?.result[0].likeCount
+                )}
             </div>
         </>
     )

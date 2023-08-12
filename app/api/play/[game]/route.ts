@@ -2,21 +2,23 @@ import { NextRequest, NextResponse } from 'next/server'
 
 import GameNames from '@/constants/game-names'
 
-import { fetchLikesCount } from '@/services/prisma-queries'
+// INCREMENT LIKE COUNT
+import { incrementLikeCount } from '@/services/prisma-queries'
 
-// GET LIKE COUNT
-export async function GET() {
-    console.log('999999999', 999999999)
+import { fetchOneGameLikeCount } from '@/services/prisma-queries'
 
-    const likesCount = await fetchLikesCount()
+export async function GET(
+    request: Request,
+    { params: queryParams }: { params: { game: GameNames } },
+) {
+    const game = queryParams.game
+
+    const likesCount = await fetchOneGameLikeCount(game)
     return NextResponse.json({
         success: true,
         result: likesCount,
     })
 }
-
-// INCREMENT LIKE COUNT
-import { incrementLikeCount } from '@/services/prisma-queries'
 
 export async function POST(
     request: Request,

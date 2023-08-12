@@ -18,6 +18,16 @@ export const fetchLikesCount = async () => {
     console.log('Like counts -->', likeCount)
     return likeCount
 }
+// Fetch only one game
+export const fetchOneGameLikeCount = async (game: GameNames) => {
+    const likeCount = await prisma.game.findMany({
+        where: {
+            name: game,
+        },
+    })
+    console.log('Like counts individual fetcher -->', likeCount)
+    return likeCount
+}
 
 // Increment like count of a game passed in params
 export const incrementLikeCount = async (game: GameNames) => {
