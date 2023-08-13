@@ -1,8 +1,9 @@
 import Carousel from './carousel'
 
 import { FC } from 'react'
-import Image from 'next/image'
 import { TITLE_SEC_FONT_SIZE } from '@/constants/responsive-fonts'
+
+import { CAROUSEL_SIZE_WIDTH } from '@/constants/carousel-arrow-style'
 
 export interface MediaObjType {
     mediaObj: { media: any; legendPic: string; alt: string }[]
@@ -38,7 +39,7 @@ const AboutSection: FC<AboutSectionProps> = ({
             <div
                 className={`${
                     imgOnTheRight ? 'order-2' : ''
-                } w-[65vw] sm:w-[22vw] flex flex-col items-center gap-y-2`}
+                } ${CAROUSEL_SIZE_WIDTH} flex flex-col items-center gap-y-2`}
             >
                 <Carousel mediaObj={mediaObj} />
             </div>

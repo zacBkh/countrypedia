@@ -44,8 +44,10 @@ const NavLinks: FC<NavLinksProps> = ({
                     <li key={link.id}>
                         <Link
                             onClick={() => onHamburgerMenuClose && onHamburgerMenuClose()}
-                            className={`${pathname === link.link ? 'activeLink' : ''}
-                            btnLike py-[6px] px-[18px] rounded-full`}
+                            className={`${
+                                pathname === link.link ? 'activeLink' : ''
+                            } py-[6px] px-[18px] rounded-full font-semibold
+                             `}
                             href={link.link}
                         >
                             {link.item}

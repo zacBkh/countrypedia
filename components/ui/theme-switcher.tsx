@@ -33,7 +33,7 @@ const ThemeSwitcher = () => {
         <button
             onClick={handleToggleTheme}
             aria-label="Dark mode switcher"
-            className="p-2 sm:p-3 rounded-full w-12 h-12"
+            className="p-2 sm:p-3 rounded-full w-12 h-12 mx-auto"
         >
             <div>
                 {theme === 'light' ? (

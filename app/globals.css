@@ -167,13 +167,15 @@ body {
 }
 
 .alignBtnCarrPopUpLeft {
-    @apply absolute top-1/2 left-[8%] 2xl:left-[5%];
+    /* @apply absolute top-1/2 left-[8%] 2xl:left-[5%]; */
+    @apply absolute top-1/2 left-[26px];
     transform: translate(-50%, -50%) !important;
     opacity: 70%;
 }
 
 .alignBtnCarrPopUpRight {
-    @apply absolute top-1/2 right-[-4%] sm:right-[-1%] 2xl:right-[0%];
+    /* @apply absolute top-1/2 right-[-4%] sm:right-[-1%] 2xl:right-[0%]; */
+    @apply absolute top-1/2 right-[-3px];
     transform: translate(-50%, -50%) !important;
     opacity: 70%;
 }
