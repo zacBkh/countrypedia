@@ -2,13 +2,13 @@ import { FC } from 'react'
 
 import { FeedbackUserAnswerTypes } from '@/app/play/capital-guesser/page'
 
+export const styleTxtBlued = 'text-[#087da4] dark:text-[#149eca] font-bold'
+
 export const FeedbackUserAnswerCapitalGuesser: FC<FeedbackUserAnswerTypes> = ({
     isUserCorrect,
     selectedCapital,
     correctAnswer,
 }) => {
-    const styleText = 'text-[#087da4] dark:text-[#149eca] font-bold'
-
     return (
         <p className="basis-1/3">
             {isUserCorrect === null ? (
@@ -18,9 +18,9 @@ export const FeedbackUserAnswerCapitalGuesser: FC<FeedbackUserAnswerTypes> = ({
             ) : (
                 <>
                     {`❌ Wrong! `}
-                    <span className={`${styleText}`}>{selectedCapital}</span>
+                    <span className={`${styleTxtBlued}`}>{selectedCapital}</span>
                     {` is the capital of `}
-                    <span className={`${styleText}`}>{correctAnswer}</span>{' '}
+                    <span className={`${styleTxtBlued}`}>{correctAnswer}</span>{' '}
                 </>
             )}
         </p>
@@ -32,14 +32,12 @@ interface HelpMsgType {
 }
 
 export const HelpMessage: FC<HelpMsgType> = ({ openModal }) => {
-    const styleText = 'text-[#087da4] dark:text-[#149eca] font-bold'
-
     return (
         <p className="basis-1/3 xl:text-lg">
             Feeling lost?{' '}
             <button
                 onClick={openModal}
-                className={`${styleText} hover:underline hover:!bg-transparent active:transform-none"`}
+                className={`${styleTxtBlued} hover:underline hover:!bg-transparent active:transform-none"`}
             >
                 See instructions or change level
             </button>
@@ -53,12 +51,10 @@ interface ScoreDisplayerTypes {
 }
 
 export const ScoreDisplayer: FC<ScoreDisplayerTypes> = ({ score, countClick }) => {
-    const styleText = 'text-[#087da4] dark:text-[#149eca] font-bold'
-
     return (
         <p className="basis-1/3 rounded-md py-2 xl:text-lg">
             🎯 Your score:{' '}
-            <span className={`${styleText}`}>
+            <span className={`${styleTxtBlued}`}>
                 {score}/{countClick}
             </span>
         </p>

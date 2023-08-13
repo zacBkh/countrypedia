@@ -59,13 +59,13 @@ const LikeDisplayerGames: FC<LikeDisplayerGamesProps> = ({ gameID }) => {
         <>
             <button
                 onClick={handleIncrementLikeCount}
-                className="bg-[#EBECF0] dark:bg-[#232730] w-fit rounded-xl 
+                className="w-fit rounded-xl 
                   text-center sm:text-start text-sm mx-auto sm:mx-0"
                 title="Click to show your love!"
             >
                 <div className="px-2 py-1 flex gap-x-2 items-center">
                     <BsFillHeartFill
-                        className={`${
+                        className={`transition-colors ${
                             hasLikedGameBefore ? 'text-red-500' : ' dark:text-white'
                         } `}
                     />
