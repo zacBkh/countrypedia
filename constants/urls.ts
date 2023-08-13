@@ -15,9 +15,6 @@ export enum APP_LINKS {
     CAPITAL_GUESSER = '/capital-guesser',
 }
 
-import { whichEnv } from '@/utils/which-envt'
-export const CURRENT_DOMAIN = whichEnv()
-
 export const NAV_LINKS = [
     {
         item: 'Home',
