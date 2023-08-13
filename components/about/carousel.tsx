@@ -9,6 +9,11 @@ import { MediaObjType } from './section'
 
 import { ARROW_CAROUSEL_CSS } from '@/constants/carousel-arrow-style'
 
+import {
+    CAROUSEL_SIZE_WIDTH,
+    CAROUSEL_SIZE_HEIGHT,
+} from '@/constants/carousel-arrow-style'
+
 interface CarouselProps {
     mediaObj: MediaObjType['mediaObj']
 }
@@ -59,8 +64,8 @@ const Carousel: FC<CarouselProps> = ({ mediaObj }) => {
         return 'next'
     }
 
-    const width = 'w-[71.5vw] sm:w-[22vw]'
-    const height = 'h-[94.6vw] sm:h-[29vw]'
+    const width = CAROUSEL_SIZE_WIDTH
+    const height = CAROUSEL_SIZE_HEIGHT
     return (
         <>
             <div className={`${width} overflow-hidden`}>
@@ -84,6 +89,7 @@ const Carousel: FC<CarouselProps> = ({ mediaObj }) => {
                             )}`}
                         >
                             <Image
+                                sizes="max-width: 640px) 85vw, (max-width: 768px) 35vw, (max-width: 1280px) 29vw, (max-width: 1536px) 22vw"
                                 loading="eager"
                                 fill
                                 src={media.media}
