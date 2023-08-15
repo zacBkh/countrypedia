@@ -29,7 +29,7 @@ const ThemeSwitcher = () => {
         )
     }
 
-    const iconCSS = 'mx-auto selection:text-2xl'
+    const iconCSS = 'mx-auto text-2xl'
 
     return (
         <button
