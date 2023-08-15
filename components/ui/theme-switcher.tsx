@@ -29,6 +29,8 @@ const ThemeSwitcher = () => {
         )
     }
 
+    const iconCSS = 'mx-auto selection:text-2xl'
+
     return (
         <button
             onClick={handleToggleTheme}
@@ -37,9 +39,9 @@ const ThemeSwitcher = () => {
         >
             <div>
                 {theme === 'light' ? (
-                    <MdOutlineDarkMode className="text-xl sm:text-2xl" />
+                    <MdOutlineDarkMode className={iconCSS} />
                 ) : (
-                    <MdOutlineLightMode className="text-xl sm:text-2xl" />
+                    <MdOutlineLightMode className={iconCSS} />
                 )}
             </div>
         </button>
