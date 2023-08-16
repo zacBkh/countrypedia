@@ -73,6 +73,7 @@ So guess what I did? <br />
 [![Next][Next.js]][Next-url]
 [![Typescript][typescript]][typescript-url]
 [![Node][Node.js]][Node-url]
+[![Node][prisma]][prisma-url]
 [![Mapbox][Mapbox]][Mapbox-url]
 [![Tailwind][Tailwind]][Tailwind-url]
 
@@ -86,9 +87,9 @@ So guess what I did? <br />
 
 ✅ Create Country Locator: a game where player need to locate correctly randomly generated countries on a Map <br />
 ✅ Add a responsive image carousel on the /about page <br />
+✅ Like counter on games working with Local Storage, stored on PostgreSQL through Prisma <br />
 ⏳ Add a sorting function on /home page to sort countries by population, land area... <br />
 ⏳ Internationalization to support French & English <br />
-⏳ Create an "Add to favourite" feature working with Local Storage
 
 You are a teacher and want to use this project? [Reach out to me](https://twitter.com/zacFullStack) and let's talk about it 💬
 
@@ -119,6 +120,9 @@ Zacharie Dupain - [Twitter](https://twitter.com/zacFullStack) - [Instagram](http
 [linkedin-url]: https://www.linkedin.com/in/zachariedupain
 
 <!--  -->
+
+[prisma]: https://img.shields.io/badge/-Prisma-black.svg?style=for-the-badge&logo=prisma&colorB=2D3748
+[prisma-url]: https://www.prisma.io/
 
 <!--  -->
 
