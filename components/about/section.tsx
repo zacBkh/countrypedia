@@ -45,13 +45,11 @@ const AboutSection: FC<AboutSectionProps> = ({
             </div>
 
             <div className={`sm:max-w-[50%]`}>
-                <h2 className={`font-bold mb-4 ${TITLE_SEC_FONT_SIZE} xl:text-2xl`}>
-                    {title}
-                </h2>
-                <div className="2xl:text-lg">
+                <h2 className={`font-bold mb-4 text-2xl sm:text-3xl`}>{title}</h2>
+                <div className="text-lg sm:text-xl font-semibold flex flex-col gap-y-3">
                     <p>{text1}</p>
                     <p>{text2}</p>
-                    <p className="mt-4">{text3}</p>
+                    <p>{text3}</p>
                 </div>
             </div>
         </div>
