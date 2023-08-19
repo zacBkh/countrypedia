@@ -14,6 +14,7 @@ button:hover,
     @apply dark:bg-react-blue-hover-dark;
 }
 
+.btnLike:active,
 button:active {
     transform: scale(0.9);
 }
@@ -209,4 +210,34 @@ div#detailCountryContainer div {
 .shadowCardsHov:hover {
     box-shadow: inset 0 4px 7px 1px #ffffff, inset 0 -5px 20px rgba(173, 186, 204, 0.25),
         0 0 20px rgba(0, 21, 64, 0.14), 0 0 40px rgba(0, 0, 0, 0.2);
+}
+
+.gradientToRight {
+    position: absolute;
+    pointer-events: none; /* Allow clicking through the overlay */
+    z-index: 100;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: rgb(35, 39, 47);
+    background: linear-gradient(
+        90deg,
+        rgba(35, 39, 47, 0.7959558823529411) 0%,
+        rgba(76, 82, 94, 0) 30%
+    );
+}
+
+.gradientToLeft {
+    position: absolute;
+    pointer-events: none; /* Allow clicking through the overlay */
+    z-index: 100;
+    right: 0;
+    width: 100%;
+    height: 50px;
+    background: rgb(35, 39, 47);
+    background: linear-gradient(
+        270deg,
+        rgba(35, 39, 47, 0.7959558823529411) 0%,
+        rgba(76, 82, 94, 0) 30%
+    );
 }
