@@ -64,10 +64,12 @@ const Countries: FC<CountriesProps> = ({ allCountries }) => {
         }
     }
 
+    const basicStyleGradients = 'absolute pointer-events-none w-[65%] h-[50px] z-[100]'
+
     return (
         <>
             <div className={`${RESPONSIVE_PADDING}`}>
-                <div className="gradientToRight px-5 w-1/2"></div>
+                <div className={`gradientToRight ${basicStyleGradients}`}></div>
 
                 <div className="flex flex-col items-center">
                     <div className="overflow-x-auto w-full absolute px-6">
@@ -83,7 +85,7 @@ const Countries: FC<CountriesProps> = ({ allCountries }) => {
                             ))}
                         </fieldset>
                     </div>
-                    <div className="gradientToLeft px-5 w-1/2"></div>
+                    <div className={`gradientToLeft ${basicStyleGradients} `}></div>
 
                     <div className="flex flex-wrap justify-between items-center gap-y-6 gap-x-4 mt-16">
                         {filterLogic().map(cty => (
