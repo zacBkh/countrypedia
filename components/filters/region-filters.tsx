@@ -1,18 +1,18 @@
 import { FC } from 'react'
 
-import { BsGlobeEuropeAfrica } from 'react-icons/bs'
-
 import Divider from '../ui/divider'
 
 interface RegionFilterProps {
     region: string
     activeRegion: string
     onFilterCountry: (region: string) => void
+    icon: any
 }
 
 const RegionFilter: FC<RegionFilterProps> = ({
     activeRegion,
     region,
+    icon,
     onFilterCountry,
 }) => {
     const isActiveRegion = activeRegion === region
@@ -26,7 +26,7 @@ const RegionFilter: FC<RegionFilterProps> = ({
         >
             <label className="sr-only">Show only the countries in {region} </label>
             <input type="radio" className="sr-only peer" />
-            <BsGlobeEuropeAfrica />
+            {icon}
             <span>{region}</span>
             <Divider
                 moreCSS={`invisible sm:group-hover:visible ${

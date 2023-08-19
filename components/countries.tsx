@@ -13,7 +13,7 @@ import { useGlobalContext } from '@/app/context/store'
 import { RESPONSIVE_PADDING } from '@/constants/responsive-padding'
 
 import RegionFilter from './filters/region-filters'
-import REGIONS from '@/constants/regions'
+import REGIONS_WITH_ICONS from '@/constants/regions'
 
 interface CountriesProps {
     allCountries: GetAllCountriesProps[]
@@ -72,12 +72,13 @@ const Countries: FC<CountriesProps> = ({ allCountries }) => {
                 <div className="flex flex-col items-center">
                     <div className="overflow-x-auto w-full absolute px-6">
                         <fieldset className="flex justify-center gap-x-7 md:gap-x-14 2xl:gap-x-20 w-full">
-                            {REGIONS.map(region => (
+                            {REGIONS_WITH_ICONS.map(reg => (
                                 <RegionFilter
                                     onFilterCountry={handleFilterCountries}
                                     activeRegion={filterRegion}
-                                    key={region}
-                                    region={region}
+                                    key={reg.name}
+                                    region={reg.name}
+                                    icon={reg.icon}
                                 />
                             ))}
                         </fieldset>
