@@ -14,6 +14,7 @@ button:hover,
     @apply dark:bg-react-blue-hover-dark;
 }
 
+.btnLike:active,
 button:active {
     transform: scale(0.9);
 }
@@ -209,4 +210,44 @@ div#detailCountryContainer div {
 .shadowCardsHov:hover {
     box-shadow: inset 0 4px 7px 1px #ffffff, inset 0 -5px 20px rgba(173, 186, 204, 0.25),
         0 0 20px rgba(0, 21, 64, 0.14), 0 0 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Gradients filters */
+
+/* Css variable declaration */
+:root {
+    --gradient-start: rgba(255, 255, 255, 0.7959558823529411);
+    --gradient-end: rgba(255, 255, 255, 0);
+    --dark-gradient-start: rgba(35, 39, 47, 0.7959558823529411);
+    --dark-gradient-end: rgba(76, 82, 94, 0);
+}
+
+.gradientToRight {
+    left: 0;
+    background: linear-gradient(90deg, var(--gradient-start) 0%, var(--gradient-end) 30%);
+}
+
+.dark .gradientToRight {
+    background: linear-gradient(
+        90deg,
+        var(--dark-gradient-start) 0%,
+        var(--dark-gradient-end) 30%
+    );
+}
+
+.gradientToLeft {
+    right: 0;
+    background: linear-gradient(
+        270deg,
+        var(--gradient-start) 0%,
+        var(--gradient-end) 30%
+    );
+}
+
+.dark .gradientToLeft {
+    background: linear-gradient(
+        270deg,
+        var(--dark-gradient-start) 0%,
+        var(--dark-gradient-end) 30%
+    );
 }
