@@ -32,7 +32,7 @@ const NavLinks: FC<NavLinksProps> = ({
     }, [isHamburgerMenuOpen])
 
     return (
-        <div className="h-full">
+        <div className="h-full select-none">
             <ul
                 className={`${
                     isHamburgerMenu

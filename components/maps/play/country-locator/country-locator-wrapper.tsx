@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import CountryLocatorMap from './country-locator-map'
 
@@ -32,6 +32,13 @@ const CountryLocatorWrapper = () => {
     const {
         modalsCtx: { countryLocatorRules },
     } = useGlobalContext()
+
+    useEffect(() => {
+        const isModalActive = countryLocatorRules?.isActive
+        if (countryLocatorRules && !isModalActive) {
+            countryLocatorRules.toggleModalState()
+        }
+    }, [])
 
     const { mutate } = useSWRConfig()
 
