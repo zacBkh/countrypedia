@@ -62,7 +62,7 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
                             className={` ${getImgQueue(index)}
                             ${TITLE_SEC_FONT_SIZE}
                             transition-transform duration-700
-                            w-full absolute text-center whitespace-nowrap mb-4`}
+                            w-full absolute text-center h-10 mb-4`}
                         >
                             {media.name}
                         </p>

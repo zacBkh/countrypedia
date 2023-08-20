@@ -30,16 +30,6 @@ const OverlaySearchBarMobile: FC<OverlaySearchBarMobileProps> = ({ hello }) => {
 
     const { searchQuery, setSearchQuery } = useGlobalContext()
 
-    // useEffect(() => {
-    //     if (isMobileSearchBarActive) {
-    //         document.body.style.overflow = 'hidden'
-    //     }
-
-    //     return () => {
-    //         document.body.style.overflow = 'auto'
-    //     }
-    // }, [isMobileSearchBarActive])
-
     const {
         data: fetchedCountries,
         error,
@@ -61,38 +51,35 @@ const OverlaySearchBarMobile: FC<OverlaySearchBarMobileProps> = ({ hello }) => {
     if (!isMobileSearchBarActive) return null
 
     return (
-        <>
-            <div className="flex flex-col gap-y-6 px-5 py-3 w-screen min-h-screen bg-[#23272F] absolute z-[9999999]">
-                <div className="sticky top-0 bg-[#23272F] h-fit ">
-                    <div className="flex items-center gap-x-9">
-                        <SearchBar isMobileMode />
-                        <button
-                            onClick={closeHandler}
-                            className="text-[#087da4] dark:text-[#149eca] font-semibold"
-                        >
-                            Cancel
-                        </button>
-                    </div>
-                    <Divider moreCSS="sm:hidden mt-4" />
+        <div className="flex flex-col gap-y-6 px-5 py-3 w-screen min-h-screen bg-[#23272F] absolute z-[9999999]">
+            <div className="sticky top-0 bg-[#23272F] h-fit pt-[6px]">
+                <div className="flex items-center gap-x-9">
+                    <SearchBar isMobileMode />
+                    <button
+                        onClick={closeHandler}
+                        className="text-[#087da4] dark:text-[#149eca] font-semibold"
+                    >
+                        Cancel
+                    </button>
                 </div>
-
-                <div className="flex flex-col gap-y-4">
-                    {/* DO SOMETHING WITH LAODING HERE */}
-                    {fetchedCountries &&
-                        activeCountries &&
-                        activeCountries.map(cty => (
-                            <SuggestionMobileSearchBar
-                                key={cty.cca3}
-                                cca3={cty.cca3}
-                                onClickCountry={closeHandler}
-                                name={cty.name}
-                                flags={cty.flags}
-                                region={cty.region}
-                            />
-                        ))}
-                </div>
+                <Divider moreCSS="sm:hidden mt-3" />
             </div>
-        </>
+
+            <div className="flex flex-col gap-y-4">
+                {fetchedCountries &&
+                    activeCountries &&
+                    activeCountries.map(cty => (
+                        <SuggestionMobileSearchBar
+                            key={cty.cca3}
+                            cca3={cty.cca3}
+                            onClickCountry={closeHandler}
+                            name={cty.name}
+                            flags={cty.flags}
+                            region={cty.region}
+                        />
+                    ))}
+            </div>
+        </div>
     )
 }
 
