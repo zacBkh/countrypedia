@@ -66,7 +66,7 @@ const Navbar: FC<NavbarProps> = async ({ lang }) => {
                     </div>
                 </div>
             </header>
-            <HamburgerMenu />
+            <HamburgerMenu navItemsTrad={navItems} />
         </div>
     )
 }
