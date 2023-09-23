@@ -15,11 +15,14 @@ import { RESPONSIVE_PADDING } from '@/constants/responsive-padding'
 import RegionFilter from './filters/region-filters'
 import REGIONS_WITH_ICONS from '@/constants/regions'
 
+import { TradKeysType } from '@/types/key-translations'
+
 interface CountriesProps {
     allCountries: GetAllCountriesProps[]
+    trad: Pick<TradKeysType, 'btnLang' | 'page' | 'continentsLang'>
 }
 
-const Countries: FC<CountriesProps> = ({ allCountries }) => {
+const Countries: FC<CountriesProps> = ({ allCountries, trad }) => {
     const { searchQuery, setSearchQuery } = useGlobalContext()
 
     const [qtyShowCountry, setQtyShowCountry] = useState(30) // default qty of countries shown
@@ -79,7 +82,11 @@ const Countries: FC<CountriesProps> = ({ allCountries }) => {
                                     onFilterCountry={handleFilterCountries}
                                     activeRegion={filterRegion}
                                     key={reg.name}
-                                    region={reg.name}
+                                    region={
+                                        trad.continentsLang[
+                                            reg.name as keyof typeof trad.continentsLang
+                                        ]
+                                    }
                                     icon={reg.icon}
                                 />
                             ))}
@@ -89,7 +96,11 @@ const Countries: FC<CountriesProps> = ({ allCountries }) => {
 
                     <div className="flex flex-wrap justify-between items-center gap-y-6 gap-x-4 mt-16">
                         {filterLogic().map(cty => (
-                            <CountryCard key={cty.cca3} details={cty} />
+                            <CountryCard
+                                key={cty.cca3}
+                                details={cty}
+                                trad={trad.btnLang}
+                            />
                         ))}
                     </div>
 
@@ -100,7 +111,7 @@ const Countries: FC<CountriesProps> = ({ allCountries }) => {
                             icon={<FiArrowRight />}
                             moreStyle={'mt-8'}
                             onAction={loadMoreHandler}
-                            text="See More"
+                            text={trad.btnLang.seeMore}
                         />
                     ) : (
                         ''

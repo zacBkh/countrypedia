@@ -8,16 +8,21 @@ import { usePathname } from 'next/navigation'
 
 import { NAV_LINKS } from '@/constants/urls'
 
+import { TradKeysType } from '@/types/key-translations'
+
 interface NavLinksProps {
     isHamburgerMenu?: boolean
     isHamburgerMenuOpen?: boolean
     onHamburgerMenuClose?: Function
+    navItemsTrad: TradKeysType['navbarLang']['navItems']
 }
 
 const NavLinks: FC<NavLinksProps> = ({
     isHamburgerMenu,
     isHamburgerMenuOpen,
     onHamburgerMenuClose,
+
+    navItemsTrad,
 }) => {
     const pathname = usePathname()
 
@@ -50,7 +55,7 @@ const NavLinks: FC<NavLinksProps> = ({
                              `}
                             href={link.link}
                         >
-                            {link.item}
+                            {navItemsTrad[link.item as keyof typeof navItemsTrad]}
                         </Link>
                     </li>
                 ))}

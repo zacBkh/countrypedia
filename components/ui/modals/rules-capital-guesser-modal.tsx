@@ -9,7 +9,6 @@ import { MODAL_TITLE_FONT_SIZE, MODAL_BODY_FONT_SIZE } from '@/constants/respons
 import Button from '../buttons'
 
 import { DifficultyLvl } from '@/app/context/store'
-// import { MdDoDisturbOff } from 'react-icons/md'
 
 import Divider from '../divider'
 

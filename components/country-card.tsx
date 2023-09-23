@@ -13,13 +13,15 @@ import { TITLE_FONT_SIZE, DETAILS_FONT_SIZE } from '@/constants/responsive-fonts
 
 import { slugCtyName } from '@/utils/slug-url'
 
+import { TradKeysType } from '@/types/key-translations'
+
 interface CountryCardProps {
     details: GetAllCountriesProps
+    trad: TradKeysType['btnLang']
 }
 
-const CountryCard: FC<CountryCardProps> = ({ details }) => {
+const CountryCard: FC<CountryCardProps> = ({ details, trad }) => {
     const { name, cca3, flags, capital, region, languages, maps, coatOfArms } = details
-
     const displaySuspensionPoints =
         'text-ellipsis whitespace-nowrap overflow-hidden text-start'
 
@@ -91,7 +93,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                         ariaLabel={`Learn more about ${name.common}`}
                         iconClass="text-xl"
                         icon={<FiArrowRight />}
-                        text="Read more"
+                        text={trad.readMore}
                         textSm="More"
                         isNextLink
                         link={`/${slugCtyName(name.common)}_${cca3.toLowerCase()}`}
@@ -106,7 +108,7 @@ const CountryCard: FC<CountryCardProps> = ({ details }) => {
                         isExternalLink
                         link={maps.googleMaps}
                         textSm="Maps"
-                        text="See on Maps"
+                        text={trad.seeOnMaps}
                         moreStyle={'!text-sm'}
                     />
                 </div>

@@ -20,11 +20,14 @@ import SuggestionMobileSearchBar from './suggestion-mobile-searchbar'
 
 import { fetcherGetCtysSearchBar } from './overlay-searchbar-mobile'
 
+import { TradKeysType } from '@/types/key-translations'
+
 interface SearchBarProps {
     isMobileMode?: boolean
+    trad: TradKeysType['navbarLang']['placeholderSearch']
 }
 
-const SearchBar: FC<SearchBarProps> = ({ isMobileMode }) => {
+const SearchBar: FC<SearchBarProps> = ({ isMobileMode, trad: tradPlaceHolder }) => {
     const [isSuggestionVisible, setIsSuggestionVisible] = useState(false)
 
     const searchBarRef = useRef<HTMLInputElement>(null)
@@ -114,11 +117,12 @@ const SearchBar: FC<SearchBarProps> = ({ isMobileMode }) => {
             </div>
 
             <input
+                type="search"
                 onFocus={() => setIsSuggestionVisible(true)}
                 ref={searchBarRef}
                 onChange={searchHandler}
                 value={searchQuery}
-                placeholder="Search any country"
+                placeholder={tradPlaceHolder}
                 className="p-2 pl-10 flex 2xl:mx-0 relative pr-1 py-1 h-10 outline-none focus:outline-react-blue-txt-light&dark items-center text-left text-gray-30 rounded-full align-middle text-base bg-[#EBECF0] dark:bg-[#333944] !w-full"
             />
             {!isMobileMode ? (

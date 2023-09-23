@@ -1,8 +1,13 @@
+import { FC } from 'react'
+
 import Link from 'next/link'
 import Image from 'next/image'
 
 import Logo from '../../public/countrypedia-logo.png'
 import { APP_LINKS } from '@/constants/urls'
+
+import { Locale } from '@/i18n.config'
+import { getDictionary } from '@/utils/dictionary'
 
 import ThemeSwitcher from '../ui/theme-switcher'
 
@@ -14,7 +19,14 @@ import HamburgerMenu from './hamburger-menu'
 
 import ClickableMagnifyingGlass from '../ui/icons/clickable-magnifying-glass'
 
-const Navbar = () => {
+interface NavbarProps {
+    lang: Locale
+}
+
+const Navbar: FC<NavbarProps> = async ({ lang }) => {
+    const { navbarLang } = await getDictionary(lang)
+    const { placeholderSearch, navItems } = navbarLang
+
     return (
         <div
             id="navbar"
@@ -43,8 +55,8 @@ const Navbar = () => {
                         </Link>
                     </div>
                     <div className="hidden md:flex items-center gap-x-6 w-[80%]">
-                        <SearchBar />
-                        <NavLinks />
+                        <SearchBar trad={placeholderSearch} />
+                        <NavLinks navItemsTrad={navItems} />
                     </div>
 
                     <div className="flex justify-between items-center gap-x-2">

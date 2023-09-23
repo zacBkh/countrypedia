@@ -41,7 +41,7 @@ const ShowCountry: FC<ShowCountryProps> = async ({ params }) => {
             </h1>
 
             <DynamicMapShowCountry ISOCtyName={cca3} latLng={latlng} />
-            <div className="px-6 md:px-10 2xl:px-12 flex flex-col gap-y-8 lg:gap-y-0 lg:flex-row justify-between items-center w-full mt-4 md;mt-6">
+            <div className="px-6 md:px-10 2xl:px-12 flex flex-col gap-y-8 lg:gap-y-0 lg:flex-row justify-between items-center w-full mt-4 md:mt-6">
                 <Carousel
                     countryName={name.common}
                     coa={coatOfArms.png}

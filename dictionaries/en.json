@@ -1,0 +1,37 @@
+{
+    "navigation": {
+        "home": "Home",
+        "about": "About"
+    },
+
+    "page": {
+        "about": {
+            "title": "About Us",
+            "description": "This is the about page"
+        }
+    },
+
+    "navbarLang": {
+        "placeholderSearch": "Search any country",
+        "navItems": {
+            "Home": "Home",
+            "Play": "Play",
+            "About Me": "About Me"
+        }
+    },
+
+    "btnLang": {
+        "readMore": "Read more",
+        "seeOnMaps": "See on Maps",
+        "seeMore": "See More"
+    },
+
+    "continentsLang": {
+        "Africa": "Africa",
+        "Europe": "Europe",
+        "Oceania": "Oceania",
+        "Americas": "Americas",
+        "Asia": "Asia",
+        "Antarctic": "Antarctic"
+    }
+}

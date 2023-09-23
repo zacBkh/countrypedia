@@ -1,3 +1,5 @@
+import { Locale } from '@/i18n.config'
+
 import './globals.css'
 
 import { Nunito, Inter, Source_Code_Pro } from 'next/font/google'
@@ -8,7 +10,7 @@ import OverlaySearchBarMobile from '@/components/overlay-searchbar-mobile'
 
 import ThemeProviderWrap from './theme-provider'
 
-import { GlobalContextProvider } from './context/store'
+import { GlobalContextProvider } from '../context/store'
 
 const nunito = Nunito({
     subsets: ['latin'],
@@ -26,17 +28,23 @@ const inter = Inter({
     variable: '--font-inter',
 })
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+    children,
+    params,
+}: {
+    children: React.ReactNode
+    params: { lang: Locale }
+}) {
     return (
         <html
-            lang="en"
+            lang={params.lang}
             className={`!font-mono ${inter.variable} ${nunito.variable} ${sourceCode.variable}`}
         >
-            <body>
+            <body lang={params.lang}>
                 <ThemeProviderWrap>
                     <GlobalContextProvider>
                         <OverlaySearchBarMobile />
-                        <Navbar />
+                        <Navbar lang={params.lang} />
                         <Overlay />
                         <main>{children}</main>
                     </GlobalContextProvider>

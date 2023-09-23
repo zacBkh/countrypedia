@@ -6,7 +6,6 @@ import {
 } from 'react-icons/fa'
 import { GiEarthAsiaOceania } from 'react-icons/gi'
 
-const REGIONS = ['Africa', 'Europe', 'Oceania', 'Americas', 'Asia', 'Antarctic']
 const REGIONS_WITH_ICONS = [
     { name: 'Africa', icon: <FaGlobeAfrica /> },
     { name: 'Europe', icon: <FaGlobeEurope /> },

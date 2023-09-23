@@ -9,7 +9,7 @@ import { getSeveralRandomCountries } from '@/services/fetchers'
 import useSWR, { useSWRConfig } from 'swr'
 import SWR_KEYS from '@/constants/SWR-keys'
 
-import { useGlobalContext } from '@/app/context/store'
+import { useGlobalContext } from '../../../context/store'
 
 import { TITLE_FONT_SIZE } from '@/constants/responsive-fonts'
 

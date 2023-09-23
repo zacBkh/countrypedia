@@ -49,7 +49,7 @@ const GameCard: FC<GameCardProps> = ({ id, title, desc, img, link, objectCover }
                     <p>{desc.teasing}</p>
                 </div>
 
-                <Suspense fallback={<p>Loading feed...</p>}>
+                <Suspense>
                     <LikeDisplayerGames gameID={id} />
                 </Suspense>
 
