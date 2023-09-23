@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { FeedbackUserAnswerTypes } from '@/app/play/capital-guesser/page'
+import { FeedbackUserAnswerTypes } from '@/app/[lang]/play/capital-guesser/page'
 
 export const styleTxtBlued = 'text-[#087da4] dark:text-[#149eca] font-bold'
 
