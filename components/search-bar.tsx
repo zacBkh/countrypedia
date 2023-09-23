@@ -109,14 +109,13 @@ const SearchBar: FC<SearchBarProps> = ({ isMobileMode, trad: tradPlaceHolder }) 
                     />
                 ) : (
                     <MagnifyingGlass
-                        moreCSSSvg={`${
-                            isMobileMode ? 'ml-2' : ''
-                        } mr-3 align-middle text-[#99A1B3] shrink-0 w-[18px]`}
+                        moreCSSSvg={`align-middle text-[#99A1B3] shrink-0 w-[18px]`}
                     />
                 )}
             </div>
 
             <input
+                id="mySearchInput"
                 type="search"
                 onFocus={() => setIsSuggestionVisible(true)}
                 ref={searchBarRef}

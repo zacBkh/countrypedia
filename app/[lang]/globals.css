@@ -251,3 +251,10 @@ div#detailCountryContainer div {
         var(--dark-gradient-end) 30%
     );
 }
+
+/* Remove cross on input type search */
+#mySearchInput::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
