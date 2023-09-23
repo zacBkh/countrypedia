@@ -1,8 +1,8 @@
-import TreeImg from '../../../public/pictures/tree.jpg'
-import MeTeacher from '../../../public/pictures/me-at-school.jpg'
-import Hiking from '../../../public/pictures/hiking.jpg'
-import Pool from '../../../public/pictures/pool.jpg'
-import Ski from '../../../public/pictures/ski.jpg'
+import TreeImg from '@images/tree.jpg'
+import MeTeacher from '@images/me-at-school.jpg'
+import Hiking from '@images/hiking.jpg'
+import Pool from '@images/pool.jpg'
+import Ski from '@images/ski.jpg'
 
 import AboutSection from '@/components/about/section'
 
