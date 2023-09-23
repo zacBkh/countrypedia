@@ -3,8 +3,8 @@ const { PLAY, COUNTRY_LOCATOR, CAPITAL_GUESSER } = APP_LINKS
 
 import GameCard from '@/components/play/game-card'
 
-import ScreenshotCtyLocator from '../../../public/screenshot-country-locator.png'
-import ScreenshotCapitalGuesser from '../../../public/screenshot-capital-guesser-alt.png'
+import ScreenshotCtyLocator from '@images/screenshot-country-locator.png'
+import ScreenshotCapitalGuesser from '@images/screenshot-capital-guesser.png'
 
 import GameNames from '@/constants/game-names'
 

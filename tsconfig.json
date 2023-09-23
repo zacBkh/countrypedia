@@ -21,7 +21,7 @@
         ],
         "paths": {
             "@/*": ["./*"],
-            "@images/*": ["./public/pictures/*"]
+            "@images/*": ["./public/*"]
         }
     },
     "include": [

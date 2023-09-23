@@ -3,7 +3,7 @@ import { FC } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import Logo from '../../public/countrypedia-logo.png'
+import Logo from '@images/countrypedia-logo.png'
 import { APP_LINKS } from '@/constants/urls'
 
 import { Locale } from '@/i18n.config'
