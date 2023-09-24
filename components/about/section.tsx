@@ -1,12 +1,11 @@
 import Carousel from './carousel'
 
 import { FC } from 'react'
-import { TITLE_SEC_FONT_SIZE } from '@/constants/responsive-fonts'
 
 import { CAROUSEL_SIZE_WIDTH } from '@/constants/carousel-arrow-style'
 
 export interface MediaObjType {
-    mediaObj: { media: any; legendPic: string; alt: string }[]
+    mediaObj: { media: any; legendPic: string; alt: string; id: number }[]
 }
 
 interface AboutSectionProps {
@@ -18,7 +17,11 @@ interface AboutSectionProps {
     moreCSS?: string
 
     mediaObj: MediaObjType['mediaObj']
+
+    tradImgLegend: TradKeysType['about_me']['section_1']['images_section_1']
 }
+
+import type { TradKeysType } from '@/types/internationalization'
 
 const AboutSection: FC<AboutSectionProps> = ({
     mediaObj,
@@ -29,6 +32,8 @@ const AboutSection: FC<AboutSectionProps> = ({
     text3,
     imgOnTheRight,
     moreCSS,
+
+    tradImgLegend,
 }) => {
     return (
         <div
@@ -41,7 +46,7 @@ const AboutSection: FC<AboutSectionProps> = ({
                     imgOnTheRight ? 'order-2' : ''
                 } ${CAROUSEL_SIZE_WIDTH} flex flex-col items-center gap-y-2`}
             >
-                <Carousel mediaObj={mediaObj} />
+                <Carousel mediaObj={mediaObj} tradImgLegend={tradImgLegend} />
             </div>
 
             <div className={`sm:max-w-[50%]`}>

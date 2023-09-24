@@ -14,11 +14,17 @@ import {
     CAROUSEL_SIZE_HEIGHT,
 } from '@/constants/carousel-arrow-style'
 
+import type { TradKeysType } from '@/types/internationalization'
+
 interface CarouselProps {
     mediaObj: MediaObjType['mediaObj']
+
+    tradImgLegend: {
+        [key: string]: string
+    }
 }
 
-const Carousel: FC<CarouselProps> = ({ mediaObj }) => {
+const Carousel: FC<CarouselProps> = ({ mediaObj, tradImgLegend }) => {
     const [activeImg, setActiveImg] = useState(0)
 
     const [areArrowBtnDisabled, setareArrowBtnDisabled] = useState(false)
@@ -83,7 +89,7 @@ const Carousel: FC<CarouselProps> = ({ mediaObj }) => {
                     </button>
                     {mediaObj.map((media, index) => (
                         <div
-                            key={media.legendPic}
+                            key={media.id}
                             className={`${width} ${height}  transition-transform duration-500 shrink-0 grow absolute ${getImgQueue(
                                 index,
                             )}`}
@@ -116,14 +122,14 @@ const Carousel: FC<CarouselProps> = ({ mediaObj }) => {
                 <div className="flex items-center relative h-12 w-full mt-5">
                     {mediaObj.map((media, index) => (
                         <p
-                            key={media.legendPic}
+                            key={media.id}
                             className={` ${getImgQueue(index)}
                             transition-transform duration-500
                             w-full absolute text-center mb-4 px-1
                             text-sm 2xl:text-base italic
                             `}
                         >
-                            {media.legendPic}
+                            {tradImgLegend[media.id]}
                         </p>
                     ))}
                 </div>

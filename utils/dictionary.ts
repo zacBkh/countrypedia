@@ -6,6 +6,15 @@ const dictionaries = {
     fr: () => import('@/dictionaries/fr.json').then(module => module.default),
 }
 
+// export const getDictionary = async (locale: Locale) => {
+//     return await dictionaries[locale]()
+// }
+
 export const getDictionary = async (locale: Locale) => {
-    return dictionaries[locale]()
+    try {
+        return await dictionaries[locale]()
+    } catch (error) {
+        console.error(`Error loading dictionary for locale "${locale}":`, error)
+        return await dictionaries['en']()
+    }
 }
