@@ -9,12 +9,15 @@ import { usePathname } from 'next/navigation'
 import { NAV_LINKS } from '@/constants/urls'
 
 import { TradKeysType } from '@/types/internationalization'
+import { Locale } from '@/i18n.config'
 
 interface NavLinksProps {
     isHamburgerMenu?: boolean
     isHamburgerMenuOpen?: boolean
     onHamburgerMenuClose?: Function
     navItemsTrad: TradKeysType['navbarLang']['navItems']
+
+    currentLang: Locale
 }
 
 const NavLinks: FC<NavLinksProps> = ({
@@ -23,8 +26,10 @@ const NavLinks: FC<NavLinksProps> = ({
     onHamburgerMenuClose,
 
     navItemsTrad,
+
+    currentLang,
 }) => {
-    const pathname = usePathname()
+    const currentPathname = usePathname()
 
     useEffect(() => {
         if (isHamburgerMenuOpen) {
@@ -35,6 +40,23 @@ const NavLinks: FC<NavLinksProps> = ({
             document.body.style.overflow = 'auto'
         }
     }, [isHamburgerMenuOpen])
+
+    const isCurrentLinkActiveLink = (currentPathname: string, targetLink: string) => {
+        const segments = currentPathname.split('/')
+
+        if (segments.length < 3) {
+            // if we are on homepage
+            if (targetLink === '/') {
+                return 'activeLink'
+            }
+        }
+
+        const isActive = `/${segments[2] === targetLink}` // e.g /about
+
+        if (isActive) {
+            return 'activeLink'
+        }
+    }
 
     return (
         <div className="h-full select-none">
@@ -49,11 +71,12 @@ const NavLinks: FC<NavLinksProps> = ({
                     <li key={link.id}>
                         <Link
                             onClick={() => onHamburgerMenuClose && onHamburgerMenuClose()}
-                            className={`${
-                                pathname === link.link ? 'activeLink' : ''
-                            } py-[6px] px-[18px] rounded-full font-semibold btnLike
+                            className={`${isCurrentLinkActiveLink(
+                                currentPathname,
+                                link.link,
+                            )} py-[6px] px-[18px] rounded-full font-semibold btnLike
                              `}
-                            href={link.link}
+                            href={`/${currentLang}${link.link}`}
                         >
                             {navItemsTrad[link.item as keyof typeof navItemsTrad]}
                         </Link>

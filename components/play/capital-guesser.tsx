@@ -163,9 +163,13 @@ const CapitalGuesser: FC<TradGameTypes> = ({ tradModals, tradDashboard }) => {
                             correctAnswer={correctAnswer}
                         />
 
-                        <ScoreDisplayer score={score} countClick={countClick} />
+                        <ScoreDisplayer
+                            tradScore={tradDashboard.common.your_score}
+                            score={score}
+                            countClick={countClick}
+                        />
 
-                        <HelpMessage trad={tradModals} openModal={openModal} />
+                        <HelpMessage trad={tradDashboard} openModal={openModal} />
                     </div>
 
                     <CapitalGuesserOptions

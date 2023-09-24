@@ -1,5 +1,3 @@
-import { Locale } from '@/i18n.config'
-
 import './globals.css'
 
 import { Nunito, Inter, Source_Code_Pro } from 'next/font/google'
@@ -11,6 +9,8 @@ import OverlaySearchBarMobile from '@/components/overlay-searchbar-mobile'
 import ThemeProviderWrap from './theme-provider'
 
 import { GlobalContextProvider } from '../context/store'
+
+import { Locale, i18n } from '@/i18n.config'
 
 const nunito = Nunito({
     subsets: ['latin'],
@@ -27,6 +27,10 @@ const inter = Inter({
     display: 'swap',
     variable: '--font-inter',
 })
+
+export async function generateStaticParams() {
+    return i18n.locales.map(locale => ({ lang: locale }))
+}
 
 export default function RootLayout({
     children,

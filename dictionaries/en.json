@@ -46,9 +46,9 @@
 
         "game_dashboard": {
             "common": {
-                "your_score": "🎯 Your score: ",
-                "feeling_lost": "Feeling lost?",
-                "see_instructions_or": "See instructions or change level"
+                "your_score": "Your score: ",
+                "feeling_lost": "Feeling lost? ",
+                "see_instructions_or": "See instructions or change level."
             },
             "country_locator_dashboard": {},
             "capital_guesser_dashboard": {}

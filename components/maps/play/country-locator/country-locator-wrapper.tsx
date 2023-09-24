@@ -146,9 +146,13 @@ const CountryLocatorWrapper: FC<TradGameTypes> = ({ tradModals, tradDashboard })
                             </>
                         )}
                     </p>
-                    <ScoreDisplayer score={score} countClick={countClick} />
+                    <ScoreDisplayer
+                        score={score}
+                        countClick={countClick}
+                        tradScore={tradDashboard.common.your_score}
+                    />
 
-                    <HelpMessage trad={tradModals} openModal={openModal} />
+                    <HelpMessage trad={tradDashboard} openModal={openModal} />
                 </div>
             </div>
             <CountryLocatorMap onCtySelection={userSelectCountryHandler} />

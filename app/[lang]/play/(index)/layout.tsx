@@ -38,10 +38,10 @@ const PlayLayout: FC<LayoutPlayProps> = async ({ children, params }) => {
     } = play_lang
 
     return (
-        <div className="flex flex-col gap-y-10 py-4 px-2 md:px-6 sm:py-6">
+        <div className="flex flex-col gap-y-10 p-4 md:px-6 sm:py-6">
             <h1 className={`${SUPER_TITLE_FONT_SIZE} font-bold`}>{title}</h1>
             <div>
-                <p className="text-lg sm:text-xl sm:w-1/2 font-semibold">
+                <p className="text-lg sm:text-xl lg:w-2/3 font-semibold">
                     {paragraph1} <br />
                     {paragraph2} <br />
                     {paragraph3}
