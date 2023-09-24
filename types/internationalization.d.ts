@@ -7,6 +7,7 @@ export type TradKeysType = {
     continentsLang: (typeof TradData)['continentsLang']
     navbarLang: (typeof TradData)['navbarLang']
     play_lang: (typeof TradData)['play_lang']
+    about_me: (typeof TradData)['about_me']
 }
 
 import { Locale } from '@/i18n.config'

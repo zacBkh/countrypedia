@@ -71,6 +71,33 @@
         "playTheGame": "Jouez !"
     },
 
+    "about_me": {
+        "section_1": {
+            "title__section_1": "Qui suis-je ? 😎",
+            "text_1__section_1": "Bonjour, je suis Zacharie, un Développeur Web vivant entre Paris et Dubai 📍",
+            "text_2__section_1": "Je suis passionné de voyage et je capture mes souvenirs avec ma caméra ! 📸",
+            "text_3__section_1": "Quand j'étais plus jeune, j'apprenais les capitales du monde par coeur. Je rêvais de voyager et dès que j'ai pu, je suis parti à l'étranger pour découvrir le monde ! 🌎",
+            "images_section_1": {
+                "0": "📍 Siargao, Philippines",
+                "1": "📍 En bivouac quelque part dans les Alpes, France",
+                "2": "📍 En débug de mon code à Dubai 😂",
+                "3": "📍 Dévale les pistes à Courchevel"
+            }
+        },
+        "section_2": {
+            "title__section_2": "Pourquoi avoir créé CountryPedia ? 🤓",
+            "text_1__section_2": "Ma soeur est une institutrice. Un jour, elle s'est plainte qu'il n'existait pas de site internet permettant d'apprendre les pays du monde et de tester ses connaissances 😱",
+            "text_2__section_2": "Ni une ni deux, je lui ai demandé ses besoins et je l'ai créé ! 😎",
+            "text_3__section_2": "Aujourd'hui, les 12 classes de son école utilisent CountryPedia et ça me rend très fier. Je continue d'améliorer l'application pour ajouter de nouvelles fonctionnalités demandées par d'autres professeurs.",
+            "images_section_2": {
+                "0": "📍 L'école de ma soeur, le jour où elle m'a demandé de créer CountryPedia 😂",
+                "1": "📍 L'école de ma soeur, le jour où elle m'a demandé de créer CountryPedia 😂",
+                "2": "📍 L'école de ma soeur, le jour où elle m'a demandé de créer CountryPedia 😂",
+                "3": "📍 L'école de ma soeur, le jour où elle m'a demandé de créer CountryPedia 😂"
+            }
+        }
+    },
+
     "continentsLang": {
         "Africa": "Afrique",
         "Europe": "Europe",

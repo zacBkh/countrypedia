@@ -71,6 +71,33 @@
         "playTheGame": "Play the game!"
     },
 
+    "about_me": {
+        "section_1": {
+            "title__section_1": "Who am I? 😎",
+            "text_1__section_1": "Hello, I am Zach, a Web Developer, living between Paris and Dubai 📍",
+            "text_2__section_1": "I am passionnate about discovering the world and capture it through my camera lens! 📸",
+            "text_3__section_1": "When I was a kid I used to learn all world capitals by heart. I was craving travel and as soon as I could I went abroad to discover the world! 🌎",
+            "images_section_1": {
+                "0": "📍 Siargao, Philippines",
+                "1": "📍 Hiking somewhere in the Alps, France",
+                "2": "📍 Pretending to debug my code in Dubai 😂",
+                "3": "📍 Hitting the slopes, Courchevel"
+            }
+        },
+        "section_2": {
+            "title__section_2": "Why CountryPedia? 🤓",
+            "text_1__section_2": "My sister is a teacher. She one day came to me complaining there is no good website where you can learn and test your knowledge about the world's countries 😱",
+            "text_2__section_2": "So guess what I did? I asked her exact needs and created it! 😎",
+            "text_3__section_2": "Today, the 12 classes at her school are using CountryPedia and I am very proud of that. I keep updating the app to introduce features requested by other teachers.",
+            "images_section_2": {
+                "0": "📍 My sisters' school, the day she asked me to create CountryPedia 😂",
+                "1": "📍 My sisters' school, the day she asked me to create CountryPedia 😂",
+                "2": "📍 My sisters' school, the day she asked me to create CountryPedia 😂",
+                "3": "📍 My sisters' school, the day she asked me to create CountryPedia 😂"
+            }
+        }
+    },
+
     "continentsLang": {
         "Africa": "Africa",
         "Europe": "Europe",
