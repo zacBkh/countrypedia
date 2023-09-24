@@ -3,9 +3,9 @@ import CapitalGuesser from '@/components/play/capital-guesser'
 import { FC } from 'react'
 
 import { getDictionary } from '@/utils/dictionary'
-import { LayoutPlayProps } from '@/types/internationalization'
+import { Locale } from '@/i18n.config'
 
-const CapitalGuesserWrapper: FC<LayoutPlayProps> = async ({ params }) => {
+const CapitalGuesserWrapper: FC<{ params: { lang: Locale } }> = async ({ params }) => {
     const {
         play_lang: { modals, game_dashboard },
     } = await getDictionary(params.lang)
