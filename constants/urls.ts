@@ -9,7 +9,6 @@ export enum FetchLinks {
 export enum APP_LINKS {
     HOME = '/',
     ABOUT = '/about',
-    TEAM = '/about/team',
     PLAY = '/play',
     COUNTRY_LOCATOR = '/country-locator',
     CAPITAL_GUESSER = '/capital-guesser',

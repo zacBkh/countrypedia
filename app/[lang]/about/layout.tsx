@@ -21,7 +21,7 @@ export default function AboutLayout({ children }: { children: React.ReactNode })
 
     return (
         <div className="flex flex-col items-center sm:items-start pb-4 sm:pb-6 px-8 sm:px-12 2xl:px-16 relative overflow-auto min-h-screen z-[150]">
-            <div className="bg-white dark:bg-[#232730] fixed z-10 w-full flex justify-center gap-x-2 items-center py-2">
+            <div className="bg-white dark:bg-[#232730] fixed z-[300] w-full flex justify-center gap-x-2 items-center py-2">
                 <h1 className={`${TITLE_FONT_SIZE} font-bold`}>
                     About Me, <span className="text-react-blue-txt-light&dark">Zach</span>
                 </h1>

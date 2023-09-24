@@ -15,7 +15,6 @@ export const createNewGame = async () => {
 // Fetch all games like count
 export const fetchLikesCount = async () => {
     const likeCount = await prisma.game.findMany()
-    console.log('Like counts -->', likeCount)
     return likeCount
 }
 // Fetch only one game
@@ -50,7 +49,6 @@ export const incrementLikeCount = async (game: GameNames, hasLikedBefore: boolea
 
 export const deleteAllGames = async () => {
     const deletion = await prisma.game.deleteMany()
-    console.log('Deleted -->', deletion)
 }
 
 // createNewGame()

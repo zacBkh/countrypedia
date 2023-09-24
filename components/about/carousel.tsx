@@ -113,7 +113,7 @@ const Carousel: FC<CarouselProps> = ({ mediaObj }) => {
                         <IoIosArrowForward className="text-lg sm:text-base" />
                     </button>
                 </div>
-                <div className="flex items-center relative h-8 w-full mt-5">
+                <div className="flex items-center relative h-12 w-full mt-5">
                     {mediaObj.map((media, index) => (
                         <p
                             key={media.legendPic}

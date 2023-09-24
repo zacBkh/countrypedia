@@ -12,9 +12,9 @@ const ClickableMagnifyingGlass = () => {
     }
 
     return (
-        <div onClick={handler}>
+        <button onClick={handler}>
             <MagnifyingGlass moreCSSContainer="block md:hidden" />
-        </div>
+        </button>
     )
 }
 

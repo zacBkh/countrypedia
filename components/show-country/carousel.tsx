@@ -55,7 +55,7 @@ const Carousel: FC<CarouselProps> = ({ countryName, flag, coa }) => {
     return (
         <>
             <div className={`${width} overflow-hidden`}>
-                <div className="flex items-center relative h-8 w-full">
+                <div className="flex items-center relative h-12 w-full">
                     {mediaObject.map((media, index) => (
                         <p
                             key={media.name}

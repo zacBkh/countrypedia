@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FC } from 'react'
 
 import { BiRefresh } from 'react-icons/bi'
 
@@ -33,7 +33,14 @@ export interface FeedbackUserAnswerTypes {
     correctAnswer: string | undefined
 }
 
-const CapitalGuesser = () => {
+import { TradKeysType } from '@/types/internationalization'
+
+export interface TradGameTypes {
+    tradModals: TradKeysType['play_lang']['modals']
+    tradDashboard: TradKeysType['play_lang']['game_dashboard']
+}
+
+const CapitalGuesser: FC<TradGameTypes> = ({ tradModals, tradDashboard }) => {
     const {
         modalsCtx: { capitalGuesserRules },
     } = useGlobalContext()
@@ -121,7 +128,11 @@ const CapitalGuesser = () => {
 
     return (
         <div className="h-[40vh] sm:h-[70vh] flex justify-center items-center">
-            {capitalGuesserRules?.isActive ? <RulesCapitalGuesserModal /> : ''}
+            {capitalGuesserRules?.isActive ? (
+                <RulesCapitalGuesserModal tradModals={tradModals} />
+            ) : (
+                ''
+            )}
             <div className="2xl:p-5 flex flex-col gap-y-6 select-none">
                 <div className="flex justify-center items-center gap-x-2">
                     <h1
@@ -152,9 +163,13 @@ const CapitalGuesser = () => {
                             correctAnswer={correctAnswer}
                         />
 
-                        <ScoreDisplayer score={score} countClick={countClick} />
+                        <ScoreDisplayer
+                            tradScore={tradDashboard.common.your_score}
+                            score={score}
+                            countClick={countClick}
+                        />
 
-                        <HelpMessage openModal={openModal} />
+                        <HelpMessage trad={tradDashboard} openModal={openModal} />
                     </div>
 
                     <CapitalGuesserOptions

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { FeedbackUserAnswerTypes } from '@/app/play/capital-guesser/page'
+import { FeedbackUserAnswerTypes } from './capital-guesser'
 
 export const styleTxtBlued = 'text-[#087da4] dark:text-[#149eca] font-bold'
 
@@ -27,20 +27,29 @@ export const FeedbackUserAnswerCapitalGuesser: FC<FeedbackUserAnswerTypes> = ({
     )
 }
 
+import { TradGameTypes } from './capital-guesser'
+
 interface HelpMsgType {
     openModal: () => void
+    trad: TradGameTypes['tradDashboard']
 }
 
-export const HelpMessage: FC<HelpMsgType> = ({ openModal }) => {
+export const HelpMessage: FC<HelpMsgType> = ({ openModal, trad }) => {
+    const {
+        common: { feeling_lost, see_instructions_or },
+    } = trad
+
     return (
         <p className="basis-1/3 xl:text-lg">
-            Feeling lost?{' '}
-            <button
-                onClick={openModal}
-                className={`${styleTxtBlued} hover:underline hover:!bg-transparent active:transform-none"`}
-            >
-                See instructions or change level
-            </button>
+            <span>{feeling_lost}</span>
+            <span>
+                <button
+                    onClick={openModal}
+                    className={`${styleTxtBlued} hover:underline hover:!bg-transparent active:transform-none cursor-pointer"`}
+                >
+                    {see_instructions_or}
+                </button>
+            </span>
         </p>
     )
 }
@@ -48,12 +57,17 @@ export const HelpMessage: FC<HelpMsgType> = ({ openModal }) => {
 interface ScoreDisplayerTypes {
     score: number
     countClick: number
+    tradScore: string
 }
 
-export const ScoreDisplayer: FC<ScoreDisplayerTypes> = ({ score, countClick }) => {
+export const ScoreDisplayer: FC<ScoreDisplayerTypes> = ({
+    score,
+    tradScore,
+    countClick,
+}) => {
     return (
         <p className="basis-1/3 rounded-md py-2 xl:text-lg">
-            🎯 Your score:{' '}
+            🎯 {tradScore}{' '}
             <span className={`${styleTxtBlued}`}>
                 {score}/{countClick}
             </span>
