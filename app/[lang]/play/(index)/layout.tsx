@@ -20,10 +20,7 @@ import Divider from '@/components/ui/divider'
 import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/utils/dictionary'
 
-interface LayoutPlayProps {
-    children: React.ReactNode
-    params: { lang: Locale }
-}
+import { LayoutPlayProps } from '@/types/internationalization'
 
 const PlayLayout: FC<LayoutPlayProps> = async ({ children, params }) => {
     const { play_lang } = await getDictionary(params.lang)

@@ -13,11 +13,7 @@ import GameNames from '@/constants/game-names'
 import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/utils/dictionary'
 
-interface LayoutPlayProps {
-    params: { lang: Locale }
-}
-
-const PlayPage: FC<LayoutPlayProps> = async ({ params: { lang } }) => {
+const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) => {
     // Deep destructuring of card_games
     const {
         play_lang: {
