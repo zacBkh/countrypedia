@@ -13,7 +13,6 @@ import { changeLocale } from '@/utils/redirect-path-locale'
 
 const LanguageSwitcher: FC<{ lang: Locale }> = ({ lang }) => {
     const pathName = usePathname()
-    console.log('pathName', pathName)
 
     const userTip = lang === 'fr' ? 'Switch to English' : 'Passez en Français'
 

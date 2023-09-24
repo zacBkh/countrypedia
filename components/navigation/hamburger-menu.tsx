@@ -9,12 +9,14 @@ import NavLinks from './nav-links'
 import sleep from '@/utils/sleep'
 
 import { TradKeysType } from '@/types/internationalization'
+import { Locale } from '@/i18n.config'
 
 interface NavLinksProps {
     navItemsTrad: TradKeysType['navbarLang']['navItems']
+    currentLang: Locale
 }
 
-const HamburgerMenu: FC<NavLinksProps> = ({ navItemsTrad }) => {
+const HamburgerMenu: FC<NavLinksProps> = ({ navItemsTrad, currentLang }) => {
     const { isHamburgerMenuOpen, setIsHamburgerMenuOpen } = useGlobalContext()
 
     if (!isHamburgerMenuOpen) return
@@ -33,6 +35,7 @@ const HamburgerMenu: FC<NavLinksProps> = ({ navItemsTrad }) => {
                     isHamburgerMenu
                     isHamburgerMenuOpen={isHamburgerMenuOpen}
                     onHamburgerMenuClose={closeHamburgerMenuHandler}
+                    currentLang={currentLang}
                 />
             </nav>
         </>

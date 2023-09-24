@@ -43,7 +43,6 @@ const NavLinks: FC<NavLinksProps> = ({
 
     const isCurrentLinkActiveLink = (currentPathname: string, targetLink: string) => {
         const segments = currentPathname.split('/')
-
         if (segments.length < 3) {
             // if we are on homepage
             if (targetLink === '/') {
@@ -51,8 +50,7 @@ const NavLinks: FC<NavLinksProps> = ({
             }
         }
 
-        const isActive = `/${segments[2] === targetLink}` // e.g /about
-
+        const isActive = segments[2] === targetLink.replace('/', '')
         if (isActive) {
             return 'activeLink'
         }

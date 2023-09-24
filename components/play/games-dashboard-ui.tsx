@@ -35,7 +35,6 @@ interface HelpMsgType {
 }
 
 export const HelpMessage: FC<HelpMsgType> = ({ openModal, trad }) => {
-    console.log('trad', trad)
     const {
         common: { feeling_lost, see_instructions_or },
     } = trad
