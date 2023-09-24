@@ -4,10 +4,54 @@
         "about": "About"
     },
 
-    "page": {
-        "about": {
-            "title": "About Us",
-            "description": "This is the about page"
+    "play_lang": {
+        "header": {
+            "title": "Pick one of the game and test yourself!",
+            "paragraph1": "Time to test your skills! 🧠",
+            "paragraph2": "We have created those games for you to have fun, practice and get better. 💪🏼",
+            "paragraph3": "If you have any idea to improve a game, or create a new one, ",
+            "paragraph3_bis_action": "please contact me",
+            "paragraph3_ter": " to discuss it. 💬",
+            "paragraph4": "There is also a like button, if you enjoyed the game, please smash it! ❤️"
+        },
+        "card_games": {
+            "country_locator_description": {
+                "title": "Country Locator",
+                "paragraph1": "Locate randomly generated countries on an interactive map.",
+                "paragraph2": "Ready to be challenged? 🧠"
+            },
+            "capital_guesser_description": {
+                "title": "Capital Guesser",
+                "paragraph1": "Pick the right countries' capitals, from easy to hard! Don't goo too fast...",
+                "paragraph2": "How many of them do you know? 🤓"
+            }
+        },
+
+        "modals": {
+            "common": {
+                "title": "Ready to play?🤯",
+                "paragraph1": "👉🏼 A randomly chosen country will appear at the top of the page",
+                "point_correct_answer": "👉🏼 Each correct answers will bring you one point",
+                "easy_level": "Easy Level 😎",
+                "hard_level": "Hard Level 💪🏼",
+                "info_current_level": "You are currently playing with the "
+            },
+            "country_locator_modal": {
+                "paragraph2": "👉🏼 Try to locate this country on the map and click as fast as possible!"
+            },
+            "capital_guesser_modal": {
+                "paragraph2": "👉🏼 Try to pick its capital among the 4 options as fast as possible!"
+            }
+        },
+
+        "game_dashboard": {
+            "common": {
+                "your_score": "🎯 Your score: ",
+                "feeling_lost": "Feeling lost?",
+                "see_instructions_or": "See instructions or change level"
+            },
+            "country_locator_dashboard": {},
+            "capital_guesser_dashboard": {}
         }
     },
 
@@ -20,10 +64,11 @@
         }
     },
 
-    "btnLang": {
+    "button_lang": {
         "readMore": "Read more",
         "seeOnMaps": "See on Maps",
-        "seeMore": "See More"
+        "seeMore": "See More",
+        "playTheGame": "Play the game!"
     },
 
     "continentsLang": {

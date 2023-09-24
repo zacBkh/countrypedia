@@ -15,11 +15,11 @@ import { RESPONSIVE_PADDING } from '@/constants/responsive-padding'
 import RegionFilter from './filters/region-filters'
 import REGIONS_WITH_ICONS from '@/constants/regions'
 
-import { TradKeysType } from '@/types/key-translations'
+import { TradKeysType } from '@/types/internationalization'
 
 interface CountriesProps {
     allCountries: GetAllCountriesProps[]
-    trad: Pick<TradKeysType, 'btnLang' | 'page' | 'continentsLang'>
+    trad: Pick<TradKeysType, 'button_lang' | 'continentsLang'>
 }
 
 const Countries: FC<CountriesProps> = ({ allCountries, trad }) => {
@@ -99,7 +99,7 @@ const Countries: FC<CountriesProps> = ({ allCountries, trad }) => {
                             <CountryCard
                                 key={cty.cca3}
                                 details={cty}
-                                trad={trad.btnLang}
+                                trad={trad.button_lang}
                             />
                         ))}
                     </div>
@@ -111,7 +111,7 @@ const Countries: FC<CountriesProps> = ({ allCountries, trad }) => {
                             icon={<FiArrowRight />}
                             moreStyle={'mt-8'}
                             onAction={loadMoreHandler}
-                            text={trad.btnLang.seeMore}
+                            text={trad.button_lang.seeMore}
                         />
                     ) : (
                         ''

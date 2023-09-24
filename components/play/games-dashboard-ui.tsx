@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { FeedbackUserAnswerTypes } from '@/app/[lang]/play/capital-guesser/page'
+import { FeedbackUserAnswerTypes } from './capital-guesser'
 
 export const styleTxtBlued = 'text-[#087da4] dark:text-[#149eca] font-bold'
 
@@ -27,20 +27,23 @@ export const FeedbackUserAnswerCapitalGuesser: FC<FeedbackUserAnswerTypes> = ({
     )
 }
 
+import { TradGameTypes } from './capital-guesser'
+
 interface HelpMsgType {
     openModal: () => void
+    trad: TradGameTypes['tradModals']
 }
 
-export const HelpMessage: FC<HelpMsgType> = ({ openModal }) => {
+export const HelpMessage: FC<HelpMsgType> = ({ openModal, trad }) => {
     return (
         <p className="basis-1/3 xl:text-lg">
             Feeling lost?{' '}
-            <button
+            <div
                 onClick={openModal}
-                className={`${styleTxtBlued} hover:underline hover:!bg-transparent active:transform-none"`}
+                className={`${styleTxtBlued} hover:underline hover:!bg-transparent active:transform-none cursor-pointer"`}
             >
                 See instructions or change level
-            </button>
+            </div>
         </p>
     )
 }

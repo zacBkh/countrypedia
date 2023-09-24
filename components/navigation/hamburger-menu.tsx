@@ -8,7 +8,7 @@ import NavLinks from './nav-links'
 
 import sleep from '@/utils/sleep'
 
-import { TradKeysType } from '@/types/key-translations'
+import { TradKeysType } from '@/types/internationalization'
 
 interface NavLinksProps {
     navItemsTrad: TradKeysType['navbarLang']['navItems']

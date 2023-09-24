@@ -13,12 +13,12 @@ interface HomeProps {
 }
 
 const HomePage: FC<HomeProps> = async ({ params }) => {
-    const { btnLang, page, continentsLang } = await getDictionary(params.lang)
+    const { button_lang, continentsLang } = await getDictionary(params.lang)
 
     const allCountries = await getAllCountries()
 
     return (
-        <Countries allCountries={allCountries} trad={{ btnLang, page, continentsLang }} />
+        <Countries allCountries={allCountries} trad={{ button_lang, continentsLang }} />
     )
 }
 

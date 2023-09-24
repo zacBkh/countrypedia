@@ -1,3 +1,5 @@
+import { FC } from 'react'
+
 import { AiOutlineClose } from 'react-icons/ai'
 
 import { useSWRConfig } from 'swr'
@@ -16,7 +18,25 @@ import SWR_KEYS from '@/constants/SWR-keys'
 
 import sleep from '@/utils/sleep'
 
-const RulesCapitalGuesserModal = ({}) => {
+import { TradGameTypes } from '@/components/play/capital-guesser'
+
+interface RulesCapitalGuesserModalType {
+    tradModals: TradGameTypes['tradModals']
+}
+
+const RulesCapitalGuesserModal: FC<RulesCapitalGuesserModalType> = ({ tradModals }) => {
+    const {
+        common: {
+            title,
+            paragraph1,
+            point_correct_answer,
+            easy_level,
+            hard_level,
+            info_current_level,
+        },
+        capital_guesser_modal,
+    } = tradModals
+
     const { mutate } = useSWRConfig()
 
     const { modalsCtx } = useGlobalContext()
@@ -46,6 +66,8 @@ const RulesCapitalGuesserModal = ({}) => {
         hard: 'Start the game with a hard level - 250 countries, including the most exotic ones!',
     }
 
+    const currentLvl = modalsCtx.capitalGuesserRules.difficultyLevel
+
     return (
         <>
             <dialog
@@ -64,29 +86,23 @@ const RulesCapitalGuesserModal = ({}) => {
                     </button>
                     <div className="p-6 text-center flex flex-col gap-y-8">
                         <h1 className={`${MODAL_TITLE_FONT_SIZE} font-semibold`}>
-                            Ready to play? 🤯
+                            {title}
                         </h1>
                         <div
                             className={`${MODAL_BODY_FONT_SIZE} font-semibold flex flex-col gap-y-2 items-start`}
                         >
-                            <div>
-                                👉🏼 A randomly chosen country will appear at the top of the
-                                page
-                            </div>
-                            <div>
-                                👉🏼 Try to pick its capital among the 4 options as fast as
-                                possible!
-                            </div>
-                            <div>👉🏼 Each correct answers will bring you one point</div>
+                            <div>{paragraph1}</div>
+                            <div>{capital_guesser_modal.paragraph2}</div>
+                            <div>{point_correct_answer}</div>
                         </div>
 
                         <Divider moreCSS="w-[65%] mx-auto" />
                         <div>
                             <p className="italic">
-                                You are currently playing with the{' '}
+                                {info_current_level}
                                 <span className="text-[#087da4] dark:text-[#149eca] font-bold">
                                     {' '}
-                                    {modalsCtx.capitalGuesserRules.difficultyLevel}{' '}
+                                    {currentLvl}{' '}
                                 </span>
                                 level
                             </p>
@@ -97,7 +113,7 @@ const RulesCapitalGuesserModal = ({}) => {
                                 onAction={() => startGame(DifficultyLvl.EASY)}
                                 ariaLabel={ariaLabelAndTitle.easy}
                                 title={ariaLabelAndTitle.easy}
-                                text="Easy level 😎"
+                                text={easy_level}
                                 textSm="Easy 😎"
                                 moreStyle={'w-fit mx-auto !text-base'}
                             />
@@ -105,7 +121,7 @@ const RulesCapitalGuesserModal = ({}) => {
                                 onAction={() => startGame(DifficultyLvl.HARD)}
                                 ariaLabel={ariaLabelAndTitle.hard}
                                 title={ariaLabelAndTitle.hard}
-                                text="Hard level 💪🏼"
+                                text={hard_level}
                                 textSm="Hard 💪🏼"
                                 moreStyle={'w-fit mx-auto !text-base'}
                             />

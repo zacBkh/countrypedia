@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FC } from 'react'
 
 import CountryLocatorMap from './country-locator-map'
 
@@ -28,7 +28,9 @@ interface ClickedCountryTypes {
     name: string
 }
 
-const CountryLocatorWrapper = () => {
+import { TradGameTypes } from '@/components/play/capital-guesser'
+
+const CountryLocatorWrapper: FC<TradGameTypes> = ({ tradModals, tradDashboard }) => {
     const {
         modalsCtx: { countryLocatorRules },
     } = useGlobalContext()
@@ -96,7 +98,14 @@ const CountryLocatorWrapper = () => {
 
     return (
         <>
-            {countryLocatorRules.isActive ? <RulesCountryLocatorModal /> : ''}
+            {countryLocatorRules.isActive ? (
+                <RulesCountryLocatorModal
+                    tradModals={tradModals}
+                    tradDashboard={tradDashboard}
+                />
+            ) : (
+                ''
+            )}
             <div
                 id="dashboard-country-locator"
                 className="p-2 lg:p-3 2xl:p-5 flex flex-col gap-y-4 select-none"
@@ -139,7 +148,7 @@ const CountryLocatorWrapper = () => {
                     </p>
                     <ScoreDisplayer score={score} countClick={countClick} />
 
-                    <HelpMessage openModal={openModal} />
+                    <HelpMessage trad={tradModals} openModal={openModal} />
                 </div>
             </div>
             <CountryLocatorMap onCtySelection={userSelectCountryHandler} />

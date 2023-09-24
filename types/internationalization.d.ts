@@ -1,9 +1,17 @@
 import TradData from '../dictionaries/en.json' // TypeScript infers the type of jsonData
 
 export type TradKeysType = {
-    btnLang: (typeof TradData)['btnLang']
+    button_lang: (typeof TradData)['button_lang']
     page: (typeof TradData)['page']
     navigation: (typeof TradData)['navigation']
     continentsLang: (typeof TradData)['continentsLang']
     navbarLang: (typeof TradData)['navbarLang']
+    play_lang: (typeof TradData)['play_lang']
+}
+
+import { Locale } from '@/i18n.config'
+
+export interface LayoutPlayProps {
+    children: React.ReactNode
+    params: { lang: Locale }
 }

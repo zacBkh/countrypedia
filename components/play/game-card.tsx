@@ -19,9 +19,18 @@ interface GameCardProps {
     img: any
     link: string
     objectCover?: boolean
+    btnTranslation: string
 }
 
-const GameCard: FC<GameCardProps> = ({ id, title, desc, img, link, objectCover }) => {
+const GameCard: FC<GameCardProps> = ({
+    id,
+    title,
+    desc,
+    img,
+    link,
+    objectCover,
+    btnTranslation,
+}) => {
     return (
         <div
             className={`w-[320px] md:w-[420px] bg-[#F7F7F9] border shadow dark:shadow-none rounded-lg  shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
@@ -56,7 +65,7 @@ const GameCard: FC<GameCardProps> = ({ id, title, desc, img, link, objectCover }
                 <div className="flex justify-center gap-x-8">
                     <Button
                         ariaLabel={`Click to play the game`}
-                        text="Play the game! 💪🏼"
+                        text={`${btnTranslation} 💪🏼`}
                         isNextLink
                         link={link}
                     />

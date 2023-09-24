@@ -1,5 +1,7 @@
 import { AiOutlineClose } from 'react-icons/ai'
 
+import { FC } from 'react'
+
 import { useSWRConfig } from 'swr'
 
 import { useGlobalContext } from '@/app/context/store'
@@ -16,7 +18,21 @@ import SWR_KEYS from '@/constants/SWR-keys'
 
 import sleep from '@/utils/sleep'
 
-const RulesCountryLocatorModal = ({}) => {
+import { TradGameTypes } from '@/components/play/capital-guesser'
+
+const RulesCountryLocatorModal: FC<TradGameTypes> = ({ tradModals }) => {
+    const {
+        common: {
+            title,
+            paragraph1,
+            point_correct_answer,
+            easy_level,
+            hard_level,
+            info_current_level,
+        },
+        country_locator_modal,
+    } = tradModals
+
     const { mutate } = useSWRConfig()
 
     const { modalsCtx } = useGlobalContext()
@@ -65,26 +81,20 @@ const RulesCountryLocatorModal = ({}) => {
                     </button>
                     <div className="p-6 text-center flex flex-col gap-y-8">
                         <h1 className={`${MODAL_TITLE_FONT_SIZE} font-semibold`}>
-                            Ready to play? 🤯
+                            {title}
                         </h1>
                         <div
                             className={`${MODAL_BODY_FONT_SIZE} font-semibold flex flex-col gap-y-2 items-start`}
                         >
-                            <div>
-                                👉🏼 A randomly chosen country will appear at the top of the
-                                page
-                            </div>
-                            <div>
-                                👉🏼 Try to locate this country on the map and click as fast
-                                as possible!
-                            </div>
-                            <div>👉🏼 Each correct answers will bring you one point</div>
+                            <div>{paragraph1}</div>
+                            <div>{country_locator_modal.paragraph2}</div>
+                            <div>{point_correct_answer}</div>
                         </div>
 
                         <Divider moreCSS="w-[65%] mx-auto" />
                         <div>
                             <p className="italic">
-                                You are currently playing with the{' '}
+                                {info_current_level}
                                 <span className="text-[#087da4] dark:text-[#149eca] font-bold">
                                     {' '}
                                     {modalsCtx.countryLocatorRules.difficultyLevel}{' '}
@@ -98,7 +108,7 @@ const RulesCountryLocatorModal = ({}) => {
                                 onAction={() => startGame(DifficultyLvl.EASY)}
                                 ariaLabel={ariaLabelAndTitle.easy}
                                 title={ariaLabelAndTitle.easy}
-                                text="Easy level 😎"
+                                text={easy_level}
                                 textSm="Easy 😎"
                                 moreStyle={'w-fit mx-auto !text-base'}
                             />
@@ -106,7 +116,7 @@ const RulesCountryLocatorModal = ({}) => {
                                 onAction={() => startGame(DifficultyLvl.HARD)}
                                 ariaLabel={ariaLabelAndTitle.hard}
                                 title={ariaLabelAndTitle.hard}
-                                text="Hard level 💪🏼"
+                                text={hard_level}
                                 textSm="Hard 💪🏼"
                                 moreStyle={'w-fit mx-auto !text-base'}
                             />

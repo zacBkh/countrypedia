@@ -1,3 +1,5 @@
+import { FC } from 'react'
+
 import SEO_KEYWORDS from '@/constants/seo-keywords'
 
 export const metadata = {
@@ -15,28 +17,46 @@ import { SUPER_TITLE_FONT_SIZE } from '@/constants/responsive-fonts'
 
 import Divider from '@/components/ui/divider'
 
-export default function PlayLayout({ children }: { children: React.ReactNode }) {
+import { Locale } from '@/i18n.config'
+import { getDictionary } from '@/utils/dictionary'
+
+interface LayoutPlayProps {
+    children: React.ReactNode
+    params: { lang: Locale }
+}
+
+const PlayLayout: FC<LayoutPlayProps> = async ({ children, params }) => {
+    const { play_lang } = await getDictionary(params.lang)
+
+    const {
+        header: {
+            title,
+            paragraph1,
+            paragraph2,
+            paragraph3,
+            paragraph3_bis_action,
+            paragraph3_ter,
+            paragraph4,
+        },
+    } = play_lang
+
     return (
         <div className="flex flex-col gap-y-10 py-4 px-2 md:px-6 sm:py-6">
-            <h1 className={`${SUPER_TITLE_FONT_SIZE} font-bold`}>
-                Pick one of the game and test yourself!
-            </h1>
+            <h1 className={`${SUPER_TITLE_FONT_SIZE} font-bold`}>{title}</h1>
             <div>
                 <p className="text-lg sm:text-xl sm:w-1/2 font-semibold">
-                    Time to test your skills! 🧠 <br />
-                    We have created those games for you to have fun, practice and get
-                    better. 💪🏼 <br />
-                    If you have any idea to improve a game, or create a new one, please{' '}
+                    {paragraph1} <br />
+                    {paragraph2} <br />
+                    {paragraph3}
                     <Link
                         className={`${styleTxtBlued} hover:underline`}
                         href={'https://twitter.com/zacFullStack'}
                     >
-                        contact me
-                    </Link>{' '}
-                    to discuss it. 💬
+                        {paragraph3_bis_action}
+                    </Link>
+                    {paragraph3_ter}
                     <br />
-                    There is also a like button, if you enjoyed the game, please smash it!
-                    ❤️
+                    {paragraph4}
                 </p>
                 <Divider moreCSS="!border-[#EBECF0] dark:!border-[#343A46] mt-4" />
             </div>
@@ -45,3 +65,5 @@ export default function PlayLayout({ children }: { children: React.ReactNode }) 
         </div>
     )
 }
+
+export default PlayLayout

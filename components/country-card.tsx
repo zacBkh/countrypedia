@@ -13,11 +13,11 @@ import { TITLE_FONT_SIZE, DETAILS_FONT_SIZE } from '@/constants/responsive-fonts
 
 import { slugCtyName } from '@/utils/slug-url'
 
-import { TradKeysType } from '@/types/key-translations'
+import { TradKeysType } from '@/types/internationalization'
 
 interface CountryCardProps {
     details: GetAllCountriesProps
-    trad: TradKeysType['btnLang']
+    trad: TradKeysType['button_lang']
 }
 
 const CountryCard: FC<CountryCardProps> = ({ details, trad }) => {

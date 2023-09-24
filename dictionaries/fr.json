@@ -4,10 +4,54 @@
         "about": "About"
     },
 
-    "page": {
-        "about": {
-            "title": "About Us",
-            "description": "This is the about page"
+    "play_lang": {
+        "header": {
+            "title": "Choisissez un jeu et relevez le défi!",
+            "paragraph1": "Il est temps de vous évaluer! 🧠",
+            "paragraph2": "Nous avons créé ces jeux pour s'amuser, s'entrainer et s'améliorer. 💪🏼",
+            "paragraph3": "Si vous avez des suggestions d'améliorations de jeux existants ou même d'un nouveau jeu ",
+            "paragraph3_bis_action": "contactez-moi ",
+            "paragraph3_ter": "pour en discuter 💬",
+            "paragraph4": "Il y a un bouton J'aime sur chaque jeu, cliquez si vous avez apprécié! ❤️"
+        },
+        "card_games": {
+            "country_locator_description": {
+                "title": "Trouve Pays",
+                "paragraph1": "Localisez des pays générés aléatoirement sur une carte interactive.",
+                "paragraph2": "Prêt à relever le défi ? 🧠"
+            },
+            "capital_guesser_description": {
+                "title": "Devine Capitales",
+                "paragraph1": "Trouvez la bonne capitale des pays, niveaux de difficulté variables! N'allez pas trop vite!",
+                "paragraph2": "Combien de capitales connais-tu? 🤓"
+            }
+        },
+
+        "modals": {
+            "common": {
+                "title": "Prêt à jouer ? 🤯",
+                "paragraph1": "👉🏼 Un pays choisi aléatoirement va apparaître en haut de la page",
+                "point_correct_answer": "👉🏼 Chaque réponse correcte apporte un point",
+                "easy_level": "Facile 😎",
+                "hard_level": "Difficle 💪🏼",
+                "info_current_level": "Vous jouez actuellement avec le niveau "
+            },
+            "country_locator_modal": {
+                "paragraph2": "👉🏼 Clique sur ce pays le plus rapidement possible!"
+            },
+            "capital_guesser_modal": {
+                "paragraph2": "👉🏼 Trouve la bonne capitale parmi les 4 options le plus rapidement possible!"
+            }
+        },
+
+        "game_dashboard": {
+            "common": {
+                "your_score": "🎯 Votre score: ",
+                "feeling_lost": "Besoin d'aide ?",
+                "see_instructions_or": "Consultez les instructions ou changez de niveau"
+            },
+            "country_locator_dashboard": {},
+            "capital_guesser_dashboard": {}
         }
     },
 
@@ -20,10 +64,11 @@
         }
     },
 
-    "btnLang": {
+    "button_lang": {
         "readMore": "Lire plus",
         "seeOnMaps": "Voir sur Maps",
-        "seeMore": "Voir plus"
+        "seeMore": "Voir plus",
+        "playTheGame": "Jouez !"
     },
 
     "continentsLang": {

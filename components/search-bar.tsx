@@ -20,7 +20,7 @@ import SuggestionMobileSearchBar from './suggestion-mobile-searchbar'
 
 import { fetcherGetCtysSearchBar } from './overlay-searchbar-mobile'
 
-import { TradKeysType } from '@/types/key-translations'
+import { TradKeysType } from '@/types/internationalization'
 
 interface SearchBarProps {
     isMobileMode?: boolean

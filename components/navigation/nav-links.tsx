@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation'
 
 import { NAV_LINKS } from '@/constants/urls'
 
-import { TradKeysType } from '@/types/key-translations'
+import { TradKeysType } from '@/types/internationalization'
 
 interface NavLinksProps {
     isHamburgerMenu?: boolean
