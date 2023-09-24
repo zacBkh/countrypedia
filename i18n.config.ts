@@ -1,7 +1,7 @@
 // Defining internationalization setting once
 
 export const i18n = {
-    defaultLocale: 'en',
+    defaultLocale: 'fr',
     locales: ['en', 'fr'],
 } as const
 
