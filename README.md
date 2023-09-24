@@ -60,6 +60,8 @@ So guess what I did? <br />
 
 💡 Light & Dark modes
 
+🌏 Internationalization (English & French)
+
 <div align="right">
 
 [🔝 Back to top 🔝](#readmetop)
@@ -88,8 +90,8 @@ So guess what I did? <br />
 ✅ Create Country Locator: a game where player need to locate correctly randomly generated countries on a Map <br />
 ✅ Add a responsive image carousel on the /about page <br />
 ✅ Like counter on games working with Local Storage, stored on PostgreSQL through Prisma <br />
+✅ Internationalization to support French & English <br />
 ⏳ Add a sorting function on /home page to sort countries by population, land area... <br />
-⏳ Internationalization to support French & English <br />
 
 You are a teacher and want to use this project? [Reach out to me](https://twitter.com/zacFullStack) and let's talk about it 💬
 
