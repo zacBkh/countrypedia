@@ -16,6 +16,9 @@ import RegionFilter from './filters/region-filters'
 import REGIONS_WITH_ICONS from '@/constants/regions'
 
 import { TradKeysType } from '@/types/internationalization'
+import reverseKeyValue from '@/services/reverse-object-translation'
+import translationData from '../dictionaries/fr.json'
+const { continentsLang } = translationData
 
 interface CountriesProps {
     allCountries: GetAllCountriesProps[]
@@ -43,7 +46,11 @@ const Countries: FC<CountriesProps> = ({ allCountries, trad }) => {
         }
 
         if (filterRegion) {
-            return allCountries.filter(country => country.region === filterRegion)
+            return allCountries.filter(
+                country =>
+                    country.region === filterRegion ||
+                    country.region === reverseKeyValue(continentsLang)[filterRegion],
+            )
         }
 
         return limitedCountries
