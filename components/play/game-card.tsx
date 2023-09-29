@@ -1,6 +1,8 @@
+'use client'
+
 import Image from 'next/image'
 
-import { FC } from 'react'
+import { FC, useState } from 'react'
 
 import Button from '../ui/buttons'
 
@@ -10,7 +12,9 @@ import { Suspense } from 'react'
 
 import LikeDisplayerGames from './like-count-displayer'
 
-import GameNames from '@/constants/game-names'
+import { GameNames } from '@/constants/game-names'
+
+import FormGameReview from '../forms/add-review'
 
 interface GameCardProps {
     id: GameNames
@@ -19,7 +23,7 @@ interface GameCardProps {
     img: any
     link: string
     objectCover?: boolean
-    btnTranslation: string
+    btnTranslation: { play: string; review: string }
 }
 
 const GameCard: FC<GameCardProps> = ({
@@ -31,6 +35,15 @@ const GameCard: FC<GameCardProps> = ({
     objectCover,
     btnTranslation,
 }) => {
+    const [isReviewActive, setIsReviewActive] = useState(false)
+
+    const handleDisplayReviewForm = () => {
+        if (isReviewActive) {
+            setIsReviewActive(false)
+        } else {
+            setIsReviewActive(true)
+        }
+    }
     return (
         <div
             className={`w-[320px] md:w-[420px] bg-[#F7F7F9] border shadow dark:shadow-none rounded-lg  shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
@@ -65,11 +78,25 @@ const GameCard: FC<GameCardProps> = ({
                 <div className="flex justify-center gap-x-8">
                     <Button
                         ariaLabel={`Click to play the game`}
-                        text={`${btnTranslation} 💪🏼`}
+                        text={`${btnTranslation.play} 💪🏼`}
                         isNextLink
                         link={link}
                     />
+                    <Button
+                        ariaLabel={`Click to review the game`}
+                        text={`${btnTranslation.review} ⭐`}
+                        onAction={handleDisplayReviewForm}
+                    />
                 </div>
+
+                {isReviewActive ? (
+                    <FormGameReview
+                        gameName={id}
+                        onReviewSent={() => setIsReviewActive(false)}
+                    />
+                ) : (
+                    ''
+                )}
             </div>
         </div>
     )

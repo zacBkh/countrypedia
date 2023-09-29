@@ -14,6 +14,19 @@ model Game {
   id        Int    @id @default(autoincrement())
   name      String @unique // required bcs no default
   likeCount Int    @default(0)
+
+  reviews Review[] // A game can have many reviews
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  comment    String
+  authorName String
+
+  gameId Int
+  game   Game @relation(fields: [gameId], references: [id]) // connecting our gameID field to the id field of Game model
 }
 
 // model User {

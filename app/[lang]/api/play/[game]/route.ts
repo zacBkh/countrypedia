@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import GameNames from '@/constants/game-names'
-
+import { GameNames } from '@/constants/game-names'
 // INCREMENT LIKE COUNT
 import { incrementLikeCount } from '@/services/prisma-queries'
 
@@ -31,12 +30,18 @@ export async function POST(
     // If game passed in query params is not in enum return err
     if (!Object.values(GameNames).includes(game)) {
         console.log('Error, this game is not valid')
-        return NextResponse.json({ success: false, result: 'This game is not valid' })
+        return NextResponse.json(
+            { success: false, result: 'This game is not valid [INCREMENT_LIKE_COUNT]' },
+            { status: 404 },
+        )
     }
 
     await incrementLikeCount(queryParams.game, hasLikedBefore)
-    return NextResponse.json({
-        success: true,
-        result: `${game} likeCounter has been succesfully incremented`,
-    })
+    return NextResponse.json(
+        {
+            success: true,
+            result: `${game} likeCounter has been succesfully incremented`,
+        },
+        { status: 201 },
+    )
 }

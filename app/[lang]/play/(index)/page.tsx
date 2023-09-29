@@ -8,7 +8,7 @@ import GameCard from '@/components/play/game-card'
 import ScreenshotCtyLocator from '@images/screenshot-country-locator.png'
 import ScreenshotCapitalGuesser from '@images/screenshot-capital-guesser.png'
 
-import GameNames from '@/constants/game-names'
+import { GameNames } from '@/constants/game-names'
 
 import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/utils/dictionary'
@@ -19,7 +19,7 @@ const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) 
         play_lang: {
             card_games: { country_locator_description, capital_guesser_description },
         },
-        button_lang: { playTheGame },
+        button_lang: { play_the_game, review_the_game },
     } = await getDictionary(lang)
 
     const { title, paragraph1, paragraph2 } = capital_guesser_description
@@ -32,7 +32,7 @@ const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) 
 
     return (
         <>
-            <div className="flex items-center flex-wrap gap-y-6">
+            <div className="flex items-start flex-wrap gap-y-6">
                 <GameCard
                     id={GameNames.COUNTRY_LOCATOR_NAME}
                     title={`${titleCL} 📍`}
@@ -42,7 +42,7 @@ const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) 
                     }}
                     img={ScreenshotCtyLocator}
                     link={`${PLAY}${COUNTRY_LOCATOR}`}
-                    btnTranslation={playTheGame}
+                    btnTranslation={{ play: play_the_game, review: review_the_game }}
                 />
 
                 <GameCard
@@ -55,7 +55,7 @@ const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) 
                     }}
                     img={ScreenshotCapitalGuesser}
                     link={`${PLAY}${CAPITAL_GUESSER}`}
-                    btnTranslation={playTheGame}
+                    btnTranslation={{ play: play_the_game, review: review_the_game }}
                 />
             </div>
         </>
