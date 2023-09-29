@@ -60,6 +60,7 @@ export const fetchReviews = async () => {
     const reviews = await PrismaConnector.review.findMany({
         include: { game: { select: { name: true } } },
     })
+    console.log('reviews have been fetched')
     return reviews
 }
 

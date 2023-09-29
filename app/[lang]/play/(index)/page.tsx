@@ -16,8 +16,6 @@ import { getDictionary } from '@/utils/dictionary'
 import { fetchReviews } from '@/services/prisma-queries'
 import Reviews from '@/components/reviews/reviews'
 
-import { Suspense } from 'react'
-
 const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) => {
     // Deep destructuring of card_games
     const {
@@ -66,9 +64,7 @@ const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) 
                 />
             </div>
 
-            {/* <Suspense fallback={<div className="text-4xl">Loading...</div>}> */}
             <Reviews data={allReviews} />
-            {/* </Suspense> */}
         </>
     )
 }

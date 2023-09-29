@@ -14,6 +14,7 @@ import { Locale, i18n } from '@/i18n.config'
 
 const nunito = Nunito({
     subsets: ['latin'],
+    display: 'swap',
     variable: '--font-nunito',
 })
 

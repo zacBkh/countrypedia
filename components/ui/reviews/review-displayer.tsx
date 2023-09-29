@@ -14,7 +14,6 @@ interface ReviewDisplayerProps {
 
 const ReviewDisplayer: FC<ReviewDisplayerProps> = async ({ data }) => {
     const { authorName, comment, createdAt, game } = data
-    console.log('data', data)
 
     const formattedDate = new Date(createdAt).toLocaleString('en-US', {
         month: 'long',

@@ -26,7 +26,11 @@ const Reviews: FC<ReviewsProps> = ({ data }) => {
     const [activeGame, setactiveGame] = useState<GameNames | ''>('')
 
     const handleClickFilter = (game: GameNames) => {
-        setactiveGame(game)
+        if (game === activeGame) {
+            return setactiveGame('')
+        } else {
+            setactiveGame(game)
+        }
     }
 
     // Is filtered or not
@@ -40,7 +44,7 @@ const Reviews: FC<ReviewsProps> = ({ data }) => {
     return (
         <div className="space-y-8">
             <div className="flex items-center gap-x-4">
-                <p className="bold">Show only reviews for </p>
+                <p className="font-bold">Show only reviews for </p>
 
                 {Object.values(GameNames).map(gameName => (
                     <button
