@@ -67,7 +67,7 @@ const Button: FC<ButtonProps> = ({
 
     return (
         <button title={title} aria-label={ariaLabel} onClick={onAction} className={style}>
-            {textSm ? <span className="md:hidden">{textSm ?? text}</span> : ''}
+            <span className="md:hidden">{textSm ?? text}</span>
             <span className="hidden md:inline">{text}</span>
             {icon ? <span className={iconClass}>{icon}</span> : ''}
         </button>

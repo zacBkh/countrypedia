@@ -13,13 +13,18 @@ import { GameNames } from '@/constants/game-names'
 import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/utils/dictionary'
 
+import { fetchReviews } from '@/services/prisma-queries'
+import Reviews from '@/components/reviews/reviews'
+
+import { Suspense } from 'react'
+
 const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) => {
     // Deep destructuring of card_games
     const {
         play_lang: {
             card_games: { country_locator_description, capital_guesser_description },
         },
-        button_lang: { play_the_game, review_the_game },
+        button_lang,
     } = await getDictionary(lang)
 
     const { title, paragraph1, paragraph2 } = capital_guesser_description
@@ -29,6 +34,8 @@ const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) 
         paragraph1: paragraph1CL,
         paragraph2: paragraph2CL,
     } = country_locator_description
+
+    const allReviews = await fetchReviews()
 
     return (
         <>
@@ -42,7 +49,7 @@ const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) 
                     }}
                     img={ScreenshotCtyLocator}
                     link={`${PLAY}${COUNTRY_LOCATOR}`}
-                    btnTranslation={{ play: play_the_game, review: review_the_game }}
+                    btnTranslation={button_lang}
                 />
 
                 <GameCard
@@ -55,9 +62,13 @@ const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) 
                     }}
                     img={ScreenshotCapitalGuesser}
                     link={`${PLAY}${CAPITAL_GUESSER}`}
-                    btnTranslation={{ play: play_the_game, review: review_the_game }}
+                    btnTranslation={button_lang}
                 />
             </div>
+
+            {/* <Suspense fallback={<div className="text-4xl">Loading...</div>}> */}
+            <Reviews data={allReviews} />
+            {/* </Suspense> */}
         </>
     )
 }

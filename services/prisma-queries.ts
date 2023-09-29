@@ -55,6 +55,14 @@ export const deleteAllGames = async () => {
 
 /*SC Reviews */
 
+// Fetch all reviews and include the name game
+export const fetchReviews = async () => {
+    const reviews = await PrismaConnector.review.findMany({
+        include: { game: { select: { name: true } } },
+    })
+    return reviews
+}
+
 // Create new review in records
 export const createNewReview = async (data: Prisma.ReviewCreateInput) => {
     const newReview = await PrismaConnector.review.create({

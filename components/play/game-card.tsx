@@ -23,7 +23,7 @@ interface GameCardProps {
     img: any
     link: string
     objectCover?: boolean
-    btnTranslation: { play: string; review: string }
+    btnTranslation: { play_the_game: string; review_the_game: string; submit: string }
 }
 
 const GameCard: FC<GameCardProps> = ({
@@ -46,7 +46,7 @@ const GameCard: FC<GameCardProps> = ({
     }
     return (
         <div
-            className={`w-[320px] md:w-[420px] bg-[#F7F7F9] border shadow dark:shadow-none rounded-lg  shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
+            className={`w-[320px] md:w-[440px] bg-[#F7F7F9] border shadow dark:shadow-none rounded-lg  shadowCardsHov dark:bg-[#16181D] overflow-hidden mx-auto`}
         >
             <div className="w-full h-36 md:h-48 relative">
                 <Image
@@ -78,13 +78,13 @@ const GameCard: FC<GameCardProps> = ({
                 <div className="flex justify-center gap-x-8">
                     <Button
                         ariaLabel={`Click to play the game`}
-                        text={`${btnTranslation.play} 💪🏼`}
+                        text={`${btnTranslation.play_the_game} 💪🏼`}
                         isNextLink
                         link={link}
                     />
                     <Button
                         ariaLabel={`Click to review the game`}
-                        text={`${btnTranslation.review} ⭐`}
+                        text={`${btnTranslation.review_the_game} ⭐`}
                         onAction={handleDisplayReviewForm}
                     />
                 </div>
@@ -93,6 +93,7 @@ const GameCard: FC<GameCardProps> = ({
                     <FormGameReview
                         gameName={id}
                         onReviewSent={() => setIsReviewActive(false)}
+                        form_translation={btnTranslation.submit}
                     />
                 ) : (
                     ''

@@ -7,26 +7,35 @@ import { reviewGame } from '@/services/dynamic-fetchers'
 
 import { GameNames } from '@/constants/game-names'
 
+import Button from '../ui/buttons'
+
+import ErrorFeedback from './error-feedback'
+
 interface FormGameReviewProps {
     gameName: GameNames
     onReviewSent: () => void
+    form_translation: string
 }
 
-type Inputs = {
+type InputsReviewForm = {
     COMMENT: string
     AUTHOR_NAME: string
 }
 
-const FormGameReview: FC<FormGameReviewProps> = ({ gameName, onReviewSent }) => {
+const FormGameReview: FC<FormGameReviewProps> = ({
+    gameName,
+    onReviewSent,
+    form_translation,
+}) => {
     const {
         register,
         handleSubmit,
         watch,
         reset,
         formState: { errors },
-    } = useForm<Inputs>()
+    } = useForm<InputsReviewForm>()
 
-    const onSubmit: SubmitHandler<Inputs> = async data => {
+    const onSubmit: SubmitHandler<InputsReviewForm> = async data => {
         const { COMMENT, AUTHOR_NAME } = data
         const addReviewHandler = await reviewGame(gameName, COMMENT, AUTHOR_NAME)
 
@@ -54,7 +63,7 @@ const FormGameReview: FC<FormGameReviewProps> = ({ gameName, onReviewSent }) => 
                 <input
                     className={inputCSS}
                     type="text"
-                    placeholder="What's your name?"
+                    placeholder="John Doe"
                     {...register('AUTHOR_NAME', {
                         required: 'Your name is required.',
                         minLength: {
@@ -67,11 +76,7 @@ const FormGameReview: FC<FormGameReviewProps> = ({ gameName, onReviewSent }) => 
                         },
                     })}
                 />
-                {errors.AUTHOR_NAME && (
-                    <p className="text-sm text-red-600 mt-1">
-                        {errors.AUTHOR_NAME.message}
-                    </p>
-                )}
+                <ErrorFeedback errorForField={errors.AUTHOR_NAME?.message} />
             </div>
 
             <div>
@@ -91,12 +96,14 @@ const FormGameReview: FC<FormGameReviewProps> = ({ gameName, onReviewSent }) => 
                         },
                     })}
                 />
-                {errors.COMMENT && (
-                    <p className="text-sm text-red-600 mt-1">{errors.COMMENT.message}</p>
-                )}
+                <ErrorFeedback errorForField={errors.COMMENT?.message} />
             </div>
 
-            <button>Submit</button>
+            <Button
+                moreStyle="mx-auto !px-3 !py-[5px] !text-sm"
+                text={form_translation}
+                ariaLabel="Click to submit your review"
+            ></Button>
         </form>
     )
 }
