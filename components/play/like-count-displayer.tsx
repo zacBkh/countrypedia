@@ -8,7 +8,7 @@ import { fetchGameFetcher } from '@/services/dynamic-fetchers'
 
 import { BsFillHeartFill } from 'react-icons/bs'
 
-import GameNames from '@/constants/game-names'
+import { GameNames } from '@/constants/game-names'
 
 import Spinner from '@/components/ui/spinner'
 

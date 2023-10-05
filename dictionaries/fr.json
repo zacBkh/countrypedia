@@ -68,7 +68,9 @@
         "readMore": "Lire plus",
         "seeOnMaps": "Voir sur Maps",
         "seeMore": "Voir plus",
-        "playTheGame": "Jouez !"
+        "play_the_game": "Jouez !",
+        "review_the_game": "Notez le jeu !",
+        "submit": "Envoyer"
     },
 
     "about_me": {

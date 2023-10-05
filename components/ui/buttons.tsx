@@ -2,6 +2,8 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { BUTTON_FONT_SIZE } from '@/constants/responsive-fonts'
 
+import { MouseEventHandler } from 'react'
+
 interface ButtonProps {
     text: string
     ariaLabel: string
@@ -10,7 +12,7 @@ interface ButtonProps {
     isNextLink?: boolean
     isExternalLink?: boolean
 
-    onAction?: any
+    onAction?: MouseEventHandler
     textSm?: string
     secondary?: boolean
     moreStyle?: string
@@ -65,7 +67,7 @@ const Button: FC<ButtonProps> = ({
 
     return (
         <button title={title} aria-label={ariaLabel} onClick={onAction} className={style}>
-            {textSm ? <span className="md:hidden">{textSm ?? text}</span> : ''}
+            <span className="md:hidden">{textSm ?? text}</span>
             <span className="hidden md:inline">{text}</span>
             {icon ? <span className={iconClass}>{icon}</span> : ''}
         </button>
