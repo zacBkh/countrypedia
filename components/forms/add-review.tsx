@@ -30,6 +30,8 @@ const FormGameReview: FC<FormGameReviewProps> = ({
     onReviewSent,
     form_translation,
 }) => {
+    const { mutate } = useSWRConfig()
+
     const {
         register,
         handleSubmit,
@@ -39,8 +41,6 @@ const FormGameReview: FC<FormGameReviewProps> = ({
     } = useForm<InputsReviewForm>()
 
     const onSubmit: SubmitHandler<InputsReviewForm> = async data => {
-        const { mutate } = useSWRConfig()
-
         const { COMMENT, AUTHOR_NAME } = data
         const addReviewHandler = await reviewGame(gameName, COMMENT, AUTHOR_NAME)
 
