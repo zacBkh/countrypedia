@@ -82,7 +82,7 @@ const Reviews = () => {
             <Suspense fallback={<div className="text-4xl">Loading...</div>}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-10 px-6">
                     {reviewsToDisplay?.map(review => (
-                        <ReviewDisplayer data={review} />
+                        <ReviewDisplayer key={review.id} data={review} />
                     ))}
                 </div>
             </Suspense>
