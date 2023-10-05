@@ -1,3 +1,5 @@
+export const revalidate = 10 // revalidate the data at most every 10 sec
+
 import { FC } from 'react'
 
 import { APP_LINKS } from '@/constants/urls'

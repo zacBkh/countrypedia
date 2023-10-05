@@ -57,8 +57,6 @@ export const deleteAllGames = async () => {
 
 import { cache } from 'react'
 
-export const revalidate = 10 // revalidate the data at most every 10 sec
-
 // Fetch all reviews and include the name game
 export const fetchReviews = cache(async () => {
     const reviews = await PrismaConnector.review.findMany({
