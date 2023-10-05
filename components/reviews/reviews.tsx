@@ -38,9 +38,6 @@ const Reviews = () => {
     console.log('reviews', reviews)
     console.log('isLoading', isLoading)
 
-    if (error) return <div>failed to load</div>
-    if (isLoading) return <div>loading...</div>
-
     const [activeGame, setactiveGame] = useState<GameNames | ''>('')
 
     const handleClickFilter = (game: GameNames) => {
@@ -59,6 +56,8 @@ const Reviews = () => {
         reviewsToDisplay = reviews?.filter(review => review.game.name === activeGame)
     }
 
+    if (error) return <div>failed to load</div>
+    if (isLoading) return <div>loading the reviews...</div>
     return (
         <div className="space-y-8">
             <div className="flex items-center gap-x-4">
