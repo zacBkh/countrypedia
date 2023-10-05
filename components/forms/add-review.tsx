@@ -11,8 +11,7 @@ import Button from '../ui/buttons'
 
 import ErrorFeedback from './error-feedback'
 
-import { useSWRConfig } from 'swr'
-import SWR_KEYS from '@/constants/SWR-keys'
+import { mutate } from 'swr'
 
 interface FormGameReviewProps {
     gameName: GameNames
@@ -30,8 +29,6 @@ const FormGameReview: FC<FormGameReviewProps> = ({
     onReviewSent,
     form_translation,
 }) => {
-    const { mutate } = useSWRConfig()
-
     const {
         register,
         handleSubmit,
@@ -42,19 +39,20 @@ const FormGameReview: FC<FormGameReviewProps> = ({
 
     const onSubmit: SubmitHandler<InputsReviewForm> = async data => {
         const { COMMENT, AUTHOR_NAME } = data
+        console.log('1')
         const addReviewHandler = await reviewGame(gameName, COMMENT, AUTHOR_NAME)
+        console.log('new fresh data -->', addReviewHandler)
+        console.log('2')
+        await mutate('/ap/reviews')
+        console.log('3')
 
         if (!addReviewHandler.success) {
             console.log('error happened in review send')
         } else {
-            console.log('success')
-            mutate(SWR_KEYS.REVIEWS_GAME)
             onReviewSent()
             reset()
         }
     }
-
-    // console.log('LIVE DATA -->', watch('AUTHOR_NAME'))
 
     const inputCSS =
         ' outline-none block p-2.5 w-full text-sm text-gray-900 bg-[#EBECF0] rounded-lg border border-gray-300 dark:bg-[#333944] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-react-blue-txt-light&dark'

@@ -54,3 +54,18 @@ export const reviewGame = async (
     const data = await response.json()
     return data
 }
+
+import type { Review } from '@prisma/client'
+
+export interface ReviewFetchType {
+    success: boolean
+    result: Array<Review & { game: { name: string } }>
+}
+
+export const getReviewsGame: () => Promise<ReviewFetchType> = async () => {
+    const response = await fetch(`api${APP_LINKS.PLAY}/review/`, {
+        method: 'GET',
+    })
+    const data = await response.json()
+    return data
+}

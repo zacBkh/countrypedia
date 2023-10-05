@@ -1,4 +1,4 @@
-export const revalidate = 10 // revalidate the data at most every 10 sec
+import { Suspense } from 'react'
 
 import { FC } from 'react'
 
@@ -63,7 +63,9 @@ const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) 
                 />
             </div>
 
+            {/* <Suspense fallback={<div className="text-4xl">Loading SUSPENSE...</div>}> */}
             <Reviews />
+            {/* </Suspense> */}
         </>
     )
 }

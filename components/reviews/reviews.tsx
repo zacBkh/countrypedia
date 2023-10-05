@@ -1,42 +1,34 @@
 'use client'
 
-import { FC, useState } from 'react'
+import { useState } from 'react'
 
 import ReviewDisplayer from '@/components/reviews/review-displayer'
-
-import type { Review } from '@prisma/client' // import type of review
 
 import { lookUpGames } from '@/constants/game-names'
 
 import { GameNames } from '@/constants/game-names'
 
-import { styleTxtBlued } from '../play/games-dashboard-ui'
+import { styleTxtBlued } from '@/components/play/games-dashboard-ui'
 
-import { Suspense } from 'react'
-
-import { fetchReviews } from '@/services/prisma-queries'
+import { getReviewsGame } from '@/services/dynamic-fetchers'
 
 import SWR_KEYS from '@/constants/SWR-keys'
 
 import useSWR from 'swr'
 
-// interface ReviewsProps {
-//     data: (Review & {
-//         game: {
-//             name: string
-//         }
-//     })[]
-// }
+import Spinner from '@/components/ui/spinner'
 
 const Reviews = () => {
     const {
+        mutate,
         data: reviews,
         error,
         isLoading,
-    } = useSWR(SWR_KEYS.REVIEWS_GAME, () => fetchReviews())
-
-    console.log('reviews', reviews)
-    console.log('isLoading', isLoading)
+        isValidating,
+    } = useSWR('/ap/reviews', () => getReviewsGame(), {
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false,
+    })
 
     const [activeGame, setactiveGame] = useState<GameNames | ''>('')
 
@@ -48,16 +40,22 @@ const Reviews = () => {
         }
     }
 
+    console.log('isValidating', isValidating)
+    console.log('reviews', reviews)
     // Is filtered or not
     let reviewsToDisplay
     if (!activeGame) {
-        reviewsToDisplay = reviews
+        reviewsToDisplay = reviews?.result
     } else {
-        reviewsToDisplay = reviews?.filter(review => review.game.name === activeGame)
+        reviewsToDisplay = reviews?.result?.filter(
+            review => review.game.name === activeGame,
+        )
     }
 
     if (error) return <div>failed to load</div>
-    if (isLoading) return <div>loading the reviews...</div>
+    if (isLoading)
+        return <Spinner moreCSS="border-t-react-blue-txt-light&dark !w-10 !h-10" />
+
     return (
         <div className="space-y-8">
             <div className="flex items-center gap-x-4">
@@ -79,13 +77,12 @@ const Reviews = () => {
                 ))}
             </div>
 
-            <Suspense fallback={<div className="text-4xl">Loading...</div>}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-10 px-6">
-                    {reviewsToDisplay?.map(review => (
-                        <ReviewDisplayer key={review.id} data={review} />
-                    ))}
-                </div>
-            </Suspense>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-10 px-6">
+                {reviewsToDisplay?.map(rev => (
+                    <ReviewDisplayer key={rev.id} data={rev} />
+                ))}
+            </div>
+            <button onClick={() => mutate()}>Hello</button>
         </div>
     )
 }
