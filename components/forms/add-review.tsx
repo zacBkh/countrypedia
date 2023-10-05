@@ -11,8 +11,6 @@ import Button from '../ui/buttons'
 
 import ErrorFeedback from './error-feedback'
 
-import { useRouter } from 'next/navigation'
-
 interface FormGameReviewProps {
     gameName: GameNames
     onReviewSent: () => void
@@ -29,7 +27,6 @@ const FormGameReview: FC<FormGameReviewProps> = ({
     onReviewSent,
     form_translation,
 }) => {
-    const router = useRouter()
     const {
         register,
         handleSubmit,
@@ -46,7 +43,6 @@ const FormGameReview: FC<FormGameReviewProps> = ({
             console.log('error happened in review send')
         } else {
             console.log('success')
-            router.refresh()
             onReviewSent()
             reset()
         }
