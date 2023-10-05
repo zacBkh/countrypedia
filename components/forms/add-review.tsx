@@ -11,6 +11,9 @@ import Button from '../ui/buttons'
 
 import ErrorFeedback from './error-feedback'
 
+import { useSWRConfig } from 'swr'
+import SWR_KEYS from '@/constants/SWR-keys'
+
 interface FormGameReviewProps {
     gameName: GameNames
     onReviewSent: () => void
@@ -36,6 +39,8 @@ const FormGameReview: FC<FormGameReviewProps> = ({
     } = useForm<InputsReviewForm>()
 
     const onSubmit: SubmitHandler<InputsReviewForm> = async data => {
+        const { mutate } = useSWRConfig()
+
         const { COMMENT, AUTHOR_NAME } = data
         const addReviewHandler = await reviewGame(gameName, COMMENT, AUTHOR_NAME)
 
@@ -43,6 +48,7 @@ const FormGameReview: FC<FormGameReviewProps> = ({
             console.log('error happened in review send')
         } else {
             console.log('success')
+            mutate(SWR_KEYS.REVIEWS_GAME)
             onReviewSent()
             reset()
         }

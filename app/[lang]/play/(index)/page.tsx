@@ -15,7 +15,6 @@ import { GameNames } from '@/constants/game-names'
 import { Locale } from '@/i18n.config'
 import { getDictionary } from '@/utils/dictionary'
 
-import { fetchReviews } from '@/services/prisma-queries'
 import Reviews from '@/components/reviews/reviews'
 
 const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) => {
@@ -34,8 +33,6 @@ const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) 
         paragraph1: paragraph1CL,
         paragraph2: paragraph2CL,
     } = country_locator_description
-
-    const allReviews = await fetchReviews()
 
     return (
         <>
@@ -66,7 +63,7 @@ const PlayPage: FC<{ params: { lang: Locale } }> = async ({ params: { lang } }) 
                 />
             </div>
 
-            <Reviews data={allReviews} />
+            <Reviews />
         </>
     )
 }

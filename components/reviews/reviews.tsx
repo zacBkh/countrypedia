@@ -14,15 +14,33 @@ import { styleTxtBlued } from '../play/games-dashboard-ui'
 
 import { Suspense } from 'react'
 
-interface ReviewsProps {
-    data: (Review & {
-        game: {
-            name: string
-        }
-    })[]
-}
+import { fetchReviews } from '@/services/prisma-queries'
 
-const Reviews: FC<ReviewsProps> = ({ data }) => {
+import SWR_KEYS from '@/constants/SWR-keys'
+
+import useSWR from 'swr'
+
+// interface ReviewsProps {
+//     data: (Review & {
+//         game: {
+//             name: string
+//         }
+//     })[]
+// }
+
+const Reviews = () => {
+    const {
+        data: reviews,
+        error,
+        isLoading,
+    } = useSWR(SWR_KEYS.REVIEWS_GAME, () => fetchReviews())
+
+    console.log('reviews', reviews)
+    console.log('isLoading', isLoading)
+
+    if (error) return <div>failed to load</div>
+    if (isLoading) return <div>loading...</div>
+
     const [activeGame, setactiveGame] = useState<GameNames | ''>('')
 
     const handleClickFilter = (game: GameNames) => {
@@ -36,9 +54,9 @@ const Reviews: FC<ReviewsProps> = ({ data }) => {
     // Is filtered or not
     let reviewsToDisplay
     if (!activeGame) {
-        reviewsToDisplay = data
+        reviewsToDisplay = reviews
     } else {
-        reviewsToDisplay = data.filter(review => review.game.name === activeGame)
+        reviewsToDisplay = reviews?.filter(review => review.game.name === activeGame)
     }
 
     return (
@@ -64,8 +82,8 @@ const Reviews: FC<ReviewsProps> = ({ data }) => {
 
             <Suspense fallback={<div className="text-4xl">Loading...</div>}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-10 px-6">
-                    {reviewsToDisplay.map(review => (
-                        <ReviewDisplayer key={review.id} data={review} />
+                    {reviewsToDisplay?.map(review => (
+                        <ReviewDisplayer data={review} />
                     ))}
                 </div>
             </Suspense>
