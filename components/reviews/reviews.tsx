@@ -1,28 +1,33 @@
 'use client'
 
-import { FC, useState } from 'react'
+import { useState } from 'react'
 
 import ReviewDisplayer from '@/components/reviews/review-displayer'
-
-import type { Review } from '@prisma/client' // import type of review
 
 import { lookUpGames } from '@/constants/game-names'
 
 import { GameNames } from '@/constants/game-names'
 
-import { styleTxtBlued } from '../play/games-dashboard-ui'
+import { styleTxtBlued } from '@/components/play/games-dashboard-ui'
 
-import { Suspense } from 'react'
+import { getReviewsGame } from '@/services/dynamic-fetchers'
 
-interface ReviewsProps {
-    data: (Review & {
-        game: {
-            name: string
-        }
-    })[]
-}
+import SWR_KEYS from '@/constants/SWR-keys'
 
-const Reviews: FC<ReviewsProps> = ({ data }) => {
+import useSWRImmutable from 'swr/immutable'
+
+import Spinner from '@/components/ui/spinner'
+
+const Reviews = () => {
+    const {
+        data: reviews,
+        error,
+        isLoading,
+        isValidating,
+    } = useSWRImmutable(SWR_KEYS.REVIEWS_GAME, getReviewsGame, {
+        revalidateOnMount: true,
+    })
+
     const [activeGame, setactiveGame] = useState<GameNames | ''>('')
 
     const handleClickFilter = (game: GameNames) => {
@@ -36,10 +41,19 @@ const Reviews: FC<ReviewsProps> = ({ data }) => {
     // Is filtered or not
     let reviewsToDisplay
     if (!activeGame) {
-        reviewsToDisplay = data
+        reviewsToDisplay = reviews?.result
     } else {
-        reviewsToDisplay = data.filter(review => review.game.name === activeGame)
+        reviewsToDisplay = reviews?.result?.filter(
+            review => review.game.name === activeGame,
+        )
     }
+
+    if (error) return <div>failed to load</div>
+    if (isLoading)
+        return <Spinner moreCSS="border-t-react-blue-txt-light&dark !w-10 !h-10" />
+
+    if (isValidating)
+        return <Spinner moreCSS="border-t-react-blue-txt-light&dark !w-5 !h-5" />
 
     return (
         <div className="space-y-8">
@@ -62,13 +76,11 @@ const Reviews: FC<ReviewsProps> = ({ data }) => {
                 ))}
             </div>
 
-            <Suspense fallback={<div className="text-4xl">Loading...</div>}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-10 px-6">
-                    {reviewsToDisplay.map(review => (
-                        <ReviewDisplayer key={review.id} data={review} />
-                    ))}
-                </div>
-            </Suspense>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-10 px-6">
+                {reviewsToDisplay?.map(rev => (
+                    <ReviewDisplayer key={rev.id} data={rev} />
+                ))}
+            </div>
         </div>
     )
 }

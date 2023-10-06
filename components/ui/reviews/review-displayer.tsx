@@ -26,7 +26,7 @@ const ReviewDisplayer: FC<ReviewDisplayerProps> = async ({ data }) => {
     }
 
     return (
-        <div className="flex flex-col gap-y-2">
+        <div className="flex flex-col gap-y-2 break-words">
             <div>
                 <p>
                     <span className={`${styleTxtBlued} font-bold`}>{authorName}</span>,

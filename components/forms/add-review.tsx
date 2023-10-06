@@ -11,6 +11,11 @@ import Button from '../ui/buttons'
 
 import ErrorFeedback from './error-feedback'
 
+import { mutate } from 'swr'
+import useSWRImmutable from 'swr/immutable'
+
+import SWR_KEYS from '@/constants/SWR-keys'
+
 interface FormGameReviewProps {
     gameName: GameNames
     onReviewSent: () => void
@@ -37,21 +42,23 @@ const FormGameReview: FC<FormGameReviewProps> = ({
 
     const onSubmit: SubmitHandler<InputsReviewForm> = async data => {
         const { COMMENT, AUTHOR_NAME } = data
+
+        // Optimistically update the UI
+        mutate('/api/reviews', { ...data }, false)
+
         const addReviewHandler = await reviewGame(gameName, COMMENT, AUTHOR_NAME)
 
         if (!addReviewHandler.success) {
             console.log('error happened in review send')
         } else {
-            console.log('success')
             onReviewSent()
             reset()
+            mutate(SWR_KEYS.REVIEWS_GAME)
         }
     }
 
-    // console.log('LIVE DATA -->', watch('AUTHOR_NAME'))
-
     const inputCSS =
-        ' outline-none block p-2.5 w-full text-sm text-gray-900 bg-[#EBECF0] rounded-lg border border-gray-300 dark:bg-[#333944] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-react-blue-txt-light&dark'
+        'outline-none block p-2.5 w-full text-gray-900 bg-[#EBECF0] rounded-lg border border-gray-300 dark:bg-[#333944] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-react-blue-txt-light&dark'
 
     return (
         <form className="flex flex-col gap-y-2 mt-6" onSubmit={handleSubmit(onSubmit)}>
