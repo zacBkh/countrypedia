@@ -39,7 +39,7 @@ export async function POST(
 
     const { comment, authorName } = req
 
-    createNewReview({ comment, authorName, game: { connect: { id: gameID } } }) // connecting to the gameID in the game model
+    await createNewReview({ comment, authorName, game: { connect: { id: gameID } } }) // connecting to the gameID in the game model
 
     return NextResponse.json(
         {

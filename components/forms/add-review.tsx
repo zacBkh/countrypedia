@@ -53,10 +53,7 @@ const FormGameReview: FC<FormGameReviewProps> = ({
         } else {
             onReviewSent()
             reset()
-            // had to add a timeout here otherwise update not showing on UI
-            setTimeout(() => {
-                mutate(SWR_KEYS.REVIEWS_GAME)
-            }, 1000)
+            mutate(SWR_KEYS.REVIEWS_GAME)
         }
     }
 

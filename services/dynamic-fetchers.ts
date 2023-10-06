@@ -48,8 +48,8 @@ export const reviewGame = async (
 ) => {
     const response = await fetch(`api${APP_LINKS.PLAY}/review/${gameName}`, {
         method: 'POST',
-        body: JSON.stringify({ comment, authorName }),
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ comment, authorName }),
     })
     const data = await response.json()
     return data

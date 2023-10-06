@@ -20,7 +20,6 @@ import Spinner from '@/components/ui/spinner'
 
 const Reviews = () => {
     const {
-        mutate,
         data: reviews,
         error,
         isLoading,
@@ -82,7 +81,6 @@ const Reviews = () => {
                     <ReviewDisplayer key={rev.id} data={rev} />
                 ))}
             </div>
-            <button onClick={() => mutate()}>Hello</button>
         </div>
     )
 }
