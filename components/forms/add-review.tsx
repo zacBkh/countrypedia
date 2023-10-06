@@ -13,6 +13,8 @@ import ErrorFeedback from './error-feedback'
 
 import { mutate } from 'swr'
 
+import SWR_KEYS from '@/constants/SWR-keys'
+
 interface FormGameReviewProps {
     gameName: GameNames
     onReviewSent: () => void
@@ -39,18 +41,17 @@ const FormGameReview: FC<FormGameReviewProps> = ({
 
     const onSubmit: SubmitHandler<InputsReviewForm> = async data => {
         const { COMMENT, AUTHOR_NAME } = data
-        console.log('1')
         const addReviewHandler = await reviewGame(gameName, COMMENT, AUTHOR_NAME)
-        console.log('new fresh data -->', addReviewHandler)
-        console.log('2')
-        await mutate('/ap/reviews')
-        console.log('3')
 
         if (!addReviewHandler.success) {
             console.log('error happened in review send')
         } else {
             onReviewSent()
             reset()
+            // had to add a timeout here otherwise update not showing on UI
+            setTimeout(() => {
+                mutate(SWR_KEYS.REVIEWS_GAME)
+            }, 1000)
         }
     }
 

@@ -6,6 +6,7 @@ export async function GET() {
     try {
         const allReviews = await fetchReviews()
         console.log('allReviews', allReviews)
+        console.log('allReviews.length', allReviews.length)
         return NextResponse.json(
             {
                 success: true,

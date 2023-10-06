@@ -14,7 +14,7 @@ import { getReviewsGame } from '@/services/dynamic-fetchers'
 
 import SWR_KEYS from '@/constants/SWR-keys'
 
-import useSWR from 'swr'
+import useSWRImmutable from 'swr/immutable'
 
 import Spinner from '@/components/ui/spinner'
 
@@ -25,10 +25,7 @@ const Reviews = () => {
         error,
         isLoading,
         isValidating,
-    } = useSWR('/ap/reviews', () => getReviewsGame(), {
-        revalidateOnFocus: false,
-        revalidateOnReconnect: false,
-    })
+    } = useSWRImmutable(SWR_KEYS.REVIEWS_GAME, getReviewsGame)
 
     const [activeGame, setactiveGame] = useState<GameNames | ''>('')
 
@@ -40,8 +37,6 @@ const Reviews = () => {
         }
     }
 
-    console.log('isValidating', isValidating)
-    console.log('reviews', reviews)
     // Is filtered or not
     let reviewsToDisplay
     if (!activeGame) {
@@ -55,6 +50,9 @@ const Reviews = () => {
     if (error) return <div>failed to load</div>
     if (isLoading)
         return <Spinner moreCSS="border-t-react-blue-txt-light&dark !w-10 !h-10" />
+
+    if (isValidating)
+        return <Spinner moreCSS="border-t-react-blue-txt-light&dark !w-5 !h-5" />
 
     return (
         <div className="space-y-8">
