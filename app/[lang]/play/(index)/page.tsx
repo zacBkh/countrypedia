@@ -1,5 +1,3 @@
-import { Suspense } from 'react'
-
 import { FC } from 'react'
 
 import { APP_LINKS } from '@/constants/urls'

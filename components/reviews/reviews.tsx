@@ -25,7 +25,9 @@ const Reviews = () => {
         error,
         isLoading,
         isValidating,
-    } = useSWRImmutable(SWR_KEYS.REVIEWS_GAME, getReviewsGame)
+    } = useSWRImmutable(SWR_KEYS.REVIEWS_GAME, getReviewsGame, {
+        revalidateOnMount: true,
+    })
 
     const [activeGame, setactiveGame] = useState<GameNames | ''>('')
 

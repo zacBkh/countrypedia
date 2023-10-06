@@ -12,6 +12,7 @@ import Button from '../ui/buttons'
 import ErrorFeedback from './error-feedback'
 
 import { mutate } from 'swr'
+import useSWRImmutable from 'swr/immutable'
 
 import SWR_KEYS from '@/constants/SWR-keys'
 
@@ -41,6 +42,10 @@ const FormGameReview: FC<FormGameReviewProps> = ({
 
     const onSubmit: SubmitHandler<InputsReviewForm> = async data => {
         const { COMMENT, AUTHOR_NAME } = data
+
+        // Optimistically update the UI
+        mutate('/api/reviews', { ...data }, false)
+
         const addReviewHandler = await reviewGame(gameName, COMMENT, AUTHOR_NAME)
 
         if (!addReviewHandler.success) {
