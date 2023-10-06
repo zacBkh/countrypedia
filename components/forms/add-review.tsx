@@ -58,7 +58,7 @@ const FormGameReview: FC<FormGameReviewProps> = ({
     }
 
     const inputCSS =
-        ' outline-none block p-2.5 w-full text-sm text-gray-900 bg-[#EBECF0] rounded-lg border border-gray-300 dark:bg-[#333944] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-react-blue-txt-light&dark'
+        'outline-none block p-2.5 w-full text-gray-900 bg-[#EBECF0] rounded-lg border border-gray-300 dark:bg-[#333944] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-react-blue-txt-light&dark'
 
     return (
         <form className="flex flex-col gap-y-2 mt-6" onSubmit={handleSubmit(onSubmit)}>
