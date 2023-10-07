@@ -12,7 +12,6 @@ import Button from '../ui/buttons'
 import ErrorFeedback from './error-feedback'
 
 import { mutate } from 'swr'
-import useSWRImmutable from 'swr/immutable'
 
 import SWR_KEYS from '@/constants/SWR-keys'
 
@@ -43,17 +42,14 @@ const FormGameReview: FC<FormGameReviewProps> = ({
     const onSubmit: SubmitHandler<InputsReviewForm> = async data => {
         const { COMMENT, AUTHOR_NAME } = data
 
-        // Optimistically update the UI
-        mutate('/api/reviews', { ...data }, false)
-
+        onReviewSent()
         const addReviewHandler = await reviewGame(gameName, COMMENT, AUTHOR_NAME)
+        mutate(SWR_KEYS.REVIEWS_GAME)
 
         if (!addReviewHandler.success) {
-            console.log('error happened in review send')
+            console.log('An error happened while sending the review')
         } else {
-            onReviewSent()
             reset()
-            mutate(SWR_KEYS.REVIEWS_GAME)
         }
     }
 
@@ -107,8 +103,8 @@ const FormGameReview: FC<FormGameReviewProps> = ({
             </div>
 
             <Button
-                moreStyle="mx-auto !px-3 !py-[5px] !text-sm"
-                text={form_translation}
+                moreStyle="mx-auto !px-4 !py-[6px] !text-sm"
+                text={`${form_translation} 🚀`}
                 ariaLabel="Click to submit your review"
             ></Button>
         </form>

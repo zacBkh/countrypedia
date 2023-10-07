@@ -1,5 +1,7 @@
 'use client'
 
+import { BsFilter } from 'react-icons/bs'
+
 import { useState } from 'react'
 
 import ReviewDisplayer from '@/components/reviews/review-displayer'
@@ -48,38 +50,43 @@ const Reviews = () => {
         )
     }
 
-    if (error) return <div>failed to load</div>
+    if (error) return <div>Failed to load the reviews</div>
     if (isLoading)
-        return <Spinner moreCSS="border-t-react-blue-txt-light&dark !w-10 !h-10" />
-
-    if (isValidating)
-        return <Spinner moreCSS="border-t-react-blue-txt-light&dark !w-5 !h-5" />
+        return (
+            <div className="h-[20vh] flex justify-center items-center">
+                <Spinner moreCSS="border-t-react-blue-txt-light&dark !w-10 !h-10" />
+            </div>
+        )
 
     return (
         <div className="space-y-8">
-            <div className="flex items-center gap-x-4">
-                <p className="font-bold">Show only reviews for </p>
-
-                {Object.values(GameNames).map(gameName => (
-                    <button
-                        key={gameName}
-                        className={`p-2 rounded-xl
+            <div className="flex justify-center sm:justify-start items-center gap-x-2">
+                <BsFilter className="text-2xl" />
+                <div className="flex items-center gap-x-4">
+                    {Object.values(GameNames).map(gameName => (
+                        <button
+                            key={gameName}
+                            className={`p-2 rounded-xl
                             ${
                                 activeGame === gameName
                                     ? `activeLink ${styleTxtBlued} `
                                     : ''
                             }`}
-                        onClick={() => handleClickFilter(gameName)}
-                    >
-                        {lookUpGames[gameName]}
-                    </button>
-                ))}
+                            onClick={() => handleClickFilter(gameName)}
+                        >
+                            {lookUpGames[gameName]}
+                        </button>
+                    ))}
+                </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-10 px-6">
                 {reviewsToDisplay?.map(rev => (
                     <ReviewDisplayer key={rev.id} data={rev} />
                 ))}
+                {isValidating && (
+                    <Spinner moreCSS="m-auto border-t-react-blue-txt-light&dark !w-8 !h-8" />
+                )}
             </div>
         </div>
     )
