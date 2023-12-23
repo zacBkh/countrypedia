@@ -6,9 +6,7 @@ import { useState } from 'react'
 
 import ReviewDisplayer from '@/components/reviews/review-displayer'
 
-import { lookUpGames } from '@/constants/game-names'
-
-import { GameNames } from '@/constants/game-names'
+import { lookUpGames, GameNames } from '@/constants/game-names'
 
 import { styleTxtBlued } from '@/components/play/games-dashboard-ui'
 
@@ -80,14 +78,17 @@ const Reviews = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-10 px-6">
-                {reviewsToDisplay?.map(rev => (
-                    <ReviewDisplayer key={rev.id} data={rev} />
-                ))}
-                {isValidating && (
-                    <Spinner moreCSS="m-auto border-t-react-blue-txt-light&dark !w-8 !h-8" />
-                )}
-            </div>
+            {reviewsToDisplay && reviewsToDisplay?.length && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-10 px-6">
+                    {reviewsToDisplay &&
+                        reviewsToDisplay?.map(rev => (
+                            <ReviewDisplayer key={rev.id} data={rev} />
+                        ))}
+                    {isValidating && (
+                        <Spinner moreCSS="m-auto border-t-react-blue-txt-light&dark !w-8 !h-8" />
+                    )}
+                </div>
+            )}
         </div>
     )
 }

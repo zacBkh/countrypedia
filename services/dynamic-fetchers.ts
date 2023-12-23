@@ -67,5 +67,6 @@ export const getReviewsGame: () => Promise<ReviewFetchType> = async () => {
         method: 'GET',
     })
     const data = await response.json()
+
     return data
 }

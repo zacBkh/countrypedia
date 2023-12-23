@@ -72,7 +72,7 @@ const LikeDisplayerGames: FC<LikeDisplayerGamesProps> = ({ gameID }) => {
                     {isLoading ? (
                         <Spinner moreCSS="border-t-black" />
                     ) : (
-                        response?.result[0].likeCount
+                        response?.result[0].likeCount ?? 0
                     )}
                 </div>
             </button>
